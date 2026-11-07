@@ -1,0 +1,13 @@
+node_modules/
+dist/
+*.mjs
+.abai/
+__pycache__/
+.pytest_cache/
+.venv/
+.DS_Store
+manuscript/*.aux
+manuscript/*.log
+manuscript/*.out
+manuscript/*.bbl
+manuscript/*.blg

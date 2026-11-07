@@ -1,0 +1,177 @@
+{
+ "id": "leaf_gbc1",
+ "label": "LEAF GBC1 (lunar surface, pumped)",
+ "hardware": "LEAF Growth Chamber 1",
+ "description": "LEAF (Artemis III) growth chamber 1: 54 cm3 headspace flushed by a pump, lunar gravity.",
+ "fields": {
+  "gravity_g": {
+   "value": 0.1651940265024244,
+   "unit": "g",
+   "source": "nasa_moon_factsheet",
+   "tier": "standard",
+   "note": "lunar surface gravity 1.62 m/s2"
+  },
+  "p_total_kpa": {
+   "value": 101.325,
+   "unit": "kPa",
+   "source": "standard_atmosphere",
+   "tier": "standard",
+   "note": "sea-level standard pressure"
+  },
+  "o2_frac": {
+   "value": 0.2095,
+   "unit": "fraction",
+   "source": "standard_atmosphere",
+   "tier": "standard",
+   "note": "dry-air O2 mole fraction"
+  },
+  "co2_ppm": {
+   "value": 420.0,
+   "unit": "ppm",
+   "source": "",
+   "tier": "assumed",
+   "note": "present-day ambient CO2 (approximate)"
+  },
+  "temp_c": {
+   "value": 22.0,
+   "unit": "degC",
+   "source": "repo:LEAF_GBC2_pot_model/README.md@26d3db6",
+   "tier": "assumed",
+   "note": "assumed in LEAF_GBC2_pot_model"
+  },
+  "light_umol": {
+   "value": 0.0,
+   "unit": "umol m-2 s-1",
+   "source": "",
+   "tier": "assumed",
+   "note": "germination phase"
+  },
+  "light_h_per_cycle": {
+   "value": 0.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "cycle_h": {
+   "value": 24.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "headspace_ml": {
+   "value": 54.05,
+   "unit": "mL",
+   "source": "repo:LEAF_GBC2_pot_model/README.md@26d3db6#headspace",
+   "tier": "derived",
+   "note": "from the GBC1 CAD (M09024F pot + M09025F lid) as reported in the README"
+  },
+  "seeds": {
+   "value": 100.0,
+   "unit": "seeds",
+   "source": "repo:LEAF_GBC2_pot_model/README.md@26d3db6",
+   "tier": "assumed",
+   "note": "100 Arabidopsis in the middle compartment (README); primary hardware source not verified"
+  },
+  "vent_ach": {
+   "value": 277.5,
+   "unit": "1/h",
+   "source": "repo:LEAF_GBC2_pot_model/README.md@26d3db6#pump",
+   "tier": "assumed",
+   "note": "0.25 L/min germination flow from the LEAF_GBC2_pot_model README scenario (not a verified hardware spec)"
+  },
+  "eth_scrub_per_h": {
+   "value": 0.0,
+   "unit": "1/h",
+   "source": "",
+   "tier": "assumed",
+   "note": "no scrubber"
+  },
+  "substrate_psi_mpa": {
+   "value": -0.01,
+   "unit": "MPa",
+   "source": "",
+   "tier": "assumed",
+   "note": "porous substrate blocks"
+  },
+  "wetted_frac_1g": {
+   "value": 0.35,
+   "unit": "fraction",
+   "source": "",
+   "tier": "assumed",
+   "note": "agar: seed lies on the gel surface"
+  },
+  "wetted_frac_0g": {
+   "value": 0.45,
+   "unit": "fraction",
+   "source": "",
+   "tier": "assumed",
+   "note": "agar: capillary film creeps further up the seed"
+  },
+  "film_um_1g": {
+   "value": 10.0,
+   "unit": "um",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "film_um_0g": {
+   "value": 20.0,
+   "unit": "um",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "substrate_scale_mm": {
+   "value": 5.0,
+   "unit": "mm",
+   "source": "",
+   "tier": "assumed",
+   "note": "length scale of free water on the substrate"
+  },
+  "dose_mgy_d": {
+   "value": 0.0,
+   "unit": "mGy/d",
+   "source": "",
+   "tier": "assumed",
+   "note": "PENDING: lunar surface dose from physics research"
+  },
+  "spe_dose_mgy": {
+   "value": 0.0,
+   "unit": "mGy",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "spe_start_h": {
+   "value": 24.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "spe_dur_h": {
+   "value": 2.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  }
+ },
+ "air_speed_by_g": [
+  {
+   "g": 0.0,
+   "u_m_s": 0.005,
+   "source": "",
+   "tier": "assumed",
+   "note": "PENDING LBM run"
+  },
+  {
+   "g": 1.0,
+   "u_m_s": 0.005,
+   "source": "",
+   "tier": "assumed"
+  }
+ ]
+}

@@ -1,0 +1,177 @@
+{
+ "id": "aph",
+ "label": "Advanced Plant Habitat (forced air, KMnO4 scrubber)",
+ "hardware": "APH",
+ "description": "APH growth chamber: 100 L, forced air at plant level, arcillite, ethylene scrubber. PH-04 set points.",
+ "fields": {
+  "gravity_g": {
+   "value": 0.0,
+   "unit": "g",
+   "source": "",
+   "tier": "standard",
+   "note": "orbital microgravity"
+  },
+  "p_total_kpa": {
+   "value": 101.325,
+   "unit": "kPa",
+   "source": "standard_atmosphere",
+   "tier": "standard",
+   "note": "sea-level standard pressure"
+  },
+  "o2_frac": {
+   "value": 0.2095,
+   "unit": "fraction",
+   "source": "standard_atmosphere",
+   "tier": "standard",
+   "note": "dry-air O2 mole fraction"
+  },
+  "co2_ppm": {
+   "value": 550.0,
+   "unit": "ppm",
+   "source": "repo:Hardware_OSDR_review/hardware/aph.yaml@95c4d4d#run_setpoints.PH04",
+   "tier": "measured",
+   "note": "PH-04 set point"
+  },
+  "temp_c": {
+   "value": 23.0,
+   "unit": "degC",
+   "source": "repo:Hardware_OSDR_review/hardware/aph.yaml@95c4d4d#run_setpoints.PH04",
+   "tier": "measured",
+   "note": "PH-04 set point"
+  },
+  "light_umol": {
+   "value": 300.0,
+   "unit": "umol m-2 s-1",
+   "source": "repo:Hardware_OSDR_review/hardware/aph.yaml@95c4d4d#run_setpoints.PH04",
+   "tier": "measured",
+   "note": "PH-04 set point"
+  },
+  "light_h_per_cycle": {
+   "value": 16.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "cycle_h": {
+   "value": 24.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "headspace_ml": {
+   "value": 100000.0,
+   "unit": "mL",
+   "source": "repo:Hardware_OSDR_review/hardware/aph.yaml@95c4d4d#geometry.free_air_volume_L",
+   "tier": "measured",
+   "note": ""
+  },
+  "seeds": {
+   "value": 100.0,
+   "unit": "seeds",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "vent_ach": {
+   "value": 0.05,
+   "unit": "1/h",
+   "source": "repo:Hardware_OSDR_review/hardware/aph.yaml@95c4d4d#walls.gas_permeability",
+   "tier": "measured",
+   "note": "closed recirculating chamber; on-orbit leak 5 %/h (Monje et al. 2020), applied as exchange with cabin air"
+  },
+  "eth_scrub_per_h": {
+   "value": 1.0,
+   "unit": "1/h",
+   "source": "",
+   "tier": "assumed",
+   "note": "KMnO4/Purafil scrubber present (aph.yaml); removal rate not sourced"
+  },
+  "substrate_psi_mpa": {
+   "value": -0.01,
+   "unit": "MPa",
+   "source": "",
+   "tier": "assumed",
+   "note": "watered arcillite"
+  },
+  "wetted_frac_1g": {
+   "value": 0.3,
+   "unit": "fraction",
+   "source": "",
+   "tier": "assumed",
+   "note": "arcillite particle contact"
+  },
+  "wetted_frac_0g": {
+   "value": 0.4,
+   "unit": "fraction",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "film_um_1g": {
+   "value": 10.0,
+   "unit": "um",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "film_um_0g": {
+   "value": 20.0,
+   "unit": "um",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "substrate_scale_mm": {
+   "value": 2.0,
+   "unit": "mm",
+   "source": "",
+   "tier": "assumed",
+   "note": "arcillite pore scale"
+  },
+  "dose_mgy_d": {
+   "value": 0.2868,
+   "unit": "mGy/d",
+   "source": "repo:Hardware_OSDR_review/results/tables/T11_flight_ground.csv@2966064#mean_daily_dose_mGy",
+   "tier": "derived",
+   "note": "median of the mean daily dose of 7 Rodent Research missions with EDA dose data (RR-1, RR-12, RR-19, RR-23, RR-3, RR-6, RR-7)"
+  },
+  "spe_dose_mgy": {
+   "value": 0.0,
+   "unit": "mGy",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "spe_start_h": {
+   "value": 24.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "spe_dur_h": {
+   "value": 2.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  }
+ },
+ "air_speed_by_g": [
+  {
+   "g": 0.0,
+   "u_m_s": 0.3,
+   "source": "repo:Hardware_OSDR_review/hardware/aph.yaml@95c4d4d#run_setpoints.PH04.air_velocity_m_s",
+   "tier": "measured",
+   "note": "PH-04 set point; forced flow dominates buoyancy (APH OpenFOAM T9: 0 g and 1 g nearly identical)"
+  },
+  {
+   "g": 1.0,
+   "u_m_s": 0.3,
+   "source": "repo:Hardware_OSDR_review/hardware/aph.yaml@95c4d4d#run_setpoints.PH04.air_velocity_m_s",
+   "tier": "measured"
+  }
+ ]
+}

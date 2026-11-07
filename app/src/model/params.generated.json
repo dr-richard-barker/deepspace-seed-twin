@@ -1,0 +1,1530 @@
+{
+ "generated_from": "data/params/parameter_ledger.csv",
+ "params": [
+  {
+   "id": "geo_seed_length_um",
+   "value": 500.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Mature dry seed length (ellipsoid long axis)",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_seed_width_um",
+   "value": 300.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Mature dry seed width",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_testa_um",
+   "value": 15.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Testa (seed coat) thickness",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_endosperm_um",
+   "value": 12.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Endosperm thickness (single cell layer)",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_mucilage_max_um",
+   "value": 60.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Hydrated mucilage capsule thickness",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_axis_slices",
+   "value": 22.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Cortical cells per file from the QC to the cotyledon node",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_collet_index",
+   "value": 8.0,
+   "unit": "cell index",
+   "tier": "measured",
+   "group": "geometry",
+   "description": "Cortical cell index of the collet (transition zone) counted from the QC",
+   "source": "bassel2014",
+   "note": "Results: relative expansion \"greatest around cell number 8, within the transition region, or collet\""
+  },
+  {
+   "id": "geo_cap_tiers",
+   "value": 3.0,
+   "unit": "tiers",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Root-cap tiers below the QC",
+   "source": "",
+   "note": "schematic"
+  },
+  {
+   "id": "geo_cap_cells_per_tier",
+   "value": 10.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Cells per root-cap tier",
+   "source": "",
+   "note": "schematic"
+  },
+  {
+   "id": "geo_cell_len_tip_um",
+   "value": 8.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Axial length of cortical cells next to the QC",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_cell_len_base_um",
+   "value": 14.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Axial length of cortical cells in the upper hypocotyl",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_cell_len_lambda",
+   "value": 5.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "e-folding length (in cells) of the cell-length profile from tip to base",
+   "source": "",
+   "note": "schematic profile shape"
+  },
+  {
+   "id": "geo_axis_r_tip_um",
+   "value": 32.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Axis radius near the radicle tip",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_axis_r_base_um",
+   "value": 48.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Axis radius in the hypocotyl",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_axis_r_lambda",
+   "value": 4.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "e-folding length of the radius profile",
+   "source": "",
+   "note": "schematic profile shape"
+  },
+  {
+   "id": "geo_n_epidermis",
+   "value": 16.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Epidermal cells around the axis",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_n_cortex",
+   "value": 8.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Cortical cells around the axis per cortex layer",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_n_endodermis",
+   "value": 8.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Endodermal cells around the axis",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_n_stele",
+   "value": 6.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Provascular (stele) cells in a transverse slice",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_cortex_layers_hypocotyl",
+   "value": 2.0,
+   "unit": "layers",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Cortex layers in the hypocotyl (radicle has one)",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_r_frac_stele",
+   "value": 0.32,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Stele outer radius / axis radius",
+   "source": "",
+   "note": "schematic"
+  },
+  {
+   "id": "geo_r_frac_endodermis",
+   "value": 0.48,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Endodermis outer radius / axis radius",
+   "source": "",
+   "note": "schematic"
+  },
+  {
+   "id": "geo_r_frac_epidermis_inner",
+   "value": 0.84,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Epidermis inner radius / axis radius",
+   "source": "",
+   "note": "schematic"
+  },
+  {
+   "id": "geo_cot_length_um",
+   "value": 280.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Folded cotyledon length",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_cot_width_um",
+   "value": 170.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Cotyledon width",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_cot_thickness_um",
+   "value": 55.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Cotyledon thickness",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_cot_cells_length",
+   "value": 12.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Cells along the cotyledon",
+   "source": "",
+   "note": "schematic"
+  },
+  {
+   "id": "geo_cot_cells_width",
+   "value": 7.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Cells across the cotyledon",
+   "source": "",
+   "note": "schematic"
+  },
+  {
+   "id": "geo_cot_cells_thickness",
+   "value": 4.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Cell layers through the cotyledon",
+   "source": "",
+   "note": "schematic"
+  },
+  {
+   "id": "geo_endosperm_cells",
+   "value": 320.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Endosperm cells in the single-layer shell",
+   "source": "",
+   "note": "PENDING anatomy research"
+  },
+  {
+   "id": "geo_micropylar_fraction",
+   "value": 0.14,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "geometry",
+   "description": "Fraction of the long axis covered by the micropylar endosperm cap",
+   "source": "",
+   "note": "schematic"
+  },
+  {
+   "id": "wall_t_exterior_um",
+   "value": 1.0,
+   "unit": "um",
+   "tier": "standard",
+   "group": "mechanics",
+   "description": "Exterior (epidermal) wall thickness",
+   "source": "bassel2014",
+   "note": "FEM model value; Methods give exterior wall thickness \"1 um\""
+  },
+  {
+   "id": "wall_t_interior_um",
+   "value": 0.4,
+   "unit": "um",
+   "tier": "standard",
+   "group": "mechanics",
+   "description": "Interior wall thickness",
+   "source": "bassel2014",
+   "note": "FEM model value; Methods give interior wall \"400 nm\""
+  },
+  {
+   "id": "wall_e_mpa",
+   "value": 120.0,
+   "unit": "MPa",
+   "tier": "standard",
+   "group": "mechanics",
+   "description": "Cell-wall Young's modulus",
+   "source": "bassel2014",
+   "note": "FEM model value; Methods: Young's modulus \"set to 120 MPa\""
+  },
+  {
+   "id": "turgor_ref_mpa",
+   "value": 0.5,
+   "unit": "MPa",
+   "tier": "standard",
+   "group": "mechanics",
+   "description": "Reference turgor pressure of a fully imbibed embryo cell",
+   "source": "bassel2014",
+   "note": "FEM model value; Methods: \"pressurized to 0.5 MPa\""
+  },
+  {
+   "id": "d_o2_air_m2s",
+   "value": 2e-05,
+   "unit": "m2/s",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "O2 diffusivity in air at T_ref and P_ref",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "d_co2_air_m2s",
+   "value": 1.6e-05,
+   "unit": "m2/s",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "CO2 diffusivity in air at T_ref and P_ref",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "d_eth_air_m2s",
+   "value": 1.5e-05,
+   "unit": "m2/s",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Ethylene diffusivity in air at T_ref and P_ref",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "d_o2_water_m2s",
+   "value": 2.1e-09,
+   "unit": "m2/s",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "O2 diffusivity in water",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "d_co2_water_m2s",
+   "value": 1.9e-09,
+   "unit": "m2/s",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "CO2 diffusivity in water",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "d_eth_water_m2s",
+   "value": 1.9e-09,
+   "unit": "m2/s",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Ethylene diffusivity in water",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "h_o2_mol_m3pa",
+   "value": 1.3e-05,
+   "unit": "mol m-3 Pa-1",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Henry solubility of O2 in water",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "h_co2_mol_m3pa",
+   "value": 0.00033,
+   "unit": "mol m-3 Pa-1",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Henry solubility of CO2 in water",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "h_eth_mol_m3pa",
+   "value": 5.9e-05,
+   "unit": "mol m-3 Pa-1",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Henry solubility of ethylene in water",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "nu_air_m2s",
+   "value": 1.55e-05,
+   "unit": "m2/s",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Kinematic viscosity of air at T_ref and P_ref",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "t_ref_k",
+   "value": 298.15,
+   "unit": "K",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Reference temperature for transport properties",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "p_ref_kpa",
+   "value": 101.325,
+   "unit": "kPa",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Reference pressure for transport properties",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "d_air_t_exponent",
+   "value": 1.75,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Temperature exponent of gas diffusivity",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "sh_forced_coeff",
+   "value": 0.6,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Coefficient a in Sh = 2 + a Re^1/2 Sc^1/3",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "rho_water_kgm3",
+   "value": 997.0,
+   "unit": "kg/m3",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Density of water",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "gamma_water_nm",
+   "value": 0.072,
+   "unit": "N/m",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Surface tension of water",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "water_dry_gg",
+   "value": 0.07,
+   "unit": "g/g",
+   "tier": "assumed",
+   "group": "water",
+   "description": "Water content of the dry seed (g water per g dry mass)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "water_phase2_gg",
+   "value": 0.9,
+   "unit": "g/g",
+   "tier": "assumed",
+   "group": "water",
+   "description": "Water content at the phase-II plateau",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "water_imbibition_rate",
+   "value": 0.5,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "water",
+   "description": "First-order phase-I imbibition rate at full contact",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "water_min_contact",
+   "value": 0.2,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "water",
+   "description": "Minimum effective wetted contact (vapour + film creep)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "water_psi_scale_mpa",
+   "value": 2.0,
+   "unit": "MPa",
+   "tier": "assumed",
+   "group": "water",
+   "description": "Scale of the decline of plateau water content with substrate water potential",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "psi_base_mpa",
+   "value": -1.0,
+   "unit": "MPa",
+   "tier": "assumed",
+   "group": "water",
+   "description": "Base water potential (turgor-driven growth stops below it)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "turgor_hydration_exponent",
+   "value": 2.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "water",
+   "description": "Shape exponent of turgor build-up with hydration",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "activation_tau_h",
+   "value": 4.0,
+   "unit": "h",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "Time constant of metabolic activation after hydration",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "imbibition_swell",
+   "value": 0.3,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "water",
+   "description": "Fractional embryo volume increase on full imbibition",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "resp_qmax_mol_m3s",
+   "value": 0.03,
+   "unit": "mol m-3 s-1",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "Maximum O2 uptake per tissue volume",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "resp_km_o2_pa",
+   "value": 100.0,
+   "unit": "Pa",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "Half-saturation partial pressure of tissue O2 uptake",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "aerobic_km_o2_pa",
+   "value": 500.0,
+   "unit": "Pa",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "O2 partial pressure giving half-maximal aerobic energy yield",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "fermentation_yield",
+   "value": 0.07,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "Relative energy yield of fermentation vs respiration",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "reserve_k",
+   "value": 0.05,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "Reserve level at which supply is half-maximal",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "reserve_o2_capacity_mol",
+   "value": 6.3e-07,
+   "unit": "mol",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "O2 needed to oxidise the seed's storage lipid",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "resp_quotient",
+   "value": 0.7,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "Respiratory quotient (CO2/O2)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "tissue_diffusivity_rel",
+   "value": 0.3,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Gas diffusivity in tissue relative to water",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "testa_perm_rel",
+   "value": 0.1,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Testa gas permeability relative to an equal water layer",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "testa_open_fraction",
+   "value": 0.1,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Seed-surface fraction opened by testa rupture",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "endosperm_open_fraction",
+   "value": 0.05,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "physics",
+   "description": "Seed-surface fraction opened by endosperm rupture",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "q10",
+   "value": 2.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "Q10 of growth and metabolic rates",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "t_ref_growth_c",
+   "value": 22.0,
+   "unit": "degC",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "Reference temperature of rate constants",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "aba_init",
+   "value": 1.0,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Initial ABA in the dry seed (normalised)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "della_init",
+   "value": 1.0,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Initial DELLA (normalised)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "aba_synth",
+   "value": 0.02,
+   "unit": "norm/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "ABA synthesis rate",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "aba_decay",
+   "value": 0.05,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Basal ABA catabolism",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "aba_cyp707a_induction",
+   "value": 4.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Fold-induction of ABA catabolism by imbibition",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "k_ga_represses_aba",
+   "value": 1.0,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "GA level halving ABA synthesis",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "ga_synth",
+   "value": 0.3,
+   "unit": "norm/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "GA synthesis at the radicle tip in light",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "ga_decay",
+   "value": 0.2,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "GA inactivation",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "k_aba_represses_ga",
+   "value": 0.3,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "ABA level halving GA synthesis",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "ga_dark_fraction",
+   "value": 0.3,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "GA synthesis in darkness relative to light",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "della_synth",
+   "value": 0.1,
+   "unit": "norm/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "DELLA synthesis",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "della_degrad",
+   "value": 0.5,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Maximum GA-GID1-dependent DELLA degradation",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "k_ga_della",
+   "value": 0.3,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "GA for half-maximal DELLA degradation",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "acc_synth",
+   "value": 0.05,
+   "unit": "norm/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "ACC synthesis (ACS)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "acc_decay",
+   "value": 0.05,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "ACC conjugation / turnover",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "aco_vmax",
+   "value": 0.2,
+   "unit": "norm/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Maximum ACO flux",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "aco_km_acc",
+   "value": 0.5,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "ACC for half-maximal ACO flux",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "aco_km_o2_pa",
+   "value": 1000.0,
+   "unit": "Pa",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "O2 partial pressure for half-maximal ACO activity",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "ros_to_aba",
+   "value": 0.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "radiation",
+   "description": "Radiation ROS stimulation of ABA synthesis (hypothesis coupling)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "ros_to_acc",
+   "value": 0.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "radiation",
+   "description": "Radiation ROS stimulation of ACC synthesis (hypothesis coupling)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "aba_transport",
+   "value": 0.5,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Cell-to-cell ABA exchange rate",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "ga_transport",
+   "value": 0.5,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Cell-to-cell GA exchange rate",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "k_della_repress",
+   "value": 0.3,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "DELLA halving the growth response",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "k_aba_repress",
+   "value": 0.3,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "ABA halving the growth response",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "eth_aba_relief",
+   "value": 1.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Ethylene relief of ABA action",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "ga_source_lambda",
+   "value": 4.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Decay length (cells from the QC) of GA synthesis",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "gid1_lambda",
+   "value": 6.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Decay length (cells from the QC) of GID1 abundance",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "gid1_base",
+   "value": 0.2,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "GID1 far from the radicle tip",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "ga_source_cotyledon",
+   "value": 0.05,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "GA synthesis weight in cotyledons",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "eth_yield_mol_m3",
+   "value": 1e-06,
+   "unit": "mol m-3",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Ethylene produced per normalised ACO unit per tissue volume",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "eth_response_k_pa",
+   "value": 0.01,
+   "unit": "Pa",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Ethylene partial pressure for half-maximal response",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "eth_response_hill",
+   "value": 1.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Hill coefficient of the ethylene response",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "wall_extensibility",
+   "value": 0.02,
+   "unit": "1/(MPa h)",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Maximum wall extensibility (phi)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "wall_yield_mpa",
+   "value": 2.0,
+   "unit": "MPa",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Wall-stress yield threshold",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "radial_growth",
+   "value": 0.15,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Radial/axial growth ratio",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "radial_growth_tip",
+   "value": 0.5,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Radial/axial growth ratio near the radicle tip",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "testa_stiffness_mpa",
+   "value": 20.0,
+   "unit": "MPa",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Restraint stress per unit axial strain from the testa",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "testa_slack",
+   "value": 0.03,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Axial strain accommodated before the testa resists",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "testa_strength_mpa",
+   "value": 0.15,
+   "unit": "MPa",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Testa rupture threshold",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "endosperm_stiffness_mpa",
+   "value": 30.0,
+   "unit": "MPa",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Restraint stress per unit axial strain from the endosperm cap",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "endosperm_slack",
+   "value": 0.01,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Strain accommodated by the endosperm before it resists",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "cap_strength0_mpa",
+   "value": 0.4,
+   "unit": "MPa",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Initial endosperm cap strength",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "cap_weakening_rate",
+   "value": 0.15,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Maximum cap weakening rate",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "cap_k_ga",
+   "value": 0.3,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Embryo GA for half-maximal cap weakening",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "cap_k_aba",
+   "value": 0.5,
+   "unit": "norm",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "ABA halving cap weakening",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "cap_eth_boost",
+   "value": 1.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "mechanics",
+   "description": "Ethylene enhancement of cap weakening",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "rad_damage_per_mgy",
+   "value": 0.01,
+   "unit": "1/mGy",
+   "tier": "assumed",
+   "group": "radiation",
+   "description": "Damage/ROS state produced per mGy",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "rad_repair_rate",
+   "value": 0.1,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "radiation",
+   "description": "Repair/decay rate of radiation damage",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "ros_to_division_arrest",
+   "value": 0.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "radiation",
+   "description": "Radiation damage arrest of meristem division (hypothesis coupling)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "root_meristem_delay_h",
+   "value": 6.0,
+   "unit": "h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Delay from protrusion to meristem activity",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "root_meristem_len_um",
+   "value": 250.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Meristem length",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "root_ez_len_um",
+   "value": 400.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Elongation-zone length",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "root_division_len_um",
+   "value": 10.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Meristem cell length at division",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "root_mature_len_um",
+   "value": 150.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Mature root cortical cell length",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "root_cell_cycle_h",
+   "value": 17.0,
+   "unit": "h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Meristem cell-cycle duration",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "root_ez_rate",
+   "value": 0.3,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Relative elongation rate in the elongation zone",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "root_gravitropic_rate_deg_h",
+   "value": 20.0,
+   "unit": "deg/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Root gravitropic bending rate at 1 g (90 degrees off vertical)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "eth_root_inhibition",
+   "value": 3.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Ethylene inhibition of root elongation",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "anchor_delay_h",
+   "value": 6.0,
+   "unit": "h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Time after protrusion when root hairs anchor the collet",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hyp_rate_dark",
+   "value": 0.05,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Hypocotyl cell relative elongation rate in darkness",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hyp_rate_light",
+   "value": 0.015,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Hypocotyl cell relative elongation rate in light",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hyp_cell_max_dark_um",
+   "value": 400.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Maximum hypocotyl cell length in darkness",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hyp_cell_max_light_um",
+   "value": 60.0,
+   "unit": "um",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Maximum hypocotyl cell length in light",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "eth_hyp_inhibition",
+   "value": 3.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Ethylene inhibition of hypocotyl elongation in darkness",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "eth_hyp_thickening",
+   "value": 0.02,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Ethylene-induced radial swelling rate in darkness",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "eth_hyp_thick_max",
+   "value": 2.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Maximum ethylene-induced radial swelling factor",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hyp_acropetal_delay_h",
+   "value": 1.0,
+   "unit": "h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Delay per cell of the acropetal elongation wave",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hyp_elongation_delay_h",
+   "value": 6.0,
+   "unit": "h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Delay from protrusion to hypocotyl elongation",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hyp_gravitropic_rate_deg_h",
+   "value": 10.0,
+   "unit": "deg/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Hypocotyl negative gravitropic bending rate at 1 g",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hook_slices",
+   "value": 4.0,
+   "unit": "cells",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Hypocotyl cells forming the apical hook",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hook_angle_dark_deg",
+   "value": 180.0,
+   "unit": "deg",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Apical hook angle in darkness",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "eth_hook_exaggeration",
+   "value": 0.5,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Ethylene exaggeration of the hook",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "hook_tau_h",
+   "value": 6.0,
+   "unit": "h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Time constant of hook formation/opening",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "cot_open_rate",
+   "value": 0.05,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Cotyledon opening rate in light",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "cot_expansion_rate",
+   "value": 0.02,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Cotyledon cell expansion rate in light",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "cot_expansion_max",
+   "value": 3.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Maximum cotyledon cell expansion factor",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "cot_photosynthesis_rate",
+   "value": 0.005,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Reserve gain from open cotyledons in light (normalised)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "deetiolation_rate",
+   "value": 0.1,
+   "unit": "1/h",
+   "tier": "assumed",
+   "group": "seedling",
+   "description": "Rate at which light exposure de-etiolates the seedling (irreversible)",
+   "source": "",
+   "note": "PROVISIONAL - replaced by sourced/fitted value"
+  }
+ ],
+ "references": [
+  {
+   "key": "bassel2014",
+   "authors": "Bassel GW, Stamm P, Mosca G, Barbier de Reuille P, Gibbs DJ, Winter R, Janka A, Holdsworth MJ, Smith RS",
+   "year": "2014",
+   "title": "Mechanical constraints imposed by 3D cellular geometry and arrangement modulate growth patterns in the Arabidopsis embryo",
+   "journal": "Proceedings of the National Academy of Sciences",
+   "volume": "111",
+   "issue": "23",
+   "pages": "8685-8690",
+   "doi": "10.1073/pnas.1404616111",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref + PMC4060677 full text"
+  }
+ ]
+}

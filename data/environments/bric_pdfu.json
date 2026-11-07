@@ -1,0 +1,178 @@
+{
+ "id": "bric_pdfu",
+ "label": "BRIC-PDFU (sealed, dark) on ISS",
+ "hardware": "BRIC-PDFU",
+ "description": "Sealed 60 mm dish in a Petri Dish Fixation Unit, dark, no ventilation, microgravity.",
+ "fields": {
+  "gravity_g": {
+   "value": 0.0,
+   "unit": "g",
+   "source": "",
+   "tier": "standard",
+   "note": "orbital microgravity"
+  },
+  "p_total_kpa": {
+   "value": 101.325,
+   "unit": "kPa",
+   "source": "standard_atmosphere",
+   "tier": "standard",
+   "note": "sea-level standard pressure"
+  },
+  "o2_frac": {
+   "value": 0.2095,
+   "unit": "fraction",
+   "source": "standard_atmosphere",
+   "tier": "standard",
+   "note": "dry-air O2 mole fraction"
+  },
+  "co2_ppm": {
+   "value": 420.0,
+   "unit": "ppm",
+   "source": "",
+   "tier": "assumed",
+   "note": "gas sealed at integration on the ground"
+  },
+  "temp_c": {
+   "value": 22.25,
+   "unit": "degC",
+   "source": "repo:Hardware_OSDR_review/hardware/bric_pdfu.yaml@95c4d4d#environment.temperature_C",
+   "tier": "measured",
+   "note": "midpoint of measured [22.0, 22.5] degC"
+  },
+  "light_umol": {
+   "value": 0.0,
+   "unit": "umol m-2 s-1",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "light_h_per_cycle": {
+   "value": 0.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "cycle_h": {
+   "value": 24.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "headspace_ml": {
+   "value": 16.4,
+   "unit": "mL",
+   "source": "repo:LunarLeaf-CFD/validation/dishes.ts@2b18ddc#BRIC-mid",
+   "tier": "derived",
+   "note": "floor 22.2 cm2 x headspace 7.38 mm (height 14.0 - wall 1.0 - agar 5.62 mm, dishes.ts geometry); the PDFU dish-chamber air volume for agar plates is not sourced (bric_pdfu.yaml)"
+  },
+  "seeds": {
+   "value": 30.0,
+   "unit": "seeds",
+   "source": "",
+   "tier": "assumed",
+   "note": "PDFU seed number not sourced; BRIC-LED value used"
+  },
+  "vent_ach": {
+   "value": 0.0,
+   "unit": "1/h",
+   "source": "",
+   "tier": "assumed",
+   "note": "sealed"
+  },
+  "eth_scrub_per_h": {
+   "value": 0.0,
+   "unit": "1/h",
+   "source": "",
+   "tier": "assumed",
+   "note": "no scrubber"
+  },
+  "substrate_psi_mpa": {
+   "value": 0.0,
+   "unit": "MPa",
+   "source": "",
+   "tier": "assumed",
+   "note": "water-saturated substrate (psi ~ 0)"
+  },
+  "wetted_frac_1g": {
+   "value": 0.35,
+   "unit": "fraction",
+   "source": "",
+   "tier": "assumed",
+   "note": "agar: seed lies on the gel surface"
+  },
+  "wetted_frac_0g": {
+   "value": 0.45,
+   "unit": "fraction",
+   "source": "",
+   "tier": "assumed",
+   "note": "agar: capillary film creeps further up the seed"
+  },
+  "film_um_1g": {
+   "value": 10.0,
+   "unit": "um",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "film_um_0g": {
+   "value": 20.0,
+   "unit": "um",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "substrate_scale_mm": {
+   "value": 5.0,
+   "unit": "mm",
+   "source": "",
+   "tier": "assumed",
+   "note": "length scale of free water on the substrate"
+  },
+  "dose_mgy_d": {
+   "value": 0.2868,
+   "unit": "mGy/d",
+   "source": "repo:Hardware_OSDR_review/results/tables/T11_flight_ground.csv@2966064#mean_daily_dose_mGy",
+   "tier": "derived",
+   "note": "median of the mean daily dose of 7 Rodent Research missions with EDA dose data (RR-1, RR-12, RR-19, RR-23, RR-3, RR-6, RR-7)"
+  },
+  "spe_dose_mgy": {
+   "value": 0.0,
+   "unit": "mGy",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "spe_start_h": {
+   "value": 24.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "spe_dur_h": {
+   "value": 2.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  }
+ },
+ "air_speed_by_g": [
+  {
+   "g": 0.0,
+   "u_m_s": 0.0,
+   "source": "",
+   "tier": "assumed",
+   "note": "sealed, unpowered, no fan"
+  },
+  {
+   "g": 1.0,
+   "u_m_s": 0.0,
+   "source": "",
+   "tier": "assumed",
+   "note": "sealed, unpowered, no fan"
+  }
+ ]
+}

@@ -1,0 +1,178 @@
+{
+ "id": "cara",
+ "label": "CARA (taped 120 mm square dish) on ISS",
+ "hardware": "CARA dish",
+ "description": "Taped 120 mm square dish (CARA), microgravity; tape leak uncalibrated.",
+ "fields": {
+  "gravity_g": {
+   "value": 0.0,
+   "unit": "g",
+   "source": "",
+   "tier": "standard",
+   "note": "orbital microgravity"
+  },
+  "p_total_kpa": {
+   "value": 101.325,
+   "unit": "kPa",
+   "source": "standard_atmosphere",
+   "tier": "standard",
+   "note": "sea-level standard pressure"
+  },
+  "o2_frac": {
+   "value": 0.2095,
+   "unit": "fraction",
+   "source": "standard_atmosphere",
+   "tier": "standard",
+   "note": "dry-air O2 mole fraction"
+  },
+  "co2_ppm": {
+   "value": 3371.0,
+   "unit": "ppm",
+   "source": "repo:Hardware_OSDR_review/hardware/_iss_cabin.yaml@2966064#environment.co2_ppm",
+   "tier": "derived",
+   "note": "ISS cabin CO2 (EDA RR-1 telemetry) for the tape-leak exchange air"
+  },
+  "temp_c": {
+   "value": 22.0,
+   "unit": "degC",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "light_umol": {
+   "value": 100.0,
+   "unit": "umol m-2 s-1",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "light_h_per_cycle": {
+   "value": 24.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "cycle_h": {
+   "value": 24.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "headspace_ml": {
+   "value": 141.0,
+   "unit": "mL",
+   "source": "repo:LunarLeaf-CFD/validation/dishes.ts@2b18ddc#CARA-mid",
+   "tier": "derived",
+   "note": "floor 144.0 cm2 x headspace 9.79 mm (height 16.0 - wall 1.0 - agar 5.21 mm, dishes.ts geometry)"
+  },
+  "seeds": {
+   "value": 30.0,
+   "unit": "seeds",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "vent_ach": {
+   "value": 0.5,
+   "unit": "1/h",
+   "source": "",
+   "tier": "assumed",
+   "note": "tape leak, uncalibrated (LunarLeaf membraneK 0.01 is also uncalibrated)"
+  },
+  "eth_scrub_per_h": {
+   "value": 0.0,
+   "unit": "1/h",
+   "source": "",
+   "tier": "assumed",
+   "note": "no scrubber"
+  },
+  "substrate_psi_mpa": {
+   "value": 0.0,
+   "unit": "MPa",
+   "source": "",
+   "tier": "assumed",
+   "note": "water-saturated substrate (psi ~ 0)"
+  },
+  "wetted_frac_1g": {
+   "value": 0.35,
+   "unit": "fraction",
+   "source": "",
+   "tier": "assumed",
+   "note": "agar: seed lies on the gel surface"
+  },
+  "wetted_frac_0g": {
+   "value": 0.45,
+   "unit": "fraction",
+   "source": "",
+   "tier": "assumed",
+   "note": "agar: capillary film creeps further up the seed"
+  },
+  "film_um_1g": {
+   "value": 10.0,
+   "unit": "um",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "film_um_0g": {
+   "value": 20.0,
+   "unit": "um",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "substrate_scale_mm": {
+   "value": 5.0,
+   "unit": "mm",
+   "source": "",
+   "tier": "assumed",
+   "note": "length scale of free water on the substrate"
+  },
+  "dose_mgy_d": {
+   "value": 0.2868,
+   "unit": "mGy/d",
+   "source": "repo:Hardware_OSDR_review/results/tables/T11_flight_ground.csv@2966064#mean_daily_dose_mGy",
+   "tier": "derived",
+   "note": "median of the mean daily dose of 7 Rodent Research missions with EDA dose data (RR-1, RR-12, RR-19, RR-23, RR-3, RR-6, RR-7)"
+  },
+  "spe_dose_mgy": {
+   "value": 0.0,
+   "unit": "mGy",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "spe_start_h": {
+   "value": 24.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  },
+  "spe_dur_h": {
+   "value": 2.0,
+   "unit": "h",
+   "source": "",
+   "tier": "assumed",
+   "note": ""
+  }
+ },
+ "air_speed_by_g": [
+  {
+   "g": 0.0,
+   "u_m_s": 0.0,
+   "source": "",
+   "tier": "assumed",
+   "note": "no fan inside the dish"
+  },
+  {
+   "g": 1.0,
+   "u_m_s": 0.0,
+   "source": "",
+   "tier": "assumed",
+   "note": "no fan inside the dish"
+  }
+ ]
+}

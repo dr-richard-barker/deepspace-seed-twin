@@ -1,0 +1,34 @@
+{
+ "description": "Lower-side auxin asymmetry in the root tip vs gravity level. MODEL OUTPUT of the virtual-root mechanistic auxin-transport model (columella PIN-bias sweep), not a measurement. Used by the seed twin only to scale the gravitropic bending rate relative to 1 g.",
+ "tier": "derived",
+ "source": "repo:Seed_sowing_simulator/data/calibration.json@d644a4c (gravity_asymmetry_curve), originally from virtual-root",
+ "unit": "percent lower-side auxin asymmetry vs. gravity level (g)",
+ "points": [
+  {
+   "g": 0.0,
+   "asymmetry_pct": 0,
+   "label": "microgravity"
+  },
+  {
+   "g": 0.16,
+   "asymmetry_pct": 10,
+   "label": "Moon"
+  },
+  {
+   "g": 0.38,
+   "asymmetry_pct": 21,
+   "label": "Mars"
+  },
+  {
+   "g": 1.0,
+   "asymmetry_pct": 36,
+   "label": "Earth"
+  },
+  {
+   "g": 2.0,
+   "asymmetry_pct": 41,
+   "label": "2g"
+  }
+ ],
+ "interpolation": "piecewise-linear between points, clamp to [0,2]g range"
+}

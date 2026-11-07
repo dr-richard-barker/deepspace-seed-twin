@@ -1,0 +1,32 @@
+:root {
+  color-scheme: dark;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* tokens read by the shared CoSE chrome (cose-chrome.css) */
+  --bg: #0e1311;
+  --card: #141b17;
+  --fg: #e6ece4;
+  --line: #27322b;
+  --muted: #8d9b88;
+  --accent: #7fd4a0;
+  /* the tool's own palette, namespaced so cose-map.css cannot remap it */
+  --seed-bg: #0e1311;
+  --seed-panel: #141b17;
+  --seed-fg: #e6ece4;
+  --seed-muted: #8d9b88;
+  --seed-line: #27322b;
+  --seed-accent: #7fd4a0;
+  --seed-warn: #e0a458;
+  --seed-assumed: #d48ad0;
+}
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f3f1ea; --card: #ffffff; --fg: #1d2420; --line: #d9d6cb; --muted: #5f6b5c; --accent: #2f7d55;
+  --seed-bg: #f3f1ea; --seed-panel: #ffffff; --seed-fg: #1d2420; --seed-muted: #5f6b5c;
+  --seed-line: #d9d6cb; --seed-accent: #2f7d55; --seed-warn: #a5641a; --seed-assumed: #9c3f97;
+}
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; background: var(--seed-bg); color: var(--seed-fg); }
+.app { display: flex; flex-direction: column; height: 100%; }
+.app-header { padding: 0.6rem 1rem 0.6rem 175px; border-bottom: 1px solid var(--seed-line); min-height: 52px; }
+.app-header h1 { margin: 0; font-size: 1.15rem; }
+.viewer { flex: 1; min-height: 0; }
