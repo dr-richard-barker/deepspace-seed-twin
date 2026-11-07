@@ -169,16 +169,24 @@
  "air_speed_by_g": [
   {
    "g": 0.0,
-   "u_m_s": 0.005,
-   "source": "",
-   "tier": "assumed",
-   "note": "PENDING LBM run"
+   "u_m_s": 5.3162e-05,
+   "source": "repo:deepspace-seed-twin/results/tables/seed_air_speed.csv (LBM job gbc1_q0.25_g0)",
+   "tier": "derived",
+   "note": "2-D LBM (vendored LunarLeaf solver), pump 0.25 L/min, outflow/inflow 0.949; no buoyancy source during germination, so identical at every g"
+  },
+  {
+   "g": 0.165,
+   "u_m_s": 5.3162e-05,
+   "source": "repo:deepspace-seed-twin/results/tables/seed_air_speed.csv (LBM job gbc1_q0.25_g0.165)",
+   "tier": "derived",
+   "note": "2-D LBM (vendored LunarLeaf solver), pump 0.25 L/min, outflow/inflow 0.949; no buoyancy source during germination, so identical at every g"
   },
   {
    "g": 1.0,
-   "u_m_s": 0.005,
-   "source": "",
-   "tier": "assumed"
+   "u_m_s": 5.3162e-05,
+   "source": "repo:deepspace-seed-twin/results/tables/seed_air_speed.csv (LBM job gbc1_q0.25_g1)",
+   "tier": "derived",
+   "note": "2-D LBM (vendored LunarLeaf solver), pump 0.25 L/min, outflow/inflow 0.949; no buoyancy source during germination, so identical at every g"
   }
  ]
 }

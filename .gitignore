@@ -11,3 +11,6 @@ manuscript/*.log
 manuscript/*.out
 manuscript/*.bbl
 manuscript/*.blg
+manuscript/main.pdf
+manuscript/*.fls
+manuscript/*.fdb_latexmk

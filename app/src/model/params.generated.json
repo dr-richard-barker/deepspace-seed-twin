@@ -253,13 +253,13 @@
   },
   {
    "id": "geo_cot_thickness_um",
-   "value": 55.0,
+   "value": 40.0,
    "unit": "um",
    "tier": "assumed",
    "group": "geometry",
    "description": "Cotyledon thickness",
    "source": "",
-   "note": "PENDING anatomy research"
+   "note": "no source; chosen so the folded embryo (straight axis + two stacked cotyledons) fits inside the endosperm cavity of the measured 490 x 290 um seed (gate: <3% of embryo cell centres outside); ~4 cell layers of ~10 um"
   },
   {
    "id": "geo_cot_cells_length",
@@ -803,13 +803,13 @@
   },
   {
    "id": "ga_source_lambda",
-   "value": 4.44968,
+   "value": 4.42873,
    "unit": "cells",
    "tier": "fitted",
    "group": "hormones",
    "description": "Decay length (cells from the QC) of GA synthesis",
    "source": "calibration:data/calibration/fit_result.json",
-   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.444) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "gid1_lambda",
@@ -843,13 +843,13 @@
   },
   {
    "id": "eth_yield_mol_m3",
-   "value": 0.0112912,
+   "value": 0.0119051,
    "unit": "mol m-3",
    "tier": "fitted",
    "group": "hormones",
    "description": "Ethylene produced per normalised ACO unit per tissue volume",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "eth_response_k_pa",
@@ -873,23 +873,23 @@
   },
   {
    "id": "wall_extensibility",
-   "value": 0.022307,
+   "value": 0.0291774,
    "unit": "1/(MPa h)",
    "tier": "fitted",
    "group": "mechanics",
    "description": "Maximum wall extensibility (phi)",
    "source": "calibration:data/calibration/fit_result.json",
-   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.444) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "wall_yield_mpa",
-   "value": 3.31434,
+   "value": 3.31638,
    "unit": "MPa",
    "tier": "fitted",
    "group": "mechanics",
    "description": "Wall-stress yield threshold",
    "source": "calibration:data/calibration/fit_result.json",
-   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.444) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "radial_growth",
@@ -933,13 +933,13 @@
   },
   {
    "id": "testa_strength_mpa",
-   "value": 0.169748,
+   "value": 0.171653,
    "unit": "MPa",
    "tier": "fitted",
    "group": "mechanics",
    "description": "Testa rupture threshold",
    "source": "calibration:data/calibration/fit_result.json",
-   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.444) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "endosperm_stiffness_mpa",
@@ -963,23 +963,23 @@
   },
   {
    "id": "cap_strength0_mpa",
-   "value": 0.320486,
+   "value": 0.321936,
    "unit": "MPa",
    "tier": "fitted",
    "group": "mechanics",
    "description": "Initial endosperm cap strength",
    "source": "calibration:data/calibration/fit_result.json",
-   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.444) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "cap_weakening_rate",
-   "value": 0.117332,
+   "value": 0.115291,
    "unit": "1/h",
    "tier": "fitted",
    "group": "mechanics",
    "description": "Maximum cap weakening rate",
    "source": "calibration:data/calibration/fit_result.json",
-   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.444) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "cap_k_ga",
@@ -1043,13 +1043,13 @@
   },
   {
    "id": "root_meristem_delay_h",
-   "value": 8.25986,
+   "value": 10.9387,
    "unit": "h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Delay from protrusion to meristem activity",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "root_meristem_len_um",
@@ -1143,23 +1143,23 @@
   },
   {
    "id": "hyp_rate_dark",
-   "value": 0.0493627,
+   "value": 0.0564119,
    "unit": "1/h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Hypocotyl cell relative elongation rate in darkness",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "hyp_rate_light",
-   "value": 0.0295021,
+   "value": 0.0295966,
    "unit": "1/h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Hypocotyl cell relative elongation rate in light",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "hyp_cell_max_dark_um",
@@ -1223,13 +1223,13 @@
   },
   {
    "id": "hyp_elongation_delay_h",
-   "value": 0.36201,
+   "value": 0.267418,
    "unit": "h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Delay from protrusion to hypocotyl elongation",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "hyp_gravitropic_rate_deg_h",
@@ -1283,13 +1283,13 @@
   },
   {
    "id": "cot_open_rate",
-   "value": 0.476353,
+   "value": 0.84089,
    "unit": "1/h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Cotyledon opening rate in light",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "cot_expansion_rate",
@@ -1553,13 +1553,13 @@
   },
   {
    "id": "hormone_time_unit_h",
-   "value": 0.891249,
+   "value": 0.896754,
    "unit": "h per model unit",
    "tier": "fitted",
    "group": "hormones",
    "description": "Hours per Abley model time unit",
    "source": "calibration:data/calibration/fit_result.json",
-   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.444) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "hormone_transport_omega",
@@ -1573,13 +1573,13 @@
   },
   {
    "id": "integrator_growth_k",
-   "value": 1.78431,
+   "value": 2.54776,
    "unit": "arbitrary",
    "tier": "fitted",
    "group": "hormones",
    "description": "Integrator level halving the growth response",
    "source": "calibration:data/calibration/fit_result.json",
-   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.444) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "integrator_growth_hill",
@@ -1603,13 +1603,13 @@
   },
   {
    "id": "aba_imbibition_catabolism",
-   "value": 1.6394,
+   "value": 1.63013,
    "unit": "1",
    "tier": "fitted",
    "group": "hormones",
    "description": "Fold increase of ABA catabolism (CYP707A2) at full hydration",
    "source": "calibration:data/calibration/fit_result.json",
-   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.444) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "psi_base_seed_offset_mpa",
@@ -1620,6 +1620,26 @@
    "description": "This seed's deviation of base water potential from the population mean",
    "source": "footitt2019",
    "note": "0 for the reference seed; population runs draw it from N(0, psi_base_sd_mpa)"
+  },
+  {
+   "id": "hypoxia_threshold_pa",
+   "value": 1000.0,
+   "unit": "Pa",
+   "tier": "assumed",
+   "group": "metabolism",
+   "description": "O2 partial pressure below which a cell counts as hypoxic (read-out only)",
+   "source": "",
+   "note": "read-out threshold only (~13 uM dissolved via Sander 2015 Henry constant); does not change the dynamics"
+  },
+  {
+   "id": "root_young_meristem_fraction",
+   "value": 0.36,
+   "unit": "1",
+   "tier": "derived",
+   "group": "seedling",
+   "description": "Meristem share of a young root shorter than its mature growth zone",
+   "source": "beemster1998",
+   "note": "440 um meristem / 1231 um growth zone at day 6 = 0.36; applying this ratio to roots shorter than the day-6 growth zone is an assumption"
   }
  ],
  "references": [

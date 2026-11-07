@@ -6,7 +6,8 @@ import { clusterOf, DECODER, nesFor } from "../app/src/model/identity";
 import { defaultParams, p, type Params } from "../app/src/model/params";
 import { ATMOSPHERES, PRESET_BY_ID, RADIATION } from "../app/src/model/presets";
 import { SeedTwin, type Sample } from "../app/src/model/simulate";
-import { runPopulation } from "../app/src/model/population";
+import { describe, runPopulation } from "../app/src/model/population";
+import { evaluate, seedlingMetrics } from "./metrics";
 
 const OUT = "results/tables";
 mkdirSync(OUT, { recursive: true });
@@ -80,6 +81,8 @@ function summary(s: SeedTwin, sc: Scenario) {
     cot_open_h: s.milestones.cotOpen,
     min_o2_surface_kpa: minOf("o2_surface_kpa"),
     min_o2_core_kpa: minOf("o2_core_min_kpa"),
+    max_hypoxic_frac: maxOf("hypoxic_frac"),
+    hypoxic_frac_24h: s.samples.find((r) => Math.abs(r.t - 24) < 1e-6)?.hypoxic_frac ?? null,
     peak_eth_headspace_ppb: maxOf("eth_hs_ppb"),
     peak_eth_internal_ppb: maxOf("eth_int_ppb"),
     root_len_120h_um: last.root_len_um,
@@ -180,13 +183,65 @@ writeFileSync(`${OUT}/scenario_summary.csv`, csv(sums));
   const curves: Record<string, unknown>[] = [];
   const summaryRows: Record<string, unknown>[] = [];
   for (const [label, preset, over] of pops) {
-    const r = runPopulation(P0, resolveEnv(PRESET_BY_ID.get(preset)!, over), 60, 20261106, 96);
-    r.times.forEach((tt, i) => curves.push({ scenario: label, seed: i, psi_b_offset_mpa: r.offsets[i], endosperm_rupture_h: tt }));
-    summaryRows.push({ scenario: label, n: r.times.length, gmax: r.gmax, t50_h: r.t50, u8416_h: r.u8416, u7525_h: r.u7525 });
+    const env = resolveEnv(PRESET_BY_ID.get(preset)!, over);
+    const r = runPopulation(P0, env, 60, 20261106, 96);
+    // the same seeds under pure hydrotime theory: t = θH / (ψ − ψb,seed), θH = 34.352 MPa h (Footitt 2019)
+    const thetaH = 34.352;
+    const hyd = r.offsets.map((o) => {
+      const d = env.substrate_psi_mpa - (p(P0, "psi_base_mpa") + o);
+      const tt = d > 0 ? thetaH / d : null;
+      return tt !== null && tt <= 96 ? tt : null;
+    });
+    const hs = describe(hyd);
+    r.times.forEach((tt, i) => curves.push({ scenario: label, seed: i, psi_b_offset_mpa: r.offsets[i], endosperm_rupture_h: tt, hydrotime_t_h: hyd[i] }));
+    summaryRows.push({ scenario: label, n: r.times.length, gmax: r.gmax, t50_h: r.t50, u8416_h: r.u8416, u7525_h: r.u7525, hydrotime_gmax: hs.gmax, hydrotime_t50_h: hs.t50, hydrotime_u8416_h: hs.u8416 });
     console.log(`population ${label}: t50 ${r.t50?.toFixed(1)} h, u84-16 ${r.u8416?.toFixed(1)} h`);
   }
   writeFileSync(`${OUT}/population_curves.csv`, csv(curves));
   writeFileSync(`${OUT}/population_summary.csv`, csv(summaryRows));
+}
+
+// ---- per-cell layout snapshots for the cut-away figure (mid-plane section drawn by python)
+{
+  const snaps: [string, string, Partial<Record<EnvKey, number>>, number[]][] = [
+    ["ground_light", "ground_petri", {}, [0, 24, 32, 72, 120]],
+    ["ground_dark", "ground_petri", { light_umol: 0, light_h_per_cycle: 0 }, [120]],
+    ["ethylene_10ppm_dark", "ground_petri", { light_umol: 0, light_h_per_cycle: 0, vent_ach: 10, eth_inlet_ppm: 10 }, [120]],
+  ];
+  for (const [id, preset, over, times] of snaps) {
+    const s = new SeedTwin(P0, resolveEnv(PRESET_BY_ID.get(preset)!, over));
+    for (const tt of times) {
+      s.runTo(tt);
+      s.updateLayout();
+      const L = s.layout;
+      const c = s.cells;
+      const rows: Record<string, unknown>[] = [];
+      for (let i = 0; i < c.n; i++) {
+        if (!L.visible[i]) continue;
+        const qx = L.quat[4 * i], qy = L.quat[4 * i + 1], qz = L.quat[4 * i + 2], qw = L.quat[4 * i + 3];
+        // in-plane angle of the cell's local x axis
+        const ax = 1 - 2 * (qy * qy + qz * qz);
+        const ay = 2 * (qx * qy + qz * qw);
+        rows.push({
+          cell: i, tissue: c.tissue[i], region: c.region[i],
+          x: +L.pos[3 * i].toFixed(2), y: +L.pos[3 * i + 1].toFixed(2), z: +L.pos[3 * i + 2].toFixed(2),
+          len: +L.scale[3 * i].toFixed(2), dep: +L.scale[3 * i + 1].toFixed(2), wid: +L.scale[3 * i + 2].toFixed(2),
+          angle_rad: +Math.atan2(ay, ax).toFixed(4),
+          log2_expansion: +Math.log2((c.len[i] * c.wid[i] * c.dep[i]) / c.vol0[i]).toFixed(4),
+          o2_kpa: +(s.o2[i] / 1000).toFixed(3),
+        });
+      }
+      writeFileSync(`${OUT}/layout_${id}_${tt}h.csv`, csv(rows));
+    }
+  }
+}
+
+// ---- calibration metrics of the CURRENT parameter set (the manuscript quotes these, not the fit files)
+{
+  const g = evaluate(P0);
+  const sm = seedlingMetrics(P0);
+  const rows = Object.entries({ ...g, ...sm }).map(([metric, value]) => ({ metric, value }));
+  writeFileSync(`${OUT}/calibration_metrics.csv`, csv(rows));
 }
 
 // ---- ledger tier census

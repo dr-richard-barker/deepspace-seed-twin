@@ -1,25 +1,25 @@
 {
  "method": "Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json)",
  "iterations": 160,
- "loss": 0.5557480214544754,
+ "loss": 0.4444444468291505,
  "fitted": {
-  "hormone_time_unit_h": 0.8912490980216858,
-  "integrator_growth_k": 1.784310441486727,
-  "wall_extensibility": 0.022306972836207188,
-  "wall_yield_mpa": 3.3143441292001894,
-  "testa_strength_mpa": 0.1697478405071502,
-  "cap_strength0_mpa": 0.3204862787598842,
-  "cap_weakening_rate": 0.11733182471328245,
-  "ga_source_lambda": 4.449676343694181,
-  "aba_imbibition_catabolism": 1.6394015891572578
+  "hormone_time_unit_h": 0.8967538308077928,
+  "integrator_growth_k": 2.547757327044663,
+  "wall_extensibility": 0.02917736710259515,
+  "wall_yield_mpa": 3.3163772962120737,
+  "testa_strength_mpa": 0.17165269290915716,
+  "cap_strength0_mpa": 0.32193579435411246,
+  "cap_weakening_rate": 0.11529119435080269,
+  "ga_source_lambda": 4.428725492867454,
+  "aba_imbibition_catabolism": 1.630132739300486
  },
  "metrics": {
-  "aba_12h_ratio": 0.29984524237082394,
+  "aba_12h_ratio": 0.300002894072163,
   "testa_rupture_h": 24.000000000000206,
   "endosperm_rupture_h": 32.00000000000032,
-  "expansion_onset_h": 20,
+  "expansion_onset_h": 19,
   "peak_expansion_index": 7,
-  "cap_strength_ratio_at_rupture": 0.6013631329440374
+  "cap_strength_ratio_at_rupture": 0.6000007624670346
  },
  "targets": [
   {
@@ -68,8 +68,8 @@
    "sd": 0.1,
    "unit": "cap strength at rupture / initial",
    "source": "linkies2010",
-   "note": "Lepidium endosperm cap puncture force ~38 mN early, 50% endosperm rupture at ~23 mN (Linkies et al. 2009, Fig. 1): ratio ~0.6 (proxy species)"
+   "note": "Lepidium endosperm cap puncture force ~38 mN early, 50% endosperm rupture at ~23 mN (Linkies et al. 2010, Fig. 1): ratio ~0.6 (proxy species)"
   }
  ],
- "generated": "2026-11-07T02:32:36.735Z"
+ "generated": "2026-11-07T03:13:06.586Z"
 }

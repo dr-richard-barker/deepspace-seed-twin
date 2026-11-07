@@ -145,6 +145,14 @@ export function stepSeedling(sim: SeedTwin, dt: number, d: Drivers): void {
   const lMatEth = lMat * ethRoot;
   const radDiv = 1 / (1 + p(P, "ros_to_division_arrest") * sim.mean(sim.ros, sim.tipCells));
   const kColl = t.order.indexOf(t.colletSliceId);
+  // a young radicle is shorter than the day-6 meristem + elongation zone it grows into: cap both
+  // zones at fixed fractions of the current root length (assumed form) so that an elongation zone,
+  // and hence gravitropic bending, exists soon after protrusion
+  let rootLen = 0;
+  for (let k = 0; k < kColl; k++) if (t.slices[t.order[k]].region !== Region.Cap) rootLen += sim.meanLenOf(t.order[k]);
+  const fMer = p(P, "root_young_meristem_fraction");
+  const zMerEff = Math.min(zMer, fMer * rootLen);
+  const zEzEff = Math.min(zEz, (1 - fMer) * rootLen);
   let z = 0; // distance from the QC (µm)
   let ezLen = 0;
   const ezSlices: number[] = [];
@@ -158,10 +166,10 @@ export function stepSeedling(sim: SeedTwin, dt: number, d: Drivers): void {
     z += L;
     if (since < delay) continue;
     let rate = 0;
-    if (zc < zMer) {
+    if (zc < zMerEff) {
       rate = mu * radDiv * eTip;
       if (L * Math.exp(rate * dt) >= 2 * lDiv) toDivide.push(sid);
-    } else if (zc < zMer + zEz && L < lMatEth) {
+    } else if (zc < zMerEff + zEzEff && L < lMatEth) {
       rate = rEz * ethRoot * eTip;
       ezSlices.push(sid);
       ezLen += L;
@@ -169,7 +177,7 @@ export function stepSeedling(sim: SeedTwin, dt: number, d: Drivers): void {
     if (rate > 0) {
       const f = Math.exp(rate * dt);
       for (const i of s.cells) {
-        c.len[i] = Math.min(c.len[i] * f, zc < zMer ? lMat : lMatEth);
+        c.len[i] = Math.min(c.len[i] * f, zc < zMerEff ? lMat : lMatEth);
         sim.growthRate[i] = rate;
       }
     } else for (const i of s.cells) sim.growthRate[i] = 0;

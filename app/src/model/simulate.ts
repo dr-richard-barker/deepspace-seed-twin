@@ -39,6 +39,7 @@ export interface Sample {
   o2_tip_kpa: number;
   o2_collet_kpa: number;
   o2_core_min_kpa: number;
+  hypoxic_frac: number;
   co2_int_kpa: number;
   eth_hs_ppb: number;
   eth_int_ppb: number;
@@ -132,6 +133,7 @@ export class SeedTwin {
 
   // cached indices
   tipCells: number[] = [];
+  refCell = -1;
   colletCells: number[] = [];
 
   constructor(params: Params, env: Env, opts: SimOptions = {}) {
@@ -169,7 +171,10 @@ export class SeedTwin {
     }
     const P = env.p_total_kpa * PA_PER_KPA;
     this.hs = { o2: env.o2_frac * P, co2: env.co2_ppm * 1e-6 * P, eth: 0 };
+    this.o2.fill(this.hs.o2); // a dry, non-respiring seed is equilibrated with the surrounding gas
+    this.o2Surface = this.hs.o2;
     this.refreshCellFields();
+    this.refCell = this.colletCells[0] ?? -1;
     initHormones(params, this.h, this.template.cells.n);
     this.seedling = initSeedling(this);
     if (opts.radSensitivity) this.radSens.set(opts.radSensitivity(this).subarray(0, this.template.cells.n));
@@ -244,12 +249,18 @@ export class SeedTwin {
     const kImb = p(params, "water_imbibition_rate");
     if (this.water < wEq) this.water += dt * kImb * contact * (wEq - this.water);
     this.hydration = Math.max(0, Math.min(1, (this.water - wDry) / (wII - wDry)));
-    // hydrotime: the growth drive scales with ψ − ψb in absolute terms (Bradford's hydrotime
-    // model); normalised by the population-mean ψb so a mean seed on water has P = P_ref
+    // Hydrotime ↔ Lockhart: turgor ABOVE the wall-yield turgor of a reference cell scales with
+    // ψ − ψb (Bradford's hydrotime model), so growth stops exactly at ψ = ψb for that cell and
+    // every seed with ψb < ψ eventually grows. The mean seed on water has P = P_ref.
     const psiB = p(params, "psi_base_mpa"); // population mean (negative)
     const psiBSeed = psiB + p(params, "psi_base_seed_offset_mpa");
-    const turgorFactor = Math.max(0, (psi - psiBSeed) / (0 - psiB));
-    this.turgor = Math.pow(this.hydration, p(params, "turgor_hydration_exponent")) * p(params, "turgor_ref_mpa") * turgorFactor;
+    const pRef = p(params, "turgor_ref_mpa");
+    const pY = this.yieldTurgorRef();
+    const pFull = pY + (pRef - pY) * ((psi - psiBSeed) / (0 - psiB));
+    // hydration shapes only the APPROACH to the ψ-dependent plateau; the effect of ψ itself is
+    // already in pFull (counting a lower plateau again would double-count water stress)
+    const hRel = Math.max(0, Math.min(1, (this.water - wDry) / Math.max(wEq - wDry, 1e-9)));
+    this.turgor = Math.pow(hRel, p(params, "turgor_hydration_exponent")) * Math.max(0, pFull);
     const tauAct = p(params, "activation_tau_h");
     this.activation += (dt / tauAct) * fT * (this.hydration - this.activation);
     const swell = 1 + p(params, "imbibition_swell") * this.hydration;
@@ -470,6 +481,15 @@ export class SeedTwin {
     }
   }
 
+  /** Turgor at which a collet cortical cell (the reference cell) reaches the wall yield stress. */
+  yieldTurgorRef(): number {
+    if (this.refCell < 0) return 0;
+    const c = this.template.cells;
+    const V = c.vol0[this.refCell] * (1 + p(this.params, "imbibition_swell"));
+    const rho = Math.cbrt((3 * V) / (4 * Math.PI));
+    return (2 * c.wallT[this.refCell] * p(this.params, "wall_yield_mpa")) / rho;
+  }
+
   /** Mark cells lying outside the seed ellipsoid and the lateral area of exposed axis tissue. */
   refreshExposure(): void {
     computeLayout(this.template, this.pose, this.layout);
@@ -519,7 +539,15 @@ export class SeedTwin {
     const c = t.cells;
     const P = this.env.p_total_kpa * PA_PER_KPA;
     let coreMin = Infinity;
-    for (let i = 0; i < c.n; i++) if (this.active[i] && this.o2[i] < coreMin) coreMin = this.o2[i];
+    let hyp = 0;
+    let nAct = 0;
+    const thr = p(this.params, "hypoxia_threshold_pa");
+    for (let i = 0; i < c.n; i++) {
+      if (!this.active[i]) continue;
+      nAct++;
+      if (this.o2[i] < coreMin) coreMin = this.o2[i];
+      if (this.o2[i] < thr) hyp++;
+    }
     const ppb = (pa: number) => (pa / P) * 1e9;
     const lengths = this.seedling.lengths(this);
     const tr = this.lastTransport;
@@ -535,6 +563,7 @@ export class SeedTwin {
       o2_tip_kpa: this.mean(this.o2, this.tipCells) / 1000,
       o2_collet_kpa: this.mean(this.o2, this.colletCells) / 1000,
       o2_core_min_kpa: (Number.isFinite(coreMin) ? coreMin : 0) / 1000,
+      hypoxic_frac: nAct ? hyp / nAct : 0,
       co2_int_kpa: (this.hs.co2 + (tr ? (p(this.params, "resp_quotient") * this.respiration) / tr.gOut.co2 : 0)) / 1000,
       eth_hs_ppb: ppb(this.hs.eth),
       eth_int_ppb: ppb(this.ethInt),

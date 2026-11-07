@@ -139,7 +139,9 @@ button:hover { border-color: var(--seed-accent); }
   .stage { height: 72dvh; flex: none; }
   .sidebar { width: 100%; border-left: none; border-top: 1px solid var(--seed-line); }
   .panel { overflow: visible; padding: 0.8rem 16px 2rem; }
-  .overlay.top-right { max-width: 48%; }
-  .overlay.top-left { max-width: 50%; }
+  .overlay.top-left { max-width: 100%; right: 12px; }
+  .overlay.top-right { top: auto; bottom: 58px; right: 8px; left: 8px; max-width: none; align-items: stretch; }
+  .overlay.top-right label { justify-content: space-between; }
+  .legend-box { max-height: 18dvh; }
   .legend-box .bar, .legend-box .bar-labels { width: 140px; }
 }

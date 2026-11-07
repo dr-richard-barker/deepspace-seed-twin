@@ -1,0 +1,373 @@
+{
+ "params": {
+  "geo_seed_length_um": 490,
+  "geo_seed_width_um": 290,
+  "geo_testa_um": 15,
+  "geo_endosperm_um": 12,
+  "geo_mucilage_max_um": 60,
+  "geo_axis_slices": 25,
+  "geo_collet_index": 8,
+  "geo_cap_tiers": 3,
+  "geo_cap_cells_per_tier": 10,
+  "geo_cell_len_tip_um": 8,
+  "geo_cell_len_base_um": 14,
+  "geo_cell_len_lambda": 5,
+  "geo_axis_r_tip_um": 32,
+  "geo_axis_r_base_um": 48,
+  "geo_axis_r_lambda": 4,
+  "geo_n_epidermis": 33,
+  "geo_n_cortex": 16,
+  "geo_n_endodermis": 10,
+  "geo_n_stele": 6,
+  "geo_cortex_layers_hypocotyl": 2,
+  "geo_r_frac_stele": 0.32,
+  "geo_r_frac_endodermis": 0.48,
+  "geo_r_frac_epidermis_inner": 0.84,
+  "geo_cot_length_um": 280,
+  "geo_cot_width_um": 170,
+  "geo_cot_thickness_um": 40,
+  "geo_cot_cells_length": 12,
+  "geo_cot_cells_width": 7,
+  "geo_cot_cells_thickness": 4,
+  "geo_endosperm_cells": 320,
+  "geo_micropylar_fraction": 0.14,
+  "wall_t_exterior_um": 1,
+  "wall_t_interior_um": 0.4,
+  "wall_e_mpa": 120,
+  "turgor_ref_mpa": 0.5,
+  "d_o2_air_m2s": 0.000021,
+  "d_co2_air_m2s": 0.000016,
+  "d_eth_air_m2s": 0.0000163,
+  "d_o2_water_m2s": 1.97e-9,
+  "d_co2_water_m2s": 1.79e-9,
+  "d_eth_water_m2s": 1.79e-9,
+  "h_o2_mol_m3pa": 0.000013,
+  "h_co2_mol_m3pa": 0.00033,
+  "h_eth_mol_m3pa": 0.000059,
+  "nu_air_m2s": 0.0000155,
+  "t_ref_k": 298.15,
+  "p_ref_kpa": 101.325,
+  "d_air_t_exponent": 1.75,
+  "sh_forced_coeff": 0.6,
+  "rho_water_kgm3": 997,
+  "gamma_water_nm": 0.072,
+  "water_dry_gg": 0.07,
+  "water_phase2_gg": 0.9,
+  "water_imbibition_rate": 0.5,
+  "water_min_contact": 0.2,
+  "water_psi_scale_mpa": 2,
+  "psi_base_mpa": -1.272,
+  "turgor_hydration_exponent": 2,
+  "activation_tau_h": 4,
+  "imbibition_swell": 0.3,
+  "resp_km_o2_pa": 100,
+  "aerobic_km_o2_pa": 500,
+  "fermentation_yield": 0.07,
+  "reserve_k": 0.05,
+  "reserve_o2_capacity_mol": 6.3e-7,
+  "resp_quotient": 0.7,
+  "tissue_diffusivity_rel": 0.0934,
+  "testa_perm_rel": 1,
+  "testa_open_fraction": 0.1,
+  "endosperm_open_fraction": 0.05,
+  "q10": 2,
+  "t_ref_growth_c": 22,
+  "ga_dark_fraction": 1,
+  "acc_synth": 0.05,
+  "acc_decay": 0.05,
+  "aco_vmax": 0.2,
+  "aco_km_acc": 0.5,
+  "aco_km_o2_pa": 3654,
+  "ros_to_aba": 0,
+  "ros_to_acc": 0,
+  "ga_source_lambda": 4.42873,
+  "gid1_lambda": 6,
+  "gid1_base": 0.2,
+  "ga_source_cotyledon": 0.05,
+  "eth_yield_mol_m3": 0.0119051,
+  "eth_response_k_pa": 0.1267,
+  "eth_response_hill": 1,
+  "wall_extensibility": 0.0291774,
+  "wall_yield_mpa": 3.31638,
+  "radial_growth": 0.15,
+  "radial_growth_tip": 0.5,
+  "testa_stiffness_mpa": 20,
+  "testa_slack": 0.03,
+  "testa_strength_mpa": 0.171653,
+  "endosperm_stiffness_mpa": 30,
+  "endosperm_slack": 0.01,
+  "cap_strength0_mpa": 0.321936,
+  "cap_weakening_rate": 0.115291,
+  "cap_k_ga": 0.3,
+  "cap_k_aba": 0.5,
+  "cap_eth_boost": 1,
+  "rad_damage_per_mgy": 0.01,
+  "rad_repair_rate": 0.1,
+  "ros_to_division_arrest": 0,
+  "root_meristem_delay_h": 10.9387,
+  "root_meristem_len_um": 440,
+  "root_ez_len_um": 791,
+  "root_division_len_um": 14.9,
+  "root_mature_len_um": 143,
+  "root_cell_cycle_h": 18.6,
+  "root_ez_rate": 0.34,
+  "root_gravitropic_rate_deg_h": 30,
+  "eth_root_inhibition": 3,
+  "anchor_delay_h": 6,
+  "hyp_rate_dark": 0.0564119,
+  "hyp_rate_light": 0.0295966,
+  "hyp_cell_max_dark_um": 950,
+  "hyp_cell_max_light_um": 182,
+  "eth_hyp_inhibition": 3,
+  "eth_hyp_thickening": 0.02,
+  "eth_hyp_thick_max": 2,
+  "hyp_acropetal_delay_h": 1,
+  "hyp_elongation_delay_h": 0.267418,
+  "hyp_gravitropic_rate_deg_h": 10,
+  "hook_slices": 4,
+  "hook_angle_dark_deg": 180,
+  "eth_hook_exaggeration": 0.5,
+  "hook_tau_h": 6,
+  "cot_open_rate": 0.84089,
+  "cot_expansion_rate": 0.02,
+  "cot_expansion_max": 3,
+  "cot_photosynthesis_rate": 0.005,
+  "deetiolation_rate": 0.1,
+  "geo_n_cortex_inner": 11,
+  "psi_base_sd_mpa": 0.222,
+  "resp_seed_nmol_h": 2.25,
+  "rad_decoder_weight": 0,
+  "abley_beta_aba": 1,
+  "abley_beta_ga": 0.3,
+  "abley_beta_ga_z": 0.01,
+  "abley_beta_z": 39,
+  "abley_beta_i": 0.3,
+  "abley_v_aba": 1,
+  "abley_v_ga": 1,
+  "abley_v_z": 0.1,
+  "abley_v_i": 0.4,
+  "abley_theta_aba_i": 3.7,
+  "abley_theta_ga_i": 1.2,
+  "abley_theta_i_aba": 10,
+  "abley_theta_i_ga": 6,
+  "abley_c_aba_i": 10,
+  "abley_c_ga_i": 4,
+  "abley_c_i_aba": 10,
+  "abley_c_i_ga": 6,
+  "abley_h": 4,
+  "hormone_time_unit_h": 0.896754,
+  "hormone_transport_omega": 0.45,
+  "integrator_growth_k": 2.54776,
+  "integrator_growth_hill": 4,
+  "eth_integrator_degradation": 0.5,
+  "aba_imbibition_catabolism": 1.63013,
+  "psi_base_seed_offset_mpa": 0,
+  "hypoxia_threshold_pa": 1000,
+  "root_young_meristem_fraction": 0.36
+ },
+ "dAir": [
+  {
+   "gas": "o2",
+   "T": 298.15,
+   "P": 101.325,
+   "value": 0.000021
+  },
+  {
+   "gas": "co2",
+   "T": 298.15,
+   "P": 101.325,
+   "value": 0.000016
+  },
+  {
+   "gas": "eth",
+   "T": 298.15,
+   "P": 101.325,
+   "value": 0.0000163
+  },
+  {
+   "gas": "o2",
+   "T": 295.15,
+   "P": 56.54,
+   "value": 0.000036973797410686696
+  },
+  {
+   "gas": "co2",
+   "T": 295.15,
+   "P": 56.54,
+   "value": 0.000028170512312904152
+  },
+  {
+   "gas": "eth",
+   "T": 295.15,
+   "P": 56.54,
+   "value": 0.000028698709418771105
+  },
+  {
+   "gas": "o2",
+   "T": 273.15,
+   "P": 25,
+   "value": 0.00007301920210526646
+  },
+  {
+   "gas": "co2",
+   "T": 273.15,
+   "P": 25,
+   "value": 0.00005563367779448873
+  },
+  {
+   "gas": "eth",
+   "T": 273.15,
+   "P": 25,
+   "value": 0.000056676809253135394
+  }
+ ],
+ "nuAir": [
+  {
+   "T": 298.15,
+   "P": 101.325,
+   "value": 0.0000155
+  },
+  {
+   "T": 295.15,
+   "P": 56.54,
+   "value": 0.0000272901838031259
+  }
+ ],
+ "sherwood": [
+  {
+   "re": 0,
+   "sc": 1,
+   "value": 2
+  },
+  {
+   "re": 3.5,
+   "sc": 0.8,
+   "value": 3.0420341087392817
+  },
+  {
+   "re": 120,
+   "sc": 0.7,
+   "value": 7.835900607842344
+  }
+ ],
+ "waterFilm": [
+  {
+   "g": 0,
+   "L": 5,
+   "wet1": 0.35,
+   "wet0": 0.45,
+   "film1": 10,
+   "film0": 20,
+   "value": {
+    "wetted": 0.45,
+    "filmUm": 20,
+    "bond": 0
+   }
+  },
+  {
+   "g": 0.166,
+   "L": 5,
+   "wet1": 0.35,
+   "wet0": 0.45,
+   "film1": 10,
+   "film0": 20,
+   "value": {
+    "wetted": 0.41395707502007156,
+    "filmUm": 16.39570750200716,
+    "bond": 0.5635486764930557
+   }
+  },
+  {
+   "g": 1,
+   "L": 10,
+   "wet1": 0.35,
+   "wet0": 0.45,
+   "film1": 10,
+   "film0": 20,
+   "value": {
+    "wetted": 0.35685895228141634,
+    "filmUm": 10.685895228141638,
+    "bond": 13.579486180555556
+   }
+  }
+ ],
+ "cylinderDrop": [
+  {
+   "q": 0.02,
+   "R": 0.00005,
+   "r": 0.00001,
+   "D": 2e-10,
+   "H": 0.000013,
+   "value": 4615.384615384615
+  }
+ ],
+ "slabDrop": [
+  {
+   "q": 0.02,
+   "h": 0.00003,
+   "x": 0.00001,
+   "D": 2e-10,
+   "H": 0.000013,
+   "value": 3076.9230769230767
+  }
+ ],
+ "transport": [
+  {
+   "T": 295.15,
+   "P": 101.325,
+   "u": 0,
+   "wetted": 0.35,
+   "film": 10,
+   "testa": false,
+   "value": {
+    "gOut": {
+     "o2": 6.690029831582245e-17,
+     "co2": 1.5428148220691786e-15,
+     "eth": 2.758753866587819e-16
+    },
+    "exposedPerArea": {
+     "o2": 0.000031643261366851266,
+     "co2": 0.00002412911024603823,
+     "eth": 0.00002456419772398273
+    },
+    "sh": 2,
+    "re": 0,
+    "wetted": 0.35,
+    "filmUm": 10
+   }
+  },
+  {
+   "T": 295.15,
+   "P": 56.54,
+   "u": 0.3,
+   "wetted": 0.4,
+   "film": 20,
+   "testa": true,
+   "value": {
+    "gOut": {
+     "o2": 6.768158811547531e-17,
+     "co2": 1.560990110233162e-15,
+     "eth": 2.7910134290245425e-16
+    },
+    "exposedPerArea": {
+     "o2": 0.00007999803656413762,
+     "co2": 0.00006296135463710985,
+     "eth": 0.0000639868892408769
+    },
+    "sh": 3.0566020797020763,
+    "re": 3.797042742688872,
+    "wetted": 0.4,
+    "filmUm": 20
+   }
+  }
+ ],
+ "seedShape": {
+  "dEq_m": 0.00034540664785434865,
+  "area_m2": 3.748100752142251e-7
+ },
+ "dormantFixedPoint": {
+  "aba": 10.96790283929153,
+  "ga": 0.3001425034659969,
+  "integ": 15.53230889596825
+ }
+}

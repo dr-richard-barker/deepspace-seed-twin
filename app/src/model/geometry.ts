@@ -300,13 +300,13 @@ export function buildTemplate(params: Params, capacity = 24000): Template {
   }
 
   // --- embryo placement inside the seed (x = long axis, radicle tip at the micropylar end)
-  const innerA = a - testa - endoT;
-  const innerB = b - testa - endoT;
+  // centre the folded embryo (axis + two stacked cotyledons) in the seed cavity
   const axisLen = order.reduce((acc, id) => acc + meanLen(cells, slices[id]), 0);
-  const xTip = -innerA + 2;
+  const xTip = -axisLen / 2;
   const rMax = rBase;
   const cotThk = p(params, "geo_cot_thickness_um");
-  const yAxis = -innerB + rMax + 2;
+  const stackH = 2 * rMax + 2 * cotThk + 2;
+  const yAxis = -stackH / 2 + rMax;
   const cot0 = yAxis + rMax + cotThk / 2 + 1;
   const cot1 = cot0 + cotThk + 1;
 
@@ -363,7 +363,6 @@ export function buildTemplate(params: Params, capacity = 24000): Template {
     cells.wallT[i] = tInt;
   }
 
-  void axisLen;
   return {
     cells,
     slices,

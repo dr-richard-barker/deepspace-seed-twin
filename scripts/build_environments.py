@@ -96,17 +96,18 @@ def dish_headspace_ml(key: str) -> tuple[float, str]:
     return round(ml, 2), f"floor {floor:.1f} cm2 x headspace {head_mm:.2f} mm (height {height} - wall {wall} - agar {agar_mm:.2f} mm, dishes.ts geometry)"
 
 
-def air_speed_table(hardware: str):
+def air_speed_table(hardware: str, pump_l_min: float | None = None):
     """LBM-derived local air speed at the seed (written by scripts/lbm_seed_runs.ts)."""
     path = ROOT / "results" / "tables" / "seed_air_speed.csv"
     if not path.exists():
         return None
     pts = []
     for r in csv.DictReader(path.open()):
-        if r["hardware"] == hardware:
+        if r["hardware"] == hardware and (pump_l_min is None or abs(float(r["pump_l_min"]) - pump_l_min) < 1e-9):
             pts.append({"g": float(r["gravity_g"]), "u_m_s": float(r["u_seed_m_s"]),
                         "source": f"repo:deepspace-seed-twin/results/tables/seed_air_speed.csv (LBM job {r['job']})",
-                        "tier": "derived"})
+                        "tier": "derived",
+                        "note": f"2-D LBM (vendored LunarLeaf solver), pump {r['pump_l_min']} L/min, outflow/inflow {float(r['outflow_over_inflow']):.3f}; no buoyancy source during germination, so identical at every g"})
     return pts or None
 
 
@@ -166,7 +167,7 @@ def main() -> None:
 
     write({
         "id": "ground_petri", "label": "Ground control (taped Petri dish, lab)", "hardware": "lab Petri dish",
-        "description": "1 g laboratory control: seeds on agar in a taped 60 mm dish under continuous light.",
+        "description": "1 g laboratory control: seeds on agar in a taped 60 mm dish, 16 h light / 8 h dark.",
         "fields": common(
             light_umol=F(100, "umol m-2 s-1", "", "assumed", "typical growth-room light"),
             light_h_per_cycle=F(16, "h", "", "assumed"),
@@ -295,7 +296,7 @@ def main() -> None:
             substrate_psi_mpa=F(-0.01, "MPa", "", "assumed", "porous substrate blocks"),
             dose_mgy_d=F(0.317, "mGy/d", "zhang2020", "derived", "lunar surface charged-particle dose 13.2 uGy/h in water x 24 h (Chang'e-4 LND, Zhang et al. 2020); neutrals excluded; LEAF shielding not modelled"),
         ),
-        "air_speed_by_g": air_speed_table("leaf_gbc1") or [
+        "air_speed_by_g": air_speed_table("leaf_gbc1", 0.25) or [
             {"g": 0.0, "u_m_s": 0.005, "source": "", "tier": "assumed", "note": "PENDING LBM run"},
             {"g": 1.0, "u_m_s": 0.005, "source": "", "tier": "assumed"}],
     })

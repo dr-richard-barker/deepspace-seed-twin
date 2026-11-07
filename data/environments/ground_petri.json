@@ -2,7 +2,7 @@
  "id": "ground_petri",
  "label": "Ground control (taped Petri dish, lab)",
  "hardware": "lab Petri dish",
- "description": "1 g laboratory control: seeds on agar in a taped 60 mm dish under continuous light.",
+ "description": "1 g laboratory control: seeds on agar in a taped 60 mm dish, 16 h light / 8 h dark.",
  "fields": {
   "gravity_g": {
    "value": 1.0,

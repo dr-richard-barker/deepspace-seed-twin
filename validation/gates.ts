@@ -10,7 +10,7 @@
 //              no gravitropic bending at 0 g; root bends down at 1 g
 // Provenance   every parameter the code reads is in the ledger; every non-assumed source
 //              resolves; no Math.random / synthetic paths in the model
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import refsCsv from "../data/params/references.csv";
 import { resolveEnv } from "../app/src/model/environment";
 import { cylinderDrop, dAir, R_GAS, seedShape, sherwood, transport } from "../app/src/model/gas";
@@ -63,6 +63,24 @@ gate("Sherwood still-air limit", Math.abs(sherwood(P0, 0, 1) - 2) < 1e-12, `Sh(R
   gate("transport at u = 0 uses Sh = 2", Math.abs(tr.sh - 2) < 1e-12, `Sh = ${tr.sh}`);
   const half = dAir(P0, "o2", 298.15, 101.325 / 2) / dAir(P0, "o2", 298.15, 101.325);
   gate("gas diffusivity ∝ 1/P", Math.abs(half - 2) < 1e-9, `D(P/2)/D(P) = ${half}`);
+}
+
+// ---------------------------------------------------------------- geometry
+{
+  const s = new SeedTwin(P0, env("ground_petri"));
+  s.updateLayout();
+  const t = s.template;
+  const ia = t.seed.a - t.seed.testa - t.seed.endo;
+  const ib = t.seed.b - t.seed.testa - t.seed.endo;
+  let out = 0;
+  let n = 0;
+  for (let i = 0; i < s.cells.n; i++) {
+    if (s.cells.region[i] === 4) continue; // endosperm
+    n++;
+    const x = s.layout.pos[3 * i] / ia, y = s.layout.pos[3 * i + 1] / ib, z = s.layout.pos[3 * i + 2] / ib;
+    if (x * x + y * y + z * z > 1) out++;
+  }
+  gate("dry embryo fits inside the endosperm cavity", out / n < 0.03, `${out} of ${n} embryo cell centres outside (${((100 * out) / n).toFixed(1)} %)`);
 }
 
 // ---------------------------------------------------------------- conservation
@@ -176,5 +194,12 @@ gate("Sherwood still-air limit", Math.abs(sherwood(P0, 0, 1) - 2) < 1e-12, `Sh(R
   gate("every DOI reference verified against Crossref", unverified.length === 0, unverified.length ? unverified.map((l) => l.split(",")[0]).join(", ") : "all verified");
 }
 
+writeFileSync(
+  "results/tables/gates_report.csv",
+  "status,gate,detail\n" + results.map((r) => {
+    const m = r.match(/^\s*(PASS|FAIL)\s+([^:]+): (.*)$/)!;
+    return `${m[1]},"${m[2].replace(/"/g, "'")}","${m[3].replace(/"/g, "'")}"`;
+  }).join("\n") + "\n",
+);
 console.log(failures === 0 ? "\nAll seed-twin gates passed.\n" : `\n${failures} gate(s) FAILED.\n`);
 if (failures > 0) process.exit(1);

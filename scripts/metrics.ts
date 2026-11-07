@@ -59,3 +59,34 @@ export function evaluate(params: Params, tEnd = 60): Metrics {
   };
 }
 
+
+// ---- seedling metrics (scripts/calibrate_seedling.ts)
+function maxRate(s: SeedTwin, key: "hyp_len_um"): number {
+  let best = 0;
+  for (let i = 4; i < s.samples.length; i++) {
+    const a = s.samples[i - 4];
+    const b = s.samples[i];
+    best = Math.max(best, ((b[key] - a[key]) / (b.t - a.t)) * 24 / 1000);
+  }
+  return best;
+}
+
+export function seedlingMetrics(params: Params) {
+  const env = resolveEnv(PRESET_BY_ID.get("ground_petri")!);
+  const light = new SeedTwin(params, env);
+  light.runTo(120);
+  const dark = new SeedTwin(params, resolveEnv(PRESET_BY_ID.get("ground_petri")!, { light_umol: 0, light_h_per_cycle: 0 }));
+  dark.runTo(120);
+  const last = light.samples.slice(-5);
+  const rootRate = (last[last.length - 1].root_len_um - last[0].root_len_um) / (last[last.length - 1].t - last[0].t);
+  const eth = light.samples.filter((r) => r.t >= 72).map((r) => r.eth_prod_pl_h);
+  return {
+    cot_emerged_h: light.milestones.cotEmerged ?? 160,
+    cot_open_h: light.milestones.cotOpen ?? 160,
+    hyp_max_rate_dark_mm_d: maxRate(dark, "hyp_len_um"),
+    hyp_max_rate_light_mm_d: maxRate(light, "hyp_len_um"),
+    root_rate_120h_um_h: rootRate,
+    eth_prod_pl_h: eth.reduce((a, b) => a + b, 0) / Math.max(eth.length, 1),
+  };
+}
+

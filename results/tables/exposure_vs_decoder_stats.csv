@@ -1,0 +1,3 @@
+scenario,spearman_rho,p_value,n_clusters
+bric_pdfu,0.7669,0.0096,10
+ground_counterfactual,0.7669,0.0096,10

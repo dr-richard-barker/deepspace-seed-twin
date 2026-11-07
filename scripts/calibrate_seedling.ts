@@ -2,41 +2,10 @@
 // (germination parameters stay as fitted by calibrate.ts). Writes data/calibration/fit_seedling.json.
 import { writeFileSync } from "node:fs";
 import targetsFile from "../data/calibration/targets_seedling.json";
-import { resolveEnv } from "../app/src/model/environment";
-import { defaultParams, type Params } from "../app/src/model/params";
-import { PRESET_BY_ID } from "../app/src/model/presets";
-import { SeedTwin } from "../app/src/model/simulate";
+import { defaultParams } from "../app/src/model/params";
+import { seedlingMetrics } from "./metrics";
 
 const FREE = ["hyp_rate_dark", "hyp_rate_light", "cot_open_rate", "hyp_elongation_delay_h", "root_meristem_delay_h", "eth_yield_mol_m3"] as const;
-
-function maxRate(s: SeedTwin, key: "hyp_len_um"): number {
-  let best = 0;
-  for (let i = 4; i < s.samples.length; i++) {
-    const a = s.samples[i - 4];
-    const b = s.samples[i];
-    best = Math.max(best, ((b[key] - a[key]) / (b.t - a.t)) * 24 / 1000);
-  }
-  return best;
-}
-
-export function seedlingMetrics(params: Params) {
-  const env = resolveEnv(PRESET_BY_ID.get("ground_petri")!);
-  const light = new SeedTwin(params, env);
-  light.runTo(120);
-  const dark = new SeedTwin(params, resolveEnv(PRESET_BY_ID.get("ground_petri")!, { light_umol: 0, light_h_per_cycle: 0 }));
-  dark.runTo(120);
-  const last = light.samples.slice(-5);
-  const rootRate = (last[last.length - 1].root_len_um - last[0].root_len_um) / (last[last.length - 1].t - last[0].t);
-  const eth = light.samples.filter((r) => r.t >= 72).map((r) => r.eth_prod_pl_h);
-  return {
-    cot_emerged_h: light.milestones.cotEmerged ?? 160,
-    cot_open_h: light.milestones.cotOpen ?? 160,
-    hyp_max_rate_dark_mm_d: maxRate(dark, "hyp_len_um"),
-    hyp_max_rate_light_mm_d: maxRate(light, "hyp_len_um"),
-    root_rate_120h_um_h: rootRate,
-    eth_prod_pl_h: eth.reduce((a, b) => a + b, 0) / Math.max(eth.length, 1),
-  };
-}
 
 type M = ReturnType<typeof seedlingMetrics>;
 const loss = (m: M) => targetsFile.targets.reduce((L, t) => L + ((m[t.id as keyof M] - t.value) / t.sd) ** 2, 0);

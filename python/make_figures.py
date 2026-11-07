@@ -40,7 +40,7 @@ seedling_targets = {t["id"]: t for t in json.loads((ROOT / "data/calibration/tar
 
 # ---------------------------------------------------------------- Fig 2: calibration
 prof = read("cortex_expansion_profile.csv")
-fig, ax = plt.subplots(1, 3, figsize=(7.2, 2.4))
+fig, ax = plt.subplots(1, 3, figsize=(7.4, 2.5))
 for k, t in enumerate([16, 22, 28, 32]):
     rows = [r for r in prof if int(float(r["hours"])) == t]
     if rows:
@@ -62,16 +62,16 @@ ax[1].plot(model, y, "o", color=OK[0], ms=5, label="twin")
 ax[1].set_yticks(y, names)
 ax[1].set_xlabel("hours after imbibition")
 ax[1].set_title("b  milestones", loc="left")
-ax[1].legend(frameon=False, fontsize=6, loc="lower right")
+ax[1].legend(frameon=False, fontsize=6, loc="center right")
 
 hyd = read("hydrotime_check.csv")
 psi = [f(r["psi_mpa"]) for r in hyd]
-ax[2].plot(psi, [f(r["hydrotime_rate_per_h"]) * 100 for r in hyd], "-", color="#888888", label="hydrotime model (Footitt 2019)")
+ax[2].plot(psi, [f(r["hydrotime_rate_per_h"]) * 100 for r in hyd], "-", color="#888888", label="hydrotime (Footitt 2019)")
 ax[2].plot(psi, [f(r["model_rate_per_h"]) * 100 for r in hyd], "o", color=OK[2], ms=4, label="twin (not fitted)")
 ax[2].set_xlabel("substrate water potential (MPa)")
 ax[2].set_ylabel("germination rate (% per h)")
-ax[2].set_title("c  out-of-sample: water stress", loc="left")
-ax[2].legend(frameon=False, fontsize=6)
+ax[2].set_title("c  water stress", loc="left")
+ax[2].legend(frameon=False, fontsize=6, loc="upper left")
 fig.tight_layout()
 fig.savefig(FIG / "fig2_calibration.png", dpi=300)
 fig.savefig(FIG / "fig2_calibration.pdf")
@@ -83,8 +83,12 @@ lab = ["ground", "BRIC 1 g", "BRIC-PDFU", "BRIC-LED", "CARA", "APH", "EMCS 1 g",
 fig, ax = plt.subplots(1, 4, figsize=(7.4, 2.5))
 x = np.arange(len(hw))
 ax[0].bar(x, [f(summ[h]["min_o2_surface_kpa"]) for h in hw], color=OK[2])
-ax[0].bar(x, [f(summ[h]["min_o2_core_kpa"]) for h in hw], color=OK[4], width=0.45)
-ax[0].set_ylabel("min O₂ (kPa): surface / core")
+ax[0].set_ylabel("min embryo-surface O₂ (kPa)")
+ax0b = ax[0].twinx()
+ax0b.plot(x, [100 * f(summ[h]["hypoxic_frac_24h"]) for h in hw], "o", color=OK[4], ms=4)
+ax0b.set_ylabel("hypoxic cells at 24 h (%)", color=OK[4])
+ax0b.set_ylim(0, 100)
+ax0b.spines["right"].set_visible(True)
 ax[1].bar(x, [f(summ[h]["peak_eth_headspace_ppb"]) for h in hw], color=OK[5])
 ax[1].set_ylabel("peak headspace ethylene (ppb)")
 ax[2].bar(x, [f(summ[h]["endosperm_rupture_h"]) for h in hw], color=OK[0])
@@ -112,17 +116,18 @@ ax[0].set_title("a  gravitropism vs g (EMCS)", loc="left")
 ax[0].legend(frameon=False, fontsize=6)
 for k, sc in enumerate(["ground_light", "ground_exploration", "ground_staged", "ground_counterfactual", "ground_hypoxia_10pct"]):
     ts = read(f"timeseries_{sc}.csv")
-    ax[1].plot([f(r["t"]) for r in ts], [f(r["o2_core_min_kpa"]) for r in ts], color=OK[k], label=summ[sc]["note"])
+    ax[1].plot([f(r["t"]) for r in ts], [100 * f(r["hypoxic_frac"]) for r in ts], color=OK[k], label=summ[sc]["note"])
 ax[1].set_xlabel("hours")
-ax[1].set_ylabel("coldest-core O₂ (kPa)")
+ax[1].set_ylabel("hypoxic embryo cells (%)")
 ax[1].set_title("b  atmosphere", loc="left")
 ax[1].legend(frameon=False, fontsize=5)
 for k, sc in enumerate(["ground_light", "deep_space_spe", "deep_space_spe_hyp"]):
     ts = read(f"timeseries_{sc}.csv")
-    ax[2].plot([f(r["t"]) for r in ts], [f(r["root_len_um"]) / 1000 for r in ts], color=OK[k], ls="--" if sc.endswith("hyp") else "-", label=summ[sc]["note"][:38])
+    lab_c = {"ground_light": "ground, no radiation", "deep_space_spe": "cruise + SPE (default: no couplings)", "deep_space_spe_hyp": "cruise + SPE, couplings = 1 (hypothesis)"}[sc]
+    ax[2].plot([f(r["t"]) for r in ts], [f(r["root_len_um"]) / 1000 for r in ts], color=OK[k], ls="--" if sc.endswith("hyp") else "-", label=lab_c)
 ax[2].set_xlabel("hours")
 ax[2].set_ylabel("root length (mm)")
-ax[2].set_title("c  radiation (dashed = hypothesis)", loc="left")
+ax[2].set_title("c  radiation", loc="left")
 ax[2].legend(frameon=False, fontsize=5)
 fig.tight_layout()
 fig.savefig(FIG / "fig4_gravity_atmosphere_radiation.png", dpi=300)
@@ -168,5 +173,53 @@ if pop:
     fig.tight_layout()
     fig.savefig(FIG / "fig6_populations.png", dpi=300)
     fig.savefig(FIG / "fig6_populations.pdf")
+    plt.close(fig)
+# ---------------------------------------------------------------- Fig 1: mid-plane sections
+from matplotlib.patches import Rectangle  # noqa: E402
+from matplotlib.transforms import Affine2D  # noqa: E402
+from matplotlib import cm  # noqa: E402
+
+TISSUE_HEX = ["#7fc97f", "#e6c86e", "#c08552", "#5b8cc9", "#d98cb3", "#4caf50", "#9bd49b", "#e8dcc0"]
+panels = [("ground_light", 0, "0 h, dry seed", "expansion"), ("ground_light", 24, "24 h, testa ruptured", "expansion"),
+          ("ground_light", 32, "32 h, endosperm rupture", "expansion"), ("ground_light", 72, "72 h, light", "tissue"),
+          ("ground_light", 120, "120 h, light", "tissue"), ("ground_dark", 120, "120 h, dark", "tissue"),
+          ("ethylene_10ppm_dark", 120, "120 h, dark + 10 ppm ethylene", "tissue")]
+if all((T / f"layout_{a}_{b}h.csv").exists() for a, b, _, _ in panels):
+    fig, axs = plt.subplots(2, 4, figsize=(7.4, 4.2))
+    axs = axs.ravel()
+    cmap = matplotlib.colormaps["viridis"]
+    for ax, (sc, hh, title, mode) in zip(axs, panels):
+        cells = read(f"layout_{sc}_{hh}h.csv")
+        sel = [r for r in cells if abs(f(r["z"])) <= max(f(r["wid"]), 8) * 0.6]
+        for r in sel:
+            x, y, L, D, a = f(r["x"]), f(r["y"]), f(r["len"]) * 0.88, f(r["dep"]) * 0.88, f(r["angle_rad"])
+            if mode == "tissue":
+                col = TISSUE_HEX[int(r["tissue"])]
+            else:
+                col = TISSUE_HEX[7] if r["region"] == "4" else cmap(min(1, max(0, f(r["log2_expansion"]) / 0.4)))
+            rect = Rectangle((-L / 2, -D / 2), L, D, facecolor=col, edgecolor="none")
+            rect.set_transform(Affine2D().rotate(a).translate(x, y) + ax.transData)
+            ax.add_patch(rect)
+        xs = [f(r["x"]) for r in sel]
+        ys = [f(r["y"]) for r in sel]
+        pad = 40
+        ax.set_xlim(min(xs) - pad, max(xs) + pad)
+        ax.set_ylim(min(ys) - pad, max(ys) + pad)
+        ax.set_aspect("equal")
+        ax.axis("off")
+        span = max(xs) - min(xs)
+        bar = 100 if span < 1500 else 1000
+        x0, y0 = min(xs), min(ys) - pad * 0.6
+        ax.plot([x0, x0 + bar], [y0, y0], color="#333333", lw=1.5)
+        ax.text(x0, y0 - pad * 0.2, f"{bar} µm" if bar < 1000 else "1 mm", fontsize=6, va="top")
+        ax.set_title(title, fontsize=7)
+    axs[-1].axis("off")
+    for k, name in enumerate(["epidermis", "cortex", "endodermis", "stele", "cap/QC", "mesophyll", "cot. epidermis", "endosperm"]):
+        axs[-1].add_patch(Rectangle((0.05, 0.9 - k * 0.11), 0.08, 0.07, color=TISSUE_HEX[k], transform=axs[-1].transAxes))
+        axs[-1].text(0.17, 0.93 - k * 0.11, name, fontsize=6, transform=axs[-1].transAxes, va="center")
+    fig.text(0.01, 0.98, "Top row 0-32 h coloured by log2 volume expansion (viridis, 0-0.4); other panels by tissue. Mid-plane section of the schematic template.", fontsize=6, va="top")
+    fig.tight_layout(rect=(0, 0, 1, 0.96))
+    fig.savefig(FIG / "fig1_seed_through_time.png", dpi=300)
+    fig.savefig(FIG / "fig1_seed_through_time.pdf")
     plt.close(fig)
 print("figures written to", FIG)

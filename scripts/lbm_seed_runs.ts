@@ -53,12 +53,22 @@ function run(qLmin: number) {
   const uIn = q / 2 / (inletRows.length * DX); // m/s
   const uLat = uIn / U_UNIT;
   const bc = () => {
+    // velocity inlet: equilibrium at the prescribed velocity and the density of the adjacent
+    // interior cell (an equilibrium inlet at ρ = 1 leaks mass back across the inlet face once
+    // the interior is pressurised, which under-delivered the flow by ~27 % in a first run)
+    const rhoAt = (c: number) => {
+      let r = 0;
+      for (let i = 0; i < 9; i++) r += fluid.f[c * 9 + i];
+      return r;
+    };
     for (const y of inletRows) {
-      const l = fluid.index(0, y) * 9;
-      const r = fluid.index(nz - 1, y) * 9;
+      const l = fluid.index(0, y);
+      const r = fluid.index(nz - 1, y);
+      const rl = rhoAt(fluid.index(1, y));
+      const rr = rhoAt(fluid.index(nz - 2, y));
       for (let i = 0; i < 9; i++) {
-        fluid.f[l + i] = feq(i, 1, uLat, 0);
-        fluid.f[r + i] = feq(i, 1, -uLat, 0);
+        fluid.f[l * 9 + i] = feq(i, rl, uLat, 0);
+        fluid.f[r * 9 + i] = feq(i, rr, -uLat, 0);
       }
     }
     for (const x of outlet) {
@@ -102,7 +112,7 @@ function run(qLmin: number) {
   };
   let prev = 0;
   let steps = 0;
-  const minSteps = Math.ceil(40 / DT); // ≥ 2 diffusive times h²/ν
+  const minSteps = Math.ceil(15 / DT); // the first run settled within 5 s; require 3x that
   const maxSteps = Math.ceil(200 / DT);
   for (; steps < maxSteps; steps++) {
     fluid.collideAndStream();
@@ -111,6 +121,7 @@ function run(qLmin: number) {
       fluid.computeMacroscopic();
       const u = bed();
       const mb = outflow() / q;
+      if (steps % 40000 === 39999) console.log(`  Q ${qLmin}: t=${(steps * DT).toFixed(1)} s u_bed=${(u * 1000).toFixed(4)} mm/s outflow/inflow=${mb.toFixed(4)}`);
       if (steps > minSteps && Math.abs(u - prev) / Math.max(u, 1e-12) < 1e-5 && Math.abs(mb - 1) < 0.02) break;
       prev = u;
     }

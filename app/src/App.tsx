@@ -719,9 +719,10 @@ function ChartsPanel({ sims, now, tokens, configs }: { sims: SeedTwin[]; now: nu
         title="Oxygen"
         yLabel="kPa"
         yMin={0}
-        series={[...series("o2_hs_kpa", "headspace", PALETTE[2]), ...series("o2_surface_kpa", "embryo surface", PALETTE[0]), ...series("o2_core_min_kpa", "coldest core", PALETTE[4])]}
+        series={[...series("o2_hs_kpa", "headspace", PALETTE[2]), ...series("o2_surface_kpa", "embryo surface", PALETTE[0]), ...series("o2_tip_kpa", "radicle-tip cortex", PALETTE[4])]}
         {...base}
       />
+      <Chart title="Hypoxic embryo cells (pO₂ < 1 kPa)" yLabel="% of cells" yMin={0} yMax={100} series={series("hypoxic_frac", "hypoxic", PALETTE[4], 100)} {...base} />
       <Chart title="Ethylene" yLabel="ppb (mole fraction)" yMin={0} series={[...series("eth_hs_ppb", "headspace", PALETTE[5]), ...series("eth_int_ppb", "inside the seed", PALETTE[1])]} {...base} />
       <Chart
         title="Hormones: radicle tip vs collet (Abley 2021 core)"
