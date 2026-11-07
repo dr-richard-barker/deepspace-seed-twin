@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seed Twin Studio</title>
+    <meta name="description" content="Plays the Deep Space Seed Twin story videos live: every frame is computed by the model in your browser." />
+  </head>
+  <body data-site-id="deepspace-seed-twin">
+    <div class="frame"><div id="viewport"></div></div>
+    <div id="controls">
+      <a class="back" href="./stories.html">← Stories</a>
+      <select aria-label="Story"></select>
+      <button class="play">Play</button>
+      <input type="range" min="0" max="0" value="0" aria-label="Scrub" />
+      <span class="time"></span>
+      <a class="open" href="./">Open this scenario in the twin</a>
+    </div>
+    <script type="module" src="/src/studio/main.ts"></script>
+  </body>
+</html>

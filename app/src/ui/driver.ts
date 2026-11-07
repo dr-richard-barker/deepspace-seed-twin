@@ -1,7 +1,7 @@
 // Playback driver: owns the SeedTwin instance(s), advances them toward a target time
 // within a per-frame time budget (so the UI never blocks), and rebuilds from t = 0 when
 // the user scrubs backwards or changes the environment. The model only runs forward.
-import { resolveEnv, type Env, type EnvKey } from "../model/environment";
+import { resolveEnv, type Env, type EnvOverrides } from "../model/environment";
 import { clusterOf, nesFor } from "../model/identity";
 import { defaultParams, p, type Params } from "../model/params";
 import { ATMOSPHERES, PRESET_BY_ID, PRESETS, RADIATION } from "../model/presets";
@@ -13,7 +13,7 @@ export interface RunConfig {
   presetId: string;
   atmosphereId: string | null;
   radiationId?: string | null;
-  env: Partial<Record<EnvKey, number>>;
+  env: EnvOverrides;
   params: Record<string, number>;
 }
 
@@ -28,7 +28,7 @@ export function paramsFor(cfg: RunConfig): Params {
 export function envFor(cfg: RunConfig): Env {
   const preset = PRESET_BY_ID.get(cfg.presetId) ?? PRESETS[0];
   const atm = cfg.atmosphereId ? ATMOSPHERES.find((a) => a.id === cfg.atmosphereId) : undefined;
-  const over: Partial<Record<EnvKey, number>> = {};
+  const over: EnvOverrides = {};
   if (atm) {
     over.p_total_kpa = atm.p_total_kpa;
     over.o2_frac = atm.o2_frac;

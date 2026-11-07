@@ -1,0 +1,316 @@
+{
+ "id": "light_air",
+ "title": "Light and air",
+ "subtitle": "Photoperiod, oxygen and airflow",
+ "description": "Light switches the seedling from stretching to building, so darkness and photoperiod change its shape the most. Oxygen partial pressure, not total pressure, sets how fast germination happens. And airflow past the seed matters little, because the seed coat and the tissue limit how much oxygen gets in.",
+ "fps": 30,
+ "reproduce": {
+  "scene": "atmosphere",
+  "panel": 2
+ },
+ "scenes": [
+  {
+   "id": "title",
+   "kind": "card",
+   "title": "Light and air",
+   "duration_s": 6,
+   "lines": [
+    "Three things flight hardware controls: the light schedule, the atmosphere, and the air moving past the seed.",
+    "Light intensity is not modelled here, only darkness and the photoperiod."
+   ]
+  },
+  {
+   "id": "light",
+   "kind": "sim",
+   "title": "Photoperiod at Earth gravity",
+   "layout": "2x2",
+   "t0": 24,
+   "t1": 120,
+   "speed": 3,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "tissue",
+   "chart": {
+    "field": "hyp_len_um",
+    "scale": 0.001,
+    "label": "Hypocotyl length",
+    "unit": "mm"
+   },
+   "camera": {
+    "elev": 8,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Dark",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {
+       "light_umol": 0,
+       "light_h_per_cycle": 0
+      },
+      "params": {}
+     },
+     "readouts": [
+      "hypocotyl",
+      "hook"
+     ]
+    },
+    {
+     "label": "{env.light_h_per_cycle|0} h light per {env.cycle_h|0} h day",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "hypocotyl",
+      "hook"
+     ]
+    },
+    {
+     "label": "Continuous light",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {
+       "light_h_per_cycle": 24,
+       "cycle_h": 24
+      },
+      "params": {}
+     },
+     "readouts": [
+      "hypocotyl",
+      "hook"
+     ]
+    },
+    {
+     "label": "BRIC-LED cycle: {env.light_h_per_cycle|0} h on, {env.cycle_h|0} h period",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {
+       "light_h_per_cycle": 4,
+       "cycle_h": 6
+      },
+      "params": {}
+     },
+     "readouts": [
+      "hypocotyl",
+      "hook"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 26,
+     "dur_s": 7,
+     "text": "In darkness the seedling stretches its hypocotyl and keeps its hook closed. Light stops the stretching and opens the hook: de-etiolation."
+    },
+    {
+     "at_h": 96,
+     "dur_s": 8,
+     "text": "Hypocotyl at {A.t@120|0} h: {A.hyp_len_um@120/1000|1} mm in the dark, {B.hyp_len_um@120/1000|1} mm with a day-night cycle and {C.hyp_len_um@120/1000|1} mm in continuous light."
+    }
+   ],
+   "caveats": [
+    "Light intensity is not modelled: only darkness and the photoperiod."
+   ]
+  },
+  {
+   "id": "atmosphere",
+   "kind": "sim",
+   "title": "Habitat atmospheres and oxygen",
+   "layout": "2x2",
+   "t0": 0,
+   "t1": 72,
+   "speed": 2,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "o2",
+   "chart": {
+    "field": "hypoxic_frac",
+    "scale": 100,
+    "label": "Hypoxic cells",
+    "unit": "% of embryo"
+   },
+   "camera": {
+    "elev": 8,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Sea level · {env.p_total_kpa|1} kPa",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "endosperm",
+      "o2_surface",
+      "hypoxic"
+     ]
+    },
+    {
+     "label": "Exploration atmosphere · {env.p_total_kpa|1} kPa",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": "NASA_Exploration_56.5kPa_34pctO2",
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "endosperm",
+      "o2_surface",
+      "hypoxic"
+     ]
+    },
+    {
+     "label": "Same pressure, ordinary air",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": "Counterfactual_56.5kPa_UncompensatedAir_21pctO2",
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "endosperm",
+      "o2_surface",
+      "hypoxic"
+     ]
+    },
+    {
+     "label": "Sea level, low oxygen",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {
+       "o2_frac": 0.05
+      },
+      "params": {}
+     },
+     "readouts": [
+      "endosperm",
+      "o2_surface",
+      "hypoxic"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 2,
+     "dur_s": 7,
+     "text": "Exploration habitats would lower cabin pressure and raise the oxygen fraction. Colours show oxygen inside the seed."
+    },
+    {
+     "at_h": 34,
+     "dur_s": 8,
+     "text": "Endosperm rupture: {A.endosperm_rupture_h|1} h at sea level, {B.endosperm_rupture_h|1} h in the exploration atmosphere ({B.env.po2_kpa|1} kPa of oxygen)."
+    },
+    {
+     "at_h": 54,
+     "dur_s": 9,
+     "text": "With ordinary air at that pressure ({C.env.po2_kpa|1} kPa of oxygen) it slips to {C.endosperm_rupture_h|1} h, and at {D.env.po2_kpa|1} kPa to {D.endosperm_rupture_h|1} h. What matters is the oxygen partial pressure."
+    }
+   ]
+  },
+  {
+   "id": "airflow",
+   "kind": "sim",
+   "title": "Airflow past the seed, in microgravity",
+   "layout": "1x3",
+   "t0": 0,
+   "t1": 48,
+   "speed": 1.6,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "o2",
+   "chart": {
+    "field": "o2_tip_kpa",
+    "label": "O₂ at the radicle tip",
+    "unit": "kPa"
+   },
+   "camera": {
+    "elev": 8,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Still air",
+     "run": {
+      "presetId": "emcs",
+      "atmosphereId": null,
+      "env": {
+       "gravity_g": 0,
+       "air_speed_m_s": 0
+      },
+      "params": {}
+     },
+     "readouts": [
+      "sherwood",
+      "o2_surface",
+      "hypoxic"
+     ]
+    },
+    {
+     "label": "Gentle flow · {env.air_speed_m_s|2} m/s",
+     "run": {
+      "presetId": "emcs",
+      "atmosphereId": null,
+      "env": {
+       "gravity_g": 0,
+       "air_speed_m_s": 0.01
+      },
+      "params": {}
+     },
+     "readouts": [
+      "sherwood",
+      "o2_surface",
+      "hypoxic"
+     ]
+    },
+    {
+     "label": "Fan · {env.air_speed_m_s|1} m/s",
+     "run": {
+      "presetId": "emcs",
+      "atmosphereId": null,
+      "env": {
+       "gravity_g": 0,
+       "air_speed_m_s": 0.3
+      },
+      "params": {}
+     },
+     "readouts": [
+      "sherwood",
+      "o2_surface",
+      "hypoxic"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 2,
+     "dur_s": 7,
+     "text": "In microgravity warm air does not rise, so only fans move air past the seed. Here the air speed is the only difference."
+    },
+    {
+     "at_h": 26,
+     "dur_s": 9,
+     "text": "The fan raises mass transfer through the air (Sherwood number {A.sherwood:max|1} to {C.sherwood:max|1}), yet at {A.t@30|0} h the radicle tip sits at {A.o2_tip_kpa@30|1} versus {C.o2_tip_kpa@30|1} kPa of oxygen, and the core of the axis at {A.o2_core_min_kpa@30|1} and {C.o2_core_min_kpa@30|1} kPa."
+    },
+    {
+     "at_h": 40,
+     "dur_s": 6,
+     "text": "The seed coat and the respiring tissue limit the oxygen supply, not the air around the seed."
+    }
+   ]
+  }
+ ]
+}

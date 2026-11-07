@@ -1,0 +1,63 @@
+{
+ "description": "Magnetic-field environments shown in the Stories 'fields' scene. Observations only; the seed twin has no magnetic-field model.",
+ "earth_surface": {
+  "min_nT": 25000,
+  "max_nT": 65000,
+  "unit": "nT",
+  "tier": "standard",
+  "source": "NOAA NCEI, Geomagnetism Frequently Asked Questions, https://www.ncei.noaa.gov/products/geomagnetism-frequently-asked-questions",
+  "quote": "Earth's magnetic field intensity is roughly between 25,000 - 65,000 nT (.25 - .65 gauss).",
+  "checked": "2026-11-07"
+ },
+ "moon_30km": {
+  "n_cells": 140940,
+  "n_no_data": 1470,
+  "median_nT": 0.7524,
+  "mean_nT": 0.9926,
+  "p99_nT": 4.588,
+  "max_nT": 12.0452,
+  "unit": "nT",
+  "altitude_km": 30,
+  "tier": "measured",
+  "source": "Hood, Torres, Oliveira, Wieczorek & Steward, Lunar Crustal Magnetic Field Map, NASA PDS (2020), doi:10.17189/1520494; file Bm_30km_65S65N_0E360E.tab, column B-Mag (Lunar Prospector + SELENE/Kaguya magnetometer data)",
+  "file_sha256": "9eeba2fe2482dfaadf6455c5908fae4412a883fd34fac42adc5cec9c169d7577",
+  "note": "30 km above the mean lunar radius, latitudes 65S-65N, smoothed map; zero cells (no reliable data) excluded. The surface field is not mapped here."
+ },
+ "dhiman2023": {
+  "citation": "Dhiman SK, Wu F, Galland P. Effects of weak static magnetic fields on the development of seedlings of Arabidopsis thaliana. Protoplasma 260(3):767-786 (2023; Epub 2022-09-21)",
+  "doi": "10.1007/s00709-022-01811-9",
+  "pmid": "36129584",
+  "year": 2023,
+  "verified_via": "Europe PMC abstract (https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=DOI:10.1007/s00709-022-01811-9&resultType=core&format=json), checked 2026-11-07",
+  "germination_field_uT": 50,
+  "germination_acceleration_h": 20,
+  "hypocotyl_maxima_uT": [
+   9,
+   60
+  ],
+  "max_field_tested_uT": 122,
+  "quotes": [
+   "A field of 50 μT accelerated seed germination by about 20 h relative to samples maintained in a near-null field.",
+   "The double mutant, cry1cry2, lacking cryptochromes 1 and 2 displayed the same magnetic field-induced germination acceleration under blue light as the wild-type strain.",
+   "Stimulus-response curves for hypocotyl elongation in a range between near-null to 122 μT indicated maxima near 9 and 60 μT for the wild-type strain as well as mutant cry1cry2.",
+   "Magnetic field-induced germination acceleration was masked in the presence of exogenous sucrose."
+  ],
+  "tier": "measured",
+  "note": "Single study; mechanism unknown (not cryptochrome-dependent). Not used by the model."
+ },
+ "gaps": [
+  {
+   "id": "leo",
+   "label": "ISS / low Earth orbit"
+  },
+  {
+   "id": "mars",
+   "label": "Mars surface"
+  },
+  {
+   "id": "hardware",
+   "label": "Inside flight hardware"
+  }
+ ],
+ "gaps_note": "No verified measurement is used for these environments in this project."
+}

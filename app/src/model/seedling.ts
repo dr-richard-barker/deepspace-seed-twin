@@ -236,12 +236,15 @@ export function stepSeedling(sim: SeedTwin, dt: number, d: Drivers): void {
     }
   });
 
-  // apical hook: curvature in the top slices; closed in darkness (exaggerated by ethylene), opens in light
+  // apical hook: curvature in the top slices; closed in darkness (exaggerated by ethylene), opens in light.
+  // It forms in emerged hypocotyl once the root has anchored: until then the cotyledon node is held
+  // inside the seed coat, so there is no free hypocotyl to bend (layout.ts carries the seed coat on the
+  // cotyledons afterwards).
   const hookTarget = (p(P, "hook_angle_dark_deg") * (1 + p(P, "eth_hook_exaggeration") * d.ethResp) * dark * Math.PI) / 180;
   const top = hypSlices.slice(Math.max(0, hypSlices.length - nHook));
   const tau = p(P, "hook_tau_h");
   let hook = 0;
-  if (since >= hypDelay) {
+  if (since >= hypDelay && sim.milestones.anchored !== null) {
     for (const sid of top) {
       const s = t.slices[sid];
       const target = hookTarget / Math.max(top.length, 1);

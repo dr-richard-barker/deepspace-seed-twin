@@ -9,10 +9,15 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 import type { Layout } from "../model/layout";
+import { shellExtents } from "./seedView";
 
 export interface ShellState {
   a: number; // testa outer semi-axes (µm)
   b: number;
+  /** seed-coat frame: centre (µm) and rotation about z (rad); it rides on the cotyledons after anchoring */
+  x: number;
+  y: number;
+  rot: number;
   testaVisible: boolean;
   testaSplit: number; // 0 intact .. 1 fully split
   mucilage: number; // µm of hydrated mucilage
@@ -31,7 +36,24 @@ export interface SeedViewer {
   frame(seeds: SeedView[], immediate?: boolean): void;
   setGravityArrow(g: number): void;
   snapshot(): string;
+  /** Studio: aim the camera from (elevation, azimuth) in degrees. */
+  setOrbit(elevDeg: number, azimDeg: number): void;
+  /** Studio: centre the view on (cx, cy) showing `span` µm across, so several viewers can share one scale. */
+  setFraming(cx: number, cy: number, span: number): void;
+  /** Studio: draw one frame now (used when autoRender is off). */
+  render(): void;
   dispose(): void;
+}
+
+export interface ViewerOptions {
+  /** run a requestAnimationFrame render loop (default true); the Studio renders on demand instead */
+  autoRender?: boolean;
+  /** fixed canvas size in CSS pixels; otherwise the container is tracked with a ResizeObserver */
+  size?: [number, number];
+  /** fixed background colour; otherwise it follows the CoSE theme toggle */
+  background?: number;
+  /** mouse orbit and picking (default true) */
+  interactive?: boolean;
 }
 
 const GAP = 0.86; // visible cell size as a fraction of the cell box: leaves wall-like gaps
@@ -47,6 +69,7 @@ export function createSeedViewer(
   container: HTMLElement,
   capacity: number,
   onPick: (seed: number, cell: number | null) => void,
+  opts: ViewerOptions = {},
 ): SeedViewer {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(35, 1, 1, 200000);
@@ -58,11 +81,11 @@ export function createSeedViewer(
   container.appendChild(renderer.domElement);
 
   const applyTheme = () => {
-    scene.background = new THREE.Color(themeIsDark() ? 0x0e1311 : 0xf3f1ea);
+    scene.background = new THREE.Color(opts.background ?? (themeIsDark() ? 0x0e1311 : 0xf3f1ea));
   };
   applyTheme();
   const themeObserver = new MutationObserver(applyTheme);
-  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  if (opts.background === undefined) themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
   scene.add(new THREE.HemisphereLight(0xffffff, 0x3a3a30, 1.15));
   const key = new THREE.DirectionalLight(0xffffff, 1.5);
@@ -122,7 +145,8 @@ export function createSeedViewer(
   scene.add(arrow);
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.enableDamping = true;
+  controls.enableDamping = opts.autoRender !== false;
+  controls.enabled = opts.interactive !== false;
   controls.target.set(0, 0, 0);
 
   const m4 = new THREE.Matrix4();
@@ -146,8 +170,10 @@ export function createSeedViewer(
     const seed = id >= capacity ? 1 : 0;
     onPick(seed, id - seed * capacity);
   };
-  renderer.domElement.addEventListener("pointerdown", onDown);
-  renderer.domElement.addEventListener("pointerup", onUp);
+  if (opts.interactive !== false) {
+    renderer.domElement.addEventListener("pointerdown", onDown);
+    renderer.domElement.addEventListener("pointerup", onUp);
+  }
 
   let raf = 0;
   const tick = () => {
@@ -155,18 +181,18 @@ export function createSeedViewer(
     controls.update();
     renderer.render(scene, camera);
   };
-  tick();
+  if (opts.autoRender !== false) tick();
 
   const resize = () => {
-    const w = container.clientWidth || 1;
-    const h = container.clientHeight || 1;
+    const w = opts.size ? opts.size[0] : container.clientWidth || 1;
+    const h = opts.size ? opts.size[1] : container.clientHeight || 1;
     renderer.setSize(w, h);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   };
   resize();
   const ro = new ResizeObserver(resize);
-  ro.observe(container);
+  if (!opts.size) ro.observe(container);
 
   const tmpTarget = new THREE.Vector3();
   let frameDist = 1100;
@@ -199,15 +225,17 @@ export function createSeedViewer(
         maxIndex = base + n;
         const sh = shells[k];
         sh.testa.visible = shell.testaVisible;
-        sh.testa.position.set(offsetX, 0, 0);
+        sh.testa.position.set(offsetX + shell.x, shell.y, 0);
+        sh.testa.rotation.z = shell.rot;
         sh.testaA.scale.set(shell.b, shell.a, shell.b);
         sh.testaB.scale.set(shell.b, shell.a, shell.b);
         sh.testaA.position.set(-shell.testaSplit * shell.a * 0.35, shell.testaSplit * shell.b * 0.25, 0);
         sh.testaA.rotation.set(0, 0, Math.PI / 2 + shell.testaSplit * 0.6);
         sh.testaB.rotation.set(0, 0, -Math.PI / 2);
         const m = Math.max(shell.mucilage, 0);
-        sh.mucilage.visible = m > 1;
-        sh.mucilage.position.set(offsetX, 0, 0);
+        sh.mucilage.visible = m > 1 && shell.testaVisible;
+        sh.mucilage.position.set(offsetX + shell.x, shell.y, 0);
+        sh.mucilage.rotation.z = shell.rot;
         sh.mucilage.scale.set(shell.a + m, shell.b + m, shell.b + m);
       });
       for (let k = seeds.length; k < 2; k++) {
@@ -232,10 +260,11 @@ export function createSeedViewer(
       for (const sv of seeds) {
         const b = sv.layout.bbox;
         if (!Number.isFinite(b[0])) continue;
-        x0 = Math.min(x0, b[0] + sv.offsetX, -sv.shell.a + sv.offsetX);
-        x1 = Math.max(x1, b[3] + sv.offsetX, sv.shell.a + sv.offsetX);
-        y0 = Math.min(y0, b[1], -sv.shell.b);
-        y1 = Math.max(y1, b[4], sv.shell.b);
+        const e = shellExtents(sv.shell);
+        x0 = Math.min(x0, b[0] + sv.offsetX, e[0] + sv.offsetX);
+        x1 = Math.max(x1, b[3] + sv.offsetX, e[2] + sv.offsetX);
+        y0 = Math.min(y0, b[1], e[1]);
+        y1 = Math.max(y1, b[4], e[3]);
       }
       if (!Number.isFinite(x0)) return;
       tmpTarget.set((x0 + x1) / 2, (y0 + y1) / 2, 0);
@@ -257,6 +286,28 @@ export function createSeedViewer(
       renderer.render(scene, camera);
       return renderer.domElement.toDataURL("image/png");
     },
+    setOrbit(elevDeg, azimDeg) {
+      const el = (elevDeg * Math.PI) / 180;
+      const az = (azimDeg * Math.PI) / 180;
+      const d = camera.position.distanceTo(controls.target) || frameDist;
+      const dir = new THREE.Vector3(Math.cos(el) * Math.sin(az), Math.sin(el), Math.cos(el) * Math.cos(az));
+      camera.position.copy(controls.target).addScaledVector(dir, d);
+      camera.lookAt(controls.target);
+    },
+    setFraming(cx, cy, span) {
+      const dir = camera.position.clone().sub(controls.target).normalize();
+      const dist = span / (2 * Math.tan((camera.fov * Math.PI) / 360)) / Math.max(camera.aspect, 0.6);
+      controls.target.set(cx, cy, 0);
+      camera.position.copy(controls.target).addScaledVector(dir, dist);
+      camera.lookAt(controls.target);
+      frameDist = dist;
+      // gravity arrow at the right edge, clear of the panel's labels (top-left) and readouts (top-right)
+      arrow.position.set(cx + span * 0.43, cy + span * 0.02, 0);
+      arrow.setLength(span * 0.1, span * 0.025, span * 0.012);
+    },
+    render() {
+      renderer.render(scene, camera);
+    },
     dispose() {
       cancelAnimationFrame(raf);
       ro.disconnect();
@@ -271,6 +322,7 @@ export function createSeedViewer(
       mucGeo.dispose();
       controls.dispose();
       renderer.dispose();
+      renderer.forceContextLoss(); // free the WebGL context now (browsers cap live contexts)
       renderer.domElement.remove();
     },
   };

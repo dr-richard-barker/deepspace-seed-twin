@@ -1,0 +1,272 @@
+{
+ "id": "hardware",
+ "title": "Flight hardware",
+ "subtitle": "The same seed in four habitats",
+ "description": "Flight hardware changes light, sealing, air exchange and gravity all at once. In the model, darkness shapes the seedling far more than gravity does, sealed dishes trap the seeds' own ethylene, and station cabin air can carry enough ethylene to stunt the root.",
+ "fps": 30,
+ "reproduce": {
+  "scene": "four",
+  "panel": 1
+ },
+ "scenes": [
+  {
+   "id": "title",
+   "kind": "card",
+   "title": "Flight hardware",
+   "duration_s": 7,
+   "lines": [
+    "The same seed in four habitats.",
+    "Each preset brings its own light, sealing, air exchange and gravity, taken from hardware records; inputs no record gives are marked as assumed in the tool."
+   ]
+  },
+  {
+   "id": "four",
+   "kind": "sim",
+   "title": "Ground dish, BRIC-PDFU, CARA and LEAF GBC1",
+   "layout": "2x2",
+   "t0": 0,
+   "t1": 120,
+   "speed": 3,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "tissue",
+   "chart": {
+    "field": "hyp_len_um",
+    "scale": 0.001,
+    "label": "Hypocotyl length",
+    "unit": "mm"
+   },
+   "camera": {
+    "elev": 8,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Ground lab dish (light)",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "hypocotyl",
+      "root",
+      "hook"
+     ]
+    },
+    {
+     "label": "BRIC-PDFU on the ISS (dark, sealed)",
+     "run": {
+      "presetId": "bric_pdfu",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "hypocotyl",
+      "root",
+      "hook"
+     ]
+    },
+    {
+     "label": "CARA dish on the ISS (light)",
+     "run": {
+      "presetId": "cara",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "hypocotyl",
+      "root",
+      "hook"
+     ]
+    },
+    {
+     "label": "LEAF GBC1 on the Moon (dark)",
+     "run": {
+      "presetId": "leaf_gbc1",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "hypocotyl",
+      "root",
+      "hook"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 3,
+     "dur_s": 6,
+     "text": "A lit ground dish, the sealed dark BRIC-PDFU, the lit CARA dish on the ISS, and the LEAF growth chamber planned for the lunar surface, assumed dark while the seeds germinate."
+    },
+    {
+     "at_h": 45,
+     "dur_s": 7,
+     "text": "In the two dark habitats the seedling keeps a closed hook and pours its reserves into a long hypocotyl."
+    },
+    {
+     "at_h": 96,
+     "dur_s": 8,
+     "text": "Hypocotyl at {A.t@120|0} h: {A.hyp_len_um@120/1000|1} mm in the lit ground dish, {B.hyp_len_um@120/1000|1} mm in BRIC and {D.hyp_len_um@120/1000|1} mm in LEAF. In the model, light shapes the seedling far more than gravity."
+    }
+   ],
+   "caveats": [
+    "Light schedules for the ground dish, CARA and LEAF are assumed, not taken from hardware records."
+   ]
+  },
+  {
+   "id": "sealed",
+   "kind": "sim",
+   "title": "Sealed versus ventilated: ethylene",
+   "layout": "1x3",
+   "t0": 0,
+   "t1": 120,
+   "speed": 4,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "ethylene",
+   "chart": {
+    "field": "eth_hs_ppb",
+    "label": "Ethylene in the headspace",
+    "unit": "ppb"
+   },
+   "camera": {
+    "elev": 8,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "BRIC-PDFU, sealed",
+     "run": {
+      "presetId": "bric_pdfu",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "eth_hs",
+      "hook"
+     ]
+    },
+    {
+     "label": "BRIC-PDFU, exploration atmosphere",
+     "run": {
+      "presetId": "bric_pdfu",
+      "atmosphereId": "NASA_Exploration_56.5kPa_34pctO2",
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "eth_hs",
+      "hook"
+     ]
+    },
+    {
+     "label": "EMCS, ventilated and scrubbed",
+     "run": {
+      "presetId": "emcs",
+      "atmosphereId": null,
+      "env": {
+       "gravity_g": 0
+      },
+      "params": {}
+     },
+     "readouts": [
+      "eth_hs",
+      "hook"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 4,
+     "dur_s": 6,
+     "text": "Germinating seeds release ethylene. Colours show where the embryo makes it; the chart shows how much collects in the air around the seeds."
+    },
+    {
+     "at_h": 70,
+     "dur_s": 9,
+     "text": "Peak headspace ethylene: {A.eth_hs_ppb:max|0} ppb in the sealed BRIC dish, {B.eth_hs_ppb:max|0} ppb when it is filled with exploration atmosphere, and {C.eth_hs_ppb:max|2} ppb in ventilated EMCS."
+    }
+   ],
+   "caveats": [
+    "How many seeds share each dish is partly assumed; trapped ethylene scales with it."
+   ]
+  },
+  {
+   "id": "mir",
+   "kind": "sim",
+   "title": "Station air: cabin ethylene",
+   "layout": "1x2",
+   "t0": 0,
+   "t1": 120,
+   "speed": 4,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "tissue",
+   "chart": {
+    "field": "root_len_um",
+    "scale": 0.001,
+    "label": "Root length",
+    "unit": "mm"
+   },
+   "camera": {
+    "elev": 8,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "CARA dish, clean air",
+     "run": {
+      "presetId": "cara",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "root",
+      "hypocotyl"
+     ]
+    },
+    {
+     "label": "CARA dish, Mir cabin ethylene · {env.eth_inlet_ppm|1} ppm",
+     "run": {
+      "presetId": "cara",
+      "atmosphereId": null,
+      "env": {
+       "eth_inlet_ppm": 1.4
+      },
+      "params": {}
+     },
+     "readouts": [
+      "root",
+      "hypocotyl"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 4,
+     "dur_s": 7,
+     "text": "A taped dish exchanges air with the cabin. On Mir, the cabin air carried ethylene at {B.env.eth_inlet_ppm|1} ppm, the midpoint of the range Campbell and colleagues measured."
+    },
+    {
+     "at_h": 92,
+     "dur_s": 8,
+     "text": "Root at {A.t@120|0} h: {A.root_len_um@120/1000|1} mm in clean air, {B.root_len_um@120/1000|1} mm with cabin ethylene. In the model, ethylene shortens the cells the root makes."
+    }
+   ],
+   "caveats": [
+    "How fast the taped dish exchanges air with the cabin is assumed (uncalibrated tape leak)."
+   ]
+  }
+ ]
+}

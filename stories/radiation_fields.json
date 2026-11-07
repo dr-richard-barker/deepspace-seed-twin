@@ -1,0 +1,261 @@
+{
+ "id": "radiation_fields",
+ "title": "Radiation and magnetic fields",
+ "subtitle": "What is measured, what is assumed, and what is unknown",
+ "description": "Dose rates beyond low Earth orbit are measured, but no verified link connects that dose to seed hormones or growth, so by default the model shows no effect. A clearly marked hypothesis shows what such a link could do, the decoder shows which cell types carry a radiation signature in real data, and magnetic fields are presented as the open question they are.",
+ "fps": 30,
+ "reproduce": {
+  "scene": "hypothesis",
+  "panel": 1
+ },
+ "scenes": [
+  {
+   "id": "title",
+   "kind": "card",
+   "title": "Radiation and magnetic fields",
+   "duration_s": 7,
+   "lines": [
+    "Beyond low Earth orbit, seeds receive more ionizing radiation and almost no magnetic field.",
+    "This story separates what is measured, what the model assumes, and what is still unknown."
+   ]
+  },
+  {
+   "id": "dose",
+   "kind": "sim",
+   "title": "Four radiation environments",
+   "layout": "2x2",
+   "t0": 0,
+   "t1": 72,
+   "speed": 2.5,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "radiation",
+   "chart": {
+    "field": "dose_mgy",
+    "label": "Accumulated dose",
+    "unit": "mGy"
+   },
+   "camera": {
+    "elev": 8,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Ground, no added dose",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "radiationId": "none",
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "dose",
+      "endosperm",
+      "root"
+     ]
+    },
+    {
+     "label": "ISS · {env.dose_mgy_d|2} mGy per day",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "radiationId": "iss",
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "dose",
+      "endosperm",
+      "root"
+     ]
+    },
+    {
+     "label": "Lunar surface · {env.dose_mgy_d|2} mGy per day",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "radiationId": "lunar_surface",
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "dose",
+      "endosperm",
+      "root"
+     ]
+    },
+    {
+     "label": "Deep space with a solar particle event",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "radiationId": "deep_space_spe",
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "dose",
+      "endosperm",
+      "root"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 2,
+     "dur_s": 8,
+     "text": "Dose rates measured on the ISS and on the lunar surface by Chang'e-4, a deep-space estimate, and a modelled solar particle event of {D.env.spe_dose_mgy|0} mGy. Colours show radiation damage in each cell."
+    },
+    {
+     "at_h": 40,
+     "dur_s": 8,
+     "text": "By {A.t@72|0} h: {B.dose_mgy@72|2} mGy on the ISS, {D.dose_mgy@72|0} mGy with the solar particle event."
+    },
+    {
+     "at_h": 58,
+     "dur_s": 8,
+     "text": "Yet all four seedlings are the same. No verified study links doses like these to seed hormones or growth, so the model adds no effect."
+    }
+   ],
+   "caveats": [
+    "The damage state is in assumed units; it drives nothing unless a hypothesis link is switched on."
+   ]
+  },
+  {
+   "id": "hypothesis",
+   "kind": "sim",
+   "title": "A hypothesis, clearly marked",
+   "layout": "1x2",
+   "t0": 0,
+   "t1": 120,
+   "speed": 4,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "radiation",
+   "chart": {
+    "field": "root_len_um",
+    "scale": 0.001,
+    "label": "Root length",
+    "unit": "mm"
+   },
+   "camera": {
+    "elev": 8,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Solar particle event, no links (default)",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "radiationId": "deep_space_spe",
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "root",
+      "endosperm"
+     ]
+    },
+    {
+     "label": "Same dose, three hypothetical links",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "radiationId": "deep_space_spe",
+      "env": {},
+      "params": {
+       "ros_to_aba": 1,
+       "ros_to_acc": 1,
+       "ros_to_division_arrest": 1
+      }
+     },
+     "readouts": [
+      "root",
+      "endosperm"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 4,
+     "dur_s": 9,
+     "text": "Right: what if radiation damage did signal? Three links are switched on: damage raises ABA, raises the ethylene precursor ACC, and slows cell division in the root tip."
+    },
+    {
+     "at_h": 92,
+     "dur_s": 9,
+     "text": "Root at {A.t@120|0} h: {A.root_len_um@120/1000|1} mm without the links, {B.root_len_um@120/1000|1} mm with them. Their strengths are assumed, so this shows the shape of a possible effect, not its size."
+    }
+   ]
+  },
+  {
+   "id": "decoder",
+   "kind": "sim",
+   "title": "What the data show: which cells respond",
+   "layout": "1x1",
+   "t0": 20,
+   "t1": 48,
+   "speed": 1.6,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "decoder",
+   "decoderClass": "radiation_GCR",
+   "camera": {
+    "elev": 8,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Observed radiation signature by cell type",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     }
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 21,
+     "dur_s": 9,
+     "text": "This is data, not simulation: how strongly each cell type's marker genes are enriched for the response of young seedlings to simulated galactic cosmic rays, from the Seed Stress Decoder (manuscript in preparation)."
+    },
+    {
+     "at_h": 36,
+     "dur_s": 8,
+     "text": "Red: the radiation signature is enriched in that cell type. Blue: depleted. Grey: no matching cell type in the germination atlas."
+    }
+   ]
+  },
+  {
+   "id": "fields",
+   "kind": "fields",
+   "title": "Magnetic fields: an open question",
+   "duration_s": 24,
+   "lines": [],
+   "captions": [
+    {
+     "at_s": 0.5,
+     "dur_s": 7.5,
+     "text": "Earth's surface field is roughly {fields.earth_surface.min_nT/1000|0} to {fields.earth_surface.max_nT/1000|0} µT. The Moon's crustal field, mapped from orbit at {fields.moon_30km.altitude_km|0} km, has a median of {fields.moon_30km.median_nT|2} nT."
+    },
+    {
+     "at_s": 8.5,
+     "dur_s": 7.5,
+     "text": "In one laboratory study (Dhiman, Wu and Galland, Protoplasma, {fields.dhiman2023.year|0}), a {fields.dhiman2023.germination_field_uT|0} µT field sped up Arabidopsis germination by about {fields.dhiman2023.germination_acceleration_h|0} h compared with a near-null field."
+    },
+    {
+     "at_s": 16.5,
+     "dur_s": 7.5,
+     "text": "Mutants lacking both cryptochromes (cry1cry2) responded the same way. With no known mechanism and no verified field values for the ISS, Mars or flight hardware, the seed twin does not model magnetic fields."
+    }
+   ]
+  }
+ ]
+}

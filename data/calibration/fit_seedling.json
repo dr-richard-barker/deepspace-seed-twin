@@ -1,22 +1,22 @@
 {
  "method": "Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json)",
- "iterations": 70,
- "loss": 4.287227479622465,
+ "iterations": 80,
+ "loss": 4.2396890920315835,
  "fitted": {
-  "hyp_rate_dark": 0.05641185714717309,
-  "hyp_rate_light": 0.02959660803283062,
-  "cot_open_rate": 0.8408901123730336,
-  "hyp_elongation_delay_h": 0.26741837040479144,
-  "root_meristem_delay_h": 10.938720588445937,
-  "eth_yield_mol_m3": 0.011905092776019569
+  "hyp_rate_dark": 0.05583131893334877,
+  "hyp_rate_light": 0.03010001410311043,
+  "cot_open_rate": 0.9696871725017671,
+  "hyp_elongation_delay_h": 0.27986626949364846,
+  "root_meristem_delay_h": 11.2197629811116,
+  "eth_yield_mol_m3": 0.011765280770480948
  },
  "metrics": {
-  "cot_emerged_h": 64.59999999999847,
-  "cot_open_h": 73.14999999999799,
-  "hyp_max_rate_dark_mm_d": 5.985620857421465,
-  "hyp_max_rate_light_mm_d": 1.2198066565378614,
-  "root_rate_120h_um_h": 88.29019801026584,
-  "eth_prod_pl_h": 0.4000423560743381
+  "cot_emerged_h": 65.34999999999843,
+  "cot_open_h": 72.999999999998,
+  "hyp_max_rate_dark_mm_d": 5.970503020997807,
+  "hyp_max_rate_light_mm_d": 1.2922881414737148,
+  "root_rate_120h_um_h": 91.35272481880929,
+  "eth_prod_pl_h": 0.39143472580778615
  },
  "targets": [
   {
@@ -68,5 +68,5 @@
    "note": "young Col-0 seedlings ~0.26-0.53 pL/seedling/h (Fig. 7, read from bars)"
   }
  ],
- "generated": "2026-11-07T03:38:33.327Z"
+ "generated": "2026-11-07T16:29:19.600Z"
 }

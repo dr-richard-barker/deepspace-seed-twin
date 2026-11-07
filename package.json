@@ -16,7 +16,10 @@
     "calibrate": "esbuild scripts/calibrate.ts --bundle --format=esm --platform=node --loader:.json=json --loader:.csv=text --outfile=scripts/calibrate.mjs && node scripts/calibrate.mjs",
     "calibrate:seedling": "esbuild scripts/calibrate_seedling.ts --bundle --format=esm --platform=node --loader:.json=json --loader:.csv=text --outfile=scripts/calibrate_seedling.mjs && node scripts/calibrate_seedling.mjs",
     "kernels": "esbuild scripts/export_kernels.ts --bundle --format=esm --platform=node --loader:.json=json --loader:.csv=text --outfile=scripts/export_kernels.mjs && node scripts/export_kernels.mjs",
-    "lbm": "esbuild scripts/lbm_seed_runs.ts --bundle --format=esm --platform=node --loader:.json=json --loader:.csv=text --outfile=scripts/lbm_seed_runs.mjs && node scripts/lbm_seed_runs.mjs"
+    "lbm": "esbuild scripts/lbm_seed_runs.ts --bundle --format=esm --platform=node --loader:.json=json --loader:.csv=text --outfile=scripts/lbm_seed_runs.mjs && node scripts/lbm_seed_runs.mjs",
+    "videos": "npm run build && node scripts/render_videos.js",
+    "fields": "python3 scripts/build_fields.py",
+    "gates:stories": "esbuild validation/stories.ts --bundle --format=esm --platform=node --loader:.json=json --loader:.csv=text --outfile=validation/stories.mjs && node validation/stories.mjs"
   },
   "dependencies": {
     "react": "^19.0.1",

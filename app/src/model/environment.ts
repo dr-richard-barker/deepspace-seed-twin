@@ -60,7 +60,13 @@ export type EnvKey = (typeof ENV_KEYS)[number];
 
 export type Env = Record<EnvKey, number> & { airSpeed: (g: number) => number; presetId: string };
 
-export function resolveEnv(preset: EnvPreset, overrides: Partial<Record<EnvKey, number>> = {}): Env {
+/**
+ * Overrides a run may set: any preset field, plus `air_speed_m_s`, a fixed local air speed at
+ * the seed surface that replaces the preset's air_speed_by_g curve (used to sweep airflow).
+ */
+export type EnvOverrides = Partial<Record<EnvKey, number>> & { air_speed_m_s?: number };
+
+export function resolveEnv(preset: EnvPreset, overrides: EnvOverrides = {}): Env {
   const out: Partial<Env> = {};
   for (const k of ENV_KEYS) {
     const f = preset.fields[k];
@@ -68,6 +74,12 @@ export function resolveEnv(preset: EnvPreset, overrides: Partial<Record<EnvKey, 
     (out as Record<string, number>)[k] = overrides[k] ?? f.value;
   }
   const pts = [...preset.air_speed_by_g].sort((a, b) => a.g - b.g);
+  const fixedU = overrides.air_speed_m_s;
+  if (fixedU !== undefined && Number.isFinite(fixedU) && fixedU >= 0) {
+    out.airSpeed = () => fixedU;
+    out.presetId = preset.id;
+    return out as Env;
+  }
   out.airSpeed = (g: number) => {
     if (pts.length === 0) return 0;
     if (g <= pts[0].g) return pts[0].u_m_s;

@@ -1,0 +1,350 @@
+/* Studio stage: a fixed 1920×1080 dark frame. Video output, so one theme only. */
+:root {
+  --st-bg: #0b100e;
+  --st-panel: #0e1311;
+  --st-fg: #e6ece4;
+  --st-muted: #8d9b88;
+  --st-line: #27322b;
+  --st-amber: #f2c14e;
+}
+html,
+body {
+  margin: 0;
+  background: #050807;
+  color: var(--st-fg);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.frame {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+#viewport {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: 0 0;
+}
+body.render .frame {
+  width: 1920px !important;
+  height: 1080px !important;
+  margin: 0;
+}
+body.render #viewport {
+  transform: none !important;
+}
+body.render #controls {
+  display: none;
+}
+
+.stage {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background: var(--st-bg);
+  overflow: hidden;
+}
+.s-header {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 88px;
+  display: grid;
+  grid-template-columns: 560px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 0 28px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--st-line);
+}
+.s-site {
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--st-muted);
+}
+.s-story {
+  font-size: 28px;
+  font-weight: 700;
+}
+.s-scene {
+  font-size: 26px;
+  color: var(--st-fg);
+}
+.s-clock {
+  font-size: 28px;
+  font-variant-numeric: tabular-nums;
+  color: var(--st-amber);
+  font-weight: 600;
+}
+.s-panels {
+  position: absolute;
+  left: 0;
+  top: 88px;
+  width: 1920px;
+  height: 730px;
+}
+.s-panel {
+  position: absolute;
+  background: var(--st-panel);
+  border: 1px solid var(--st-line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.s-canvas,
+.s-canvas canvas {
+  position: absolute;
+  inset: 0;
+}
+.s-plabel {
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 650;
+  text-shadow: 0 1px 3px #000;
+}
+.s-letter {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  color: #000;
+  font-size: 20px;
+  font-weight: 800;
+  text-shadow: none;
+}
+.s-pmeta {
+  position: absolute;
+  left: 56px;
+  top: 48px;
+  font-size: 16px;
+  color: var(--st-muted);
+}
+.s-chips {
+  position: absolute;
+  left: 14px;
+  top: 74px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 60%;
+}
+.s-chip {
+  font-size: 15px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #1c2a22;
+  border: 1px solid #335042;
+}
+.s-readouts {
+  position: absolute;
+  right: 14px;
+  top: 12px;
+  display: grid;
+  gap: 4px;
+  text-align: right;
+  font-size: 18px;
+  text-shadow: 0 1px 3px #000;
+}
+.s-ro span {
+  color: var(--st-muted);
+  margin-right: 10px;
+}
+.s-ro b {
+  font-variant-numeric: tabular-nums;
+}
+/* hypothesis panels: banner across the top, the panel's labels pushed below it */
+.s-panel.hyp .s-plabel,
+.s-panel.hyp .s-readouts {
+  top: 48px;
+}
+.s-panel.hyp .s-pmeta {
+  top: 84px;
+}
+.s-panel.hyp .s-chips {
+  top: 110px;
+}
+.stage.is-card .s-caption {
+  bottom: 26px;
+}
+.s-hyp {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 7px 14px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a1200;
+  background: repeating-linear-gradient(135deg, #f2c14e 0 18px, #e0a930 18px 36px);
+}
+.s-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 262px;
+  display: grid;
+  grid-template-columns: 1200px 1fr;
+  gap: 20px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-top: 1px solid var(--st-line);
+}
+.s-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 17px;
+}
+.s-leg-title {
+  font-weight: 650;
+  margin-bottom: 6px;
+}
+.s-bar {
+  height: 18px;
+  border-radius: 4px;
+}
+.s-ends {
+  display: flex;
+  justify-content: space-between;
+  color: var(--st-muted);
+  font-size: 15px;
+  margin-top: 3px;
+}
+.s-swatches {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px 16px;
+  font-size: 15px;
+}
+.s-sw i {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  margin-right: 7px;
+  vertical-align: -1px;
+}
+.s-scale {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--st-muted);
+}
+.s-scalebar {
+  height: 6px;
+  background: var(--st-fg);
+  border-radius: 2px;
+}
+.s-caption {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 284px;
+  max-width: 1560px;
+  padding: 14px 26px;
+  border-radius: 10px;
+  background: rgba(5, 8, 7, 0.86);
+  border: 1px solid #2e3b33;
+  font-size: 31px;
+  line-height: 1.32;
+  text-align: center;
+  z-index: 3;
+}
+.s-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.s-caveat {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(40, 30, 5, 0.9);
+  border: 1px solid var(--st-amber);
+  color: #f7e3b0;
+  font-size: 16px;
+  line-height: 1.32;
+}
+.s-caveat b {
+  display: block;
+  color: var(--st-amber);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+.s-card {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  background: var(--st-bg);
+  padding: 0 160px;
+  text-align: center;
+  z-index: 2;
+}
+.s-card h1 {
+  font-size: 64px;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+.s-card p {
+  font-size: 30px;
+  line-height: 1.4;
+  margin: 0;
+  max-width: 1500px;
+}
+.s-card .s-muted,
+.s-muted {
+  color: var(--st-muted);
+}
+.s-card .s-link {
+  color: #56b4e9;
+  font-size: 26px;
+}
+.s-fields {
+  margin: 8px 0 12px;
+}
+
+/* live-mode controls (not part of the video) */
+#controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  font-size: 15px;
+  background: #0b100e;
+  border-top: 1px solid #27322b;
+}
+#controls a {
+  color: #56b4e9;
+}
+#controls input[type="range"] {
+  flex: 1;
+}
+#controls button,
+#controls select {
+  font: inherit;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid #335042;
+  background: #13201a;
+  color: #e6ece4;
+}
+@media (max-width: 700px) {
+  #controls {
+    flex-wrap: wrap;
+  }
+  #controls input[type="range"] {
+    flex-basis: 100%;
+  }
+}

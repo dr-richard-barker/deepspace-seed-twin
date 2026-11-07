@@ -496,13 +496,19 @@ export class SeedTwin {
     const c = this.template.cells;
     const a = this.template.seed.a;
     const b = this.template.seed.b;
+    // test against the seed coat where it is now (it rides on the cotyledons once the root anchors)
+    const [tx, ty, phi] = this.layout.shell;
+    const cp = Math.cos(phi);
+    const sp = Math.sin(phi);
     for (let i = 0; i < c.n; i++) {
       if (c.region[i] === Region.Endosperm) {
         this.exposed[i] = 0;
         continue;
       }
-      const x = this.layout.pos[3 * i] / a;
-      const y = this.layout.pos[3 * i + 1] / b;
+      const dx = this.layout.pos[3 * i] - tx;
+      const dy = this.layout.pos[3 * i + 1] - ty;
+      const x = (cp * dx + sp * dy) / a;
+      const y = (-sp * dx + cp * dy) / b;
       const z = this.layout.pos[3 * i + 2] / b;
       this.exposed[i] = x * x + y * y + z * z > 1 ? 1 : 0;
     }

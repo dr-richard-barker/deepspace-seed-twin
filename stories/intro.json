@@ -1,0 +1,276 @@
+{
+ "id": "intro",
+ "title": "Meet the seed twin",
+ "subtitle": "One Arabidopsis seed, from dry seed to seedling",
+ "description": "A tour of what the model simulates: water uptake, the hormones that hold and release dormancy, the wave of cell expansion that ends in germination, oxygen inside the seed, and the seedling that follows. Read this first; every other story uses the same views.",
+ "fps": 30,
+ "reproduce": {
+  "scene": "seedling",
+  "panel": 0
+ },
+ "scenes": [
+  {
+   "id": "title",
+   "kind": "card",
+   "title": "Meet the seed twin",
+   "duration_s": 7,
+   "lines": [
+    "A 3D model of one Arabidopsis seed, from the moment it takes up water to a five-day-old seedling.",
+    "Every cell is simulated: water, oxygen, hormones and growth. The geometry is schematic, built from published anatomy rather than a microscope scan."
+   ]
+  },
+  {
+   "id": "imbibe",
+   "kind": "sim",
+   "title": "Water uptake",
+   "layout": "1x1",
+   "t0": 0,
+   "t1": 14,
+   "speed": 1.5,
+   "holdStart": 1.5,
+   "holdEnd": 1.5,
+   "colorMode": "tissue",
+   "chart": {
+    "field": "water_gg",
+    "label": "Water content",
+    "unit": "g per g dry seed"
+   },
+   "camera": {
+    "elev": 10,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Ground control dish",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "water"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 0,
+     "dur_s": 4.5,
+     "text": "The seed is cut away so you can see inside: seed coat (brown), endosperm (pale), and the embryo coloured by tissue."
+    },
+    {
+     "at_h": 5,
+     "dur_s": 5.5,
+     "text": "Water floods in. By {A.t@12|0} h the seed holds {A.water_gg@12|2} g of water per gram of dry seed, and its mucilage coat swells."
+    }
+   ]
+  },
+  {
+   "id": "hormones",
+   "kind": "sim",
+   "title": "Two hormones decide",
+   "layout": "1x2",
+   "t0": 0,
+   "t1": 30,
+   "speed": 2,
+   "holdStart": 1,
+   "holdEnd": 2,
+   "chart": {
+    "field": "aba_mean",
+    "label": "Mean ABA in the embryo",
+    "unit": "Abley units"
+   },
+   "camera": {
+    "elev": 10,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Abscisic acid (ABA)",
+     "colorMode": "aba",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     }
+    },
+    {
+     "label": "Gibberellin (GA)",
+     "colorMode": "ga",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     }
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 1,
+     "dur_s": 5,
+     "text": "Left: abscisic acid, which holds the seed dormant. Right: gibberellin, which drives germination."
+    },
+    {
+     "at_h": 12,
+     "dur_s": 6,
+     "text": "Once wet, the embryo breaks ABA down: by {A.t@12|0} h it has fallen from {A.aba_mean@0|2} to {A.aba_mean@12|2}, while gibberellin builds up from the radicle tip."
+    }
+   ]
+  },
+  {
+   "id": "expansion",
+   "kind": "sim",
+   "title": "The expansion wave",
+   "layout": "1x1",
+   "t0": 14,
+   "t1": 36,
+   "speed": 1.4,
+   "holdStart": 1,
+   "holdEnd": 2,
+   "colorMode": "expansion",
+   "chart": {
+    "field": "turgor_mpa",
+    "label": "Turgor",
+    "unit": "MPa"
+   },
+   "camera": {
+    "elev": 10,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Cell expansion",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "testa",
+      "endosperm"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 15,
+     "dur_s": 6,
+     "text": "Cells begin to expand in the lower hypocotyl and the expansion spreads along the axis: the pattern Bassel and colleagues measured cell by cell in 3D."
+    },
+    {
+     "at_h": 26,
+     "dur_s": 7,
+     "text": "The seed coat splits at {A.testa_rupture_h|1} h, and the radicle pushes through the endosperm at {A.endosperm_rupture_h|1} h. That is germination."
+    }
+   ]
+  },
+  {
+   "id": "oxygen",
+   "kind": "sim",
+   "title": "Oxygen inside the seed",
+   "layout": "1x1",
+   "t0": 28,
+   "t1": 40,
+   "speed": 1.2,
+   "holdStart": 1,
+   "holdEnd": 2,
+   "colorMode": "o2",
+   "chart": {
+    "field": "o2_tip_kpa",
+    "label": "O₂ at the radicle tip",
+    "unit": "kPa"
+   },
+   "camera": {
+    "elev": 10,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Oxygen partial pressure",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "o2_surface",
+      "o2_core",
+      "hypoxic"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 29,
+     "dur_s": 8,
+     "text": "Respiring tissue uses oxygen faster than it can diffuse in. At {A.t@34|0} h the seed surface sits at {A.o2_surface_kpa@34|1} kPa but the core of the axis falls to {A.o2_core_min_kpa@34|2} kPa."
+    }
+   ]
+  },
+  {
+   "id": "seedling",
+   "kind": "sim",
+   "title": "The seedling",
+   "layout": "1x1",
+   "t0": 30,
+   "t1": 120,
+   "speed": 4,
+   "holdStart": 1,
+   "holdEnd": 3,
+   "colorMode": "tissue",
+   "chart": {
+    "field": "root_len_um",
+    "scale": 0.001,
+    "label": "Root length",
+    "unit": "mm"
+   },
+   "camera": {
+    "elev": 10,
+    "azim": 0,
+    "cut": true
+   },
+   "panels": [
+    {
+     "label": "Ground control dish",
+     "run": {
+      "presetId": "ground_petri",
+      "atmosphereId": null,
+      "env": {},
+      "params": {}
+     },
+     "readouts": [
+      "root",
+      "hypocotyl",
+      "root_turn"
+     ]
+    }
+   ],
+   "captions": [
+    {
+     "at_h": 31,
+     "dur_s": 6,
+     "text": "Root hairs anchor the seedling at {A.anchored_h|1} h; the root turns down with gravity and the hypocotyl lifts the cotyledons out."
+    },
+    {
+     "at_h": 62,
+     "dur_s": 6,
+     "text": "The cotyledons leave the seed coat at {A.cot_emerged_h|1} h and, in the light, open at {A.cot_open_h|1} h."
+    },
+    {
+     "at_h": 96,
+     "dur_s": 6,
+     "text": "By {A.t@120|0} h the root is {A.root_len_um@120/1000|1} mm long and the hypocotyl {A.hyp_len_um@120/1000|1} mm."
+    }
+   ]
+  }
+ ]
+}

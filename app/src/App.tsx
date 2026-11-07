@@ -11,6 +11,7 @@ import type { PopulationResult } from "./model/population";
 import { DIV_HEX, SEQ_HEX } from "./view/colors";
 import { CLUSTER_HEX, MODES, paint, type ColorMode } from "./view/paint";
 import { createSeedViewer, type SeedView, type SeedViewer } from "./view/viewer";
+import { shellExtents, shellOf } from "./view/seedView";
 
 const REPO = "https://github.com/dr-richard-barker/deepspace-seed-twin";
 const DECODER_SITE = "https://dr-richard-barker.github.io/deepspace-seed-stress-decoder/";
@@ -135,20 +136,11 @@ export default function App() {
         sim.updateLayout();
         const r = paint(sim, modeRef.current, clsRef.current, colorBufs.current[k]);
         if (k === 0) setRangeThrottled(r);
-        const tr = sim.milestones.testaRupture;
-        const lin = Math.cbrt(Math.min(sim.pose.swell, 1.25));
-        const shed = sim.milestones.cotEmerged !== null;
-        const shell = {
-          a: sim.template.seed.a * lin,
-          b: sim.template.seed.b * lin,
-          testaVisible: !shed,
-          testaSplit: tr === null ? 0 : Math.min(1, (sim.t - tr) / 4),
-          mucilage: sim.template.seed.mucilage * sim.hydration,
-        };
+        const shell = shellOf(sim);
         if (k === 1) {
           const b0 = views[0].layout.bbox;
           const b1 = sim.layout.bbox;
-          offset = Math.max(b0[3], views[0].shell.a) - Math.min(b1[0], -shell.a) + 250;
+          offset = Math.max(b0[3], shellExtents(views[0].shell)[2]) - Math.min(b1[0], shellExtents(shell)[0]) + 250;
         }
         views.push({ layout: sim.layout, colors: colorBufs.current[k], shell, offsetX: k === 0 ? 0 : offset });
       });
@@ -180,7 +172,7 @@ export default function App() {
   const sim = sims[0];
   const preset = PRESET_BY_ID.get(primary.presetId)!;
 
-  const setEnv = (key: EnvKey, v: number | undefined) => {
+  const setEnv = (key: EnvKey | "air_speed_m_s", v: number | undefined) => {
     const env = { ...primary.env };
     if (v === undefined) delete env[key];
     else env[key] = v;
@@ -228,6 +220,7 @@ export default function App() {
         </div>
         <nav>
           <a href={REPO}>Code &amp; data</a>
+          <a href="./stories.html">Stories (videos)</a>
           <button onClick={() => setTab("about")}>How it works</button>
         </nav>
       </header>
@@ -424,7 +417,7 @@ function EnvironmentPanel(props: {
   presetFields: Record<string, EnvField>;
   setPrimary: (c: RunConfig) => void;
   setCompare: (c: RunConfig | null) => void;
-  setEnv: (k: EnvKey, v: number | undefined) => void;
+  setEnv: (k: EnvKey | "air_speed_m_s", v: number | undefined) => void;
   setParam: (id: string, v: number | undefined) => void;
   exportCsv: () => void;
   exportJson: () => void;
@@ -501,6 +494,31 @@ function EnvironmentPanel(props: {
           </div>
         );
       })}
+      {(() => {
+        const over = primary.env.air_speed_m_s;
+        const value = sim.env.airSpeed(sim.env.gravity_g);
+        const pt = preset.air_speed_by_g[0];
+        return (
+          <div className="field">
+            <div className="field-head">
+              <span title="Local air speed at the seed surface. It sets the air-side boundary layer through the Sherwood correlation (Sh = 2 in still air).">
+                Air speed at the seed
+              </span>
+              <span className="val">{+value.toPrecision(3)} m/s</span>
+              {over !== undefined ? (
+                <button className="reset" onClick={() => props.setEnv("air_speed_m_s", undefined)} title="Back to the hardware value">
+                  reset
+                </button>
+              ) : (
+                <span title={pt ? pt.source : "no source"}>
+                  <TierChip tier={pt?.tier ?? "assumed"} />
+                </span>
+              )}
+            </div>
+            <input type="range" min={0} max={0.5} step={0.001} value={value} onChange={(e) => props.setEnv("air_speed_m_s", Number(e.target.value))} />
+          </div>
+        );
+      })()}
       <h3>Hypothesis couplings</h3>
       <p className="desc">
         No verified source links radiation damage to these responses, so each defaults to 0. Raising one shows what the model would do <em>if</em> the
@@ -872,6 +890,12 @@ function AboutPanel() {
       <p>
         The Sources tab lists every parameter with its evidence tier. Spaceflight outputs are hypotheses to test against the decoder and flight data, not
         measurements. Radiation-to-hormone links default to zero because no verified source quantifies them.
+      </p>
+      <h3>Stories</h3>
+      <p>
+        <a href="./stories.html">Short videos</a> made with this model compare gravity levels, flight hardware, light and air, and radiation. Each is
+        rendered frame by frame from a storyboard, every number on screen is computed by the model, and each can be replayed live in the{" "}
+        <a href="./studio.html">studio</a>.
       </p>
     </div>
   );

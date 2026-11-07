@@ -38,6 +38,11 @@ export interface Layout {
   tip: [number, number];
   node: [number, number];
   collet: [number, number];
+  /**
+   * Seed-coat frame [tx, ty, phi]: a point p of the seed (testa, endosperm) sits at R(phi)·p + t.
+   * Identity while the root is unanchored; afterwards the cotyledons carry the seed with them.
+   */
+  shell: [number, number, number];
   bbox: [number, number, number, number, number, number];
 }
 
@@ -51,6 +56,7 @@ export function allocLayout(capacity: number): Layout {
     tip: [0, 0],
     node: [0, 0],
     collet: [0, 0],
+    shell: [0, 0, 0],
     bbox: [0, 0, 0, 0, 0, 0],
   };
 }
@@ -139,14 +145,20 @@ export function computeLayout(t: Template, pose: OrganPose, L: Layout): void {
   }
   const kColl = Math.max(0, order.indexOf(t.colletSliceId));
 
-  // centre point + tangent angle of every slice, walking from a fixed point
+  // centre point + tangent angle of every slice. The shape is always built from the collet,
+  // with the collet pointing along rootAngle0 — the frame the seedling dynamics use for root
+  // gravitropism, the hook and hypocotyl gravitropism (seedling.ts) — so the drawn root points
+  // where the model says it does. Before the root anchors, the seed coat holds the cotyledon
+  // node, so the same shape is translated to keep the node fixed; after anchoring the collet
+  // stays put. The two cases agree at the moment of anchoring, so the seedling never jumps.
   const cx = new Float64Array(nS);
   const cy = new Float64Array(nS);
   const th = new Float64Array(nS); // tangent pointing toward the root tip
-  if (pose.colletAnchor) {
+  {
+    const origin: [number, number] = pose.colletAnchor ?? [0, 0];
     // collet fixed: walk down to the tip and up to the node
-    let x = pose.colletAnchor[0];
-    let y = pose.colletAnchor[1];
+    let x = origin[0];
+    let y = origin[1];
     let a = pose.rootAngle0;
     // collet slice itself centred on the anchor
     cx[kColl] = x;
@@ -161,8 +173,8 @@ export function computeLayout(t: Template, pose: OrganPose, L: Layout): void {
       cy[k] = y;
       th[k] = a;
     }
-    x = pose.colletAnchor[0];
-    y = pose.colletAnchor[1];
+    x = origin[0];
+    y = origin[1];
     a = pose.rootAngle0 + Math.PI; // pointing up the hypocotyl
     for (let k = kColl + 1; k < nS; k++) {
       const step = (len[k - 1] + len[k]) / 2;
@@ -173,19 +185,17 @@ export function computeLayout(t: Template, pose: OrganPose, L: Layout): void {
       cy[k] = y;
       th[k] = a + Math.PI;
     }
-  } else {
-    // node fixed (inside the seed): walk from the top slice down to the tip
-    let x = pose.node[0];
-    let y = pose.node[1];
-    let a = pose.rootAngle0;
-    for (let k = nS - 1; k >= 0; k--) {
-      const step = k === nS - 1 ? len[k] / 2 : (len[k + 1] + len[k]) / 2;
-      a += k === nS - 1 ? bend[k] / 2 : (bend[k + 1] + bend[k]) / 2;
-      x += Math.cos(a) * step;
-      y += Math.sin(a) * step;
-      cx[k] = x;
-      cy[k] = y;
-      th[k] = a;
+    if (!pose.colletAnchor) {
+      // inside the seed: shift the whole axis so its top end sits on the fixed node
+      const topA = th[nS - 1] + Math.PI;
+      const nx = cx[nS - 1] + (Math.cos(topA) * len[nS - 1]) / 2;
+      const ny = cy[nS - 1] + (Math.sin(topA) * len[nS - 1]) / 2;
+      const dx = pose.node[0] - nx;
+      const dy = pose.node[1] - ny;
+      for (let k = 0; k < nS; k++) {
+        cx[k] += dx;
+        cy[k] += dy;
+      }
     }
   }
 
@@ -242,6 +252,15 @@ export function computeLayout(t: Template, pose: OrganPose, L: Layout): void {
   ];
   L.node = node;
 
+  // --- seed-coat frame: the seed rides on the cotyledons. With a straight, unanchored embryo the
+  // node sits at pose.node and the top of the axis points along rootAngle0 + π, so this is the
+  // identity; once the hypocotyl lifts and hooks the cotyledons, the seed moves and turns with them.
+  const phi = topTh - (pose.rootAngle0 + Math.PI);
+  const cphi = Math.cos(phi);
+  const sphi = Math.sin(phi);
+  L.shell = [node[0] - (cphi * pose.node[0] - sphi * pose.node[1]), node[1] - (sphi * pose.node[0] + cphi * pose.node[1]), phi];
+  const [stx, sty] = L.shell;
+
   // --- cotyledons
   const [, nv, nw] = t.cotGrid;
   const topR = t.slices[order[nS - 1]].radius0;
@@ -279,7 +298,7 @@ export function computeLayout(t: Template, pose: OrganPose, L: Layout): void {
     L.scale[3 * i + 2] = lv;
   }
 
-  // --- endosperm shell (stays with the seed coat at the origin)
+  // --- endosperm shell (moves with the seed coat: local seed coordinates, then the seed frame)
   const ea = (t.seed.a - t.seed.testa - t.seed.endo / 2) * Math.cbrt(Math.min(pose.swell, 1.25));
   const eb = (t.seed.b - t.seed.testa - t.seed.endo / 2) * Math.cbrt(Math.min(pose.swell, 1.25));
   for (let i = 0; i < c.n; i++) {
@@ -314,8 +333,10 @@ export function computeLayout(t: Template, pose: OrganPose, L: Layout): void {
     const zy = az * gx - ax * gz;
     const zz = ax * gy - ay * gx;
     L.visible[i] = pose.shed || (pose.endospermRuptured && c.micropylar[i] && x < -ea * 0.82) ? 0 : 1;
-    put(i, x, y, z);
-    quatFromBasis(L.quat, 4 * i, ax, ay, az, gx, gy, gz, zx, zy, zz);
+    const rx = (u: number, v: number) => cphi * u - sphi * v;
+    const ry = (u: number, v: number) => sphi * u + cphi * v;
+    put(i, rx(x, y) + stx, ry(x, y) + sty, z);
+    quatFromBasis(L.quat, 4 * i, rx(ax, ay), ry(ax, ay), az, rx(gx, gy), ry(gx, gy), gz, rx(zx, zy), ry(zx, zy), zz);
     L.scale[3 * i] = c.len[i];
     L.scale[3 * i + 1] = c.dep[i];
     L.scale[3 * i + 2] = c.wid[i];

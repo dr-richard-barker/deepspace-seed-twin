@@ -843,13 +843,13 @@
   },
   {
    "id": "eth_yield_mol_m3",
-   "value": 0.0119051,
+   "value": 0.0117653,
    "unit": "mol m-3",
    "tier": "fitted",
    "group": "hormones",
    "description": "Ethylene produced per normalised ACO unit per tissue volume",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.24) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "eth_response_k_pa",
@@ -1043,13 +1043,13 @@
   },
   {
    "id": "root_meristem_delay_h",
-   "value": 10.9387,
+   "value": 11.2198,
    "unit": "h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Delay from protrusion to meristem activity",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.24) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "root_meristem_len_um",
@@ -1143,23 +1143,23 @@
   },
   {
    "id": "hyp_rate_dark",
-   "value": 0.0564119,
+   "value": 0.0558313,
    "unit": "1/h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Hypocotyl cell relative elongation rate in darkness",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.24) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "hyp_rate_light",
-   "value": 0.0295966,
+   "value": 0.0301,
    "unit": "1/h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Hypocotyl cell relative elongation rate in light",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.24) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "hyp_cell_max_dark_um",
@@ -1223,13 +1223,13 @@
   },
   {
    "id": "hyp_elongation_delay_h",
-   "value": 0.267418,
+   "value": 0.279866,
    "unit": "h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Delay from protrusion to hypocotyl elongation",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.24) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "hyp_gravitropic_rate_deg_h",
@@ -1283,13 +1283,13 @@
   },
   {
    "id": "cot_open_rate",
-   "value": 0.84089,
+   "value": 0.969687,
    "unit": "1/h",
    "tier": "fitted",
    "group": "seedling",
    "description": "Cotyledon opening rate in light",
    "source": "calibration:data/calibration/fit_seedling.json",
-   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.29) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 4.24) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "cot_expansion_rate",

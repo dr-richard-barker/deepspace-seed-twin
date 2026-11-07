@@ -14,3 +14,5 @@ manuscript/*.blg
 manuscript/main.pdf
 manuscript/*.fls
 manuscript/*.fdb_latexmk
+data/external/
+.chrome-render-profile/

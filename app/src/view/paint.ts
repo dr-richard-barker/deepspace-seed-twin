@@ -51,7 +51,12 @@ export interface PaintResult {
   max: number;
 }
 
-export function paint(sim: SeedTwin, mode: ColorMode, decoderClass: string, out: Float32Array): PaintResult {
+/**
+ * Colour every cell for `mode`. Sequential modes rescale to the embryo's own min..max each call,
+ * unless `fixed` is given; the Studio passes one range shared by all panels and all frames, so
+ * colours are comparable side by side and do not flicker over time.
+ */
+export function paint(sim: SeedTwin, mode: ColorMode, decoderClass: string, out: Float32Array, fixed?: { min: number; max: number }): PaintResult {
   const t = sim.template;
   const c = t.cells;
   const n = c.n;
@@ -119,13 +124,17 @@ export function paint(sim: SeedTwin, mode: ColorMode, decoderClass: string, out:
   }
   if (mode === "o2") lo = 0;
   if (mode === "expansion") lo = Math.min(lo, 0);
+  if (fixed) {
+    lo = fixed.min;
+    hi = fixed.max;
+  }
   if (!(hi > lo)) hi = lo + 1e-9;
   for (let i = 0; i < n; i++) {
     if (c.region[i] === Region.Endosperm) {
       set(i, TISSUE_COLORS[Tissue.Endosperm]);
       continue;
     }
-    set(i, sequential((field(i)! - lo) / (hi - lo)));
+    set(i, sequential(Math.max(0, Math.min(1, (field(i)! - lo) / (hi - lo)))));
   }
   return { min: lo, max: hi };
 }
