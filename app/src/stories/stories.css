@@ -34,7 +34,7 @@ body {
 .stories {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 32px 16px 64px;
+  padding: 72px 16px 64px; /* clears the CoSE hub chip in the top-left corner */
 }
 .stories a {
   color: var(--st-link);

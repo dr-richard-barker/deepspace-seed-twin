@@ -1,0 +1,13 @@
+scene,where,ref,value,display
+four,caption 3,A.t@120,120,120
+four,caption 3,A.hyp_len_um@120/1000,2.265812479643557,2.3
+four,caption 3,B.hyp_len_um@120/1000,7.174460383522774,7.2
+four,caption 3,D.hyp_len_um@120/1000,7.599078314490597,7.6
+sealed,caption 2,A.eth_hs_ppb:max,84.15358152718782,84
+sealed,caption 2,B.eth_hs_ppb:max,142.7448841918043,143
+sealed,caption 2,C.eth_hs_ppb:max,0.03538504122709819,0.04
+mir,label B,env.eth_inlet_ppm,1.4,1.4
+mir,caption 1,B.env.eth_inlet_ppm,1.4,1.4
+mir,caption 2,A.t@120,120,120
+mir,caption 2,A.root_len_um@120/1000,3.622922176705105,3.6
+mir,caption 2,B.root_len_um@120/1000,0.8838302456370815,0.9

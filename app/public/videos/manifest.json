@@ -1,0 +1,47 @@
+[
+ {
+  "id": "intro",
+  "title": "Meet the seed twin",
+  "subtitle": "One Arabidopsis seed, from dry seed to seedling",
+  "description": "A tour of what the model simulates: water uptake, the hormones that hold and release dormancy, the wave of cell expansion that ends in germination, oxygen inside the seed, and the seedling that follows. Read this first; every other story uses the same views.",
+  "duration_s": 101.5,
+  "bytes": 10297770,
+  "reproduce": "https://dr-richard-barker.github.io/deepspace-seed-twin/#eyJwcmltYXJ5Ijp7InByZXNldElkIjoiZ3JvdW5kX3BldHJpIiwiYXRtb3NwaGVyZUlkIjpudWxsLCJlbnYiOnt9LCJwYXJhbXMiOnt9fSwiY29tcGFyZSI6bnVsbCwibW9kZSI6InRpc3N1ZSIsImRlY29kZXJDbGFzcyI6Imxvd19veHlnZW4iLCJ0IjoxMjB9"
+ },
+ {
+  "id": "gravity",
+  "title": "Gravity",
+  "subtitle": "Same seed, same hardware, four gravity levels",
+  "description": "The EMCS centrifuge sets gravity from zero to Earth-normal. Partial gravity changes how fast the root turns toward gravity, not where it ends up; in sealed dark hardware, zero gravity leaves the seedling with no up or down.",
+  "duration_s": 140,
+  "bytes": 19787075,
+  "reproduce": "https://dr-richard-barker.github.io/deepspace-seed-twin/#eyJwcmltYXJ5Ijp7InByZXNldElkIjoiZW1jcyIsImF0bW9zcGhlcmVJZCI6bnVsbCwiZW52Ijp7ImdyYXZpdHlfZyI6MC4xNjZ9LCJwYXJhbXMiOnt9fSwiY29tcGFyZSI6bnVsbCwibW9kZSI6InRpc3N1ZSIsImRlY29kZXJDbGFzcyI6Imxvd19veHlnZW4iLCJ0Ijo5Nn0"
+ },
+ {
+  "id": "hardware",
+  "title": "Flight hardware",
+  "subtitle": "The same seed in four habitats",
+  "description": "Flight hardware changes light, sealing, air exchange and gravity all at once. In the model, darkness shapes the seedling far more than gravity does, sealed dishes trap the seeds' own ethylene, and station cabin air can carry enough ethylene to stunt the root.",
+  "duration_s": 125,
+  "bytes": 18367064,
+  "reproduce": "https://dr-richard-barker.github.io/deepspace-seed-twin/#eyJwcmltYXJ5Ijp7InByZXNldElkIjoiYnJpY19wZGZ1IiwiYXRtb3NwaGVyZUlkIjpudWxsLCJlbnYiOnt9LCJwYXJhbXMiOnt9fSwiY29tcGFyZSI6bnVsbCwibW9kZSI6InRpc3N1ZSIsImRlY29kZXJDbGFzcyI6Imxvd19veHlnZW4iLCJ0IjoxMjB9"
+ },
+ {
+  "id": "light_air",
+  "title": "Light and air",
+  "subtitle": "Photoperiod, oxygen and airflow",
+  "description": "Light switches the seedling from stretching to building, so darkness and photoperiod change its shape the most. Oxygen partial pressure, not total pressure, sets how fast germination happens. And airflow past the seed matters little, because the seed coat and the tissue limit how much oxygen gets in.",
+  "duration_s": 122,
+  "bytes": 16916971,
+  "reproduce": "https://dr-richard-barker.github.io/deepspace-seed-twin/#eyJwcmltYXJ5Ijp7InByZXNldElkIjoiZ3JvdW5kX3BldHJpIiwiYXRtb3NwaGVyZUlkIjoiQ291bnRlcmZhY3R1YWxfNTYuNWtQYV9VbmNvbXBlbnNhdGVkQWlyXzIxcGN0TzIiLCJlbnYiOnt9LCJwYXJhbXMiOnt9fSwiY29tcGFyZSI6bnVsbCwibW9kZSI6Im8yIiwiZGVjb2RlckNsYXNzIjoibG93X294eWdlbiIsInQiOjcyfQ"
+ },
+ {
+  "id": "radiation_fields",
+  "title": "Radiation and magnetic fields",
+  "subtitle": "What is measured, what is assumed, and what is unknown",
+  "description": "Dose rates beyond low Earth orbit are measured, but no verified study quantifies how such doses change seed hormones, so by default the model shows no effect. A clearly marked hypothesis shows what such a link could do, the decoder shows which cell types carry a radiation signature in real data, and magnetic fields are presented as the open question they are.",
+  "duration_s": 125.3,
+  "bytes": 13338195,
+  "reproduce": "https://dr-richard-barker.github.io/deepspace-seed-twin/#eyJwcmltYXJ5Ijp7InByZXNldElkIjoiZ3JvdW5kX3BldHJpIiwiYXRtb3NwaGVyZUlkIjpudWxsLCJyYWRpYXRpb25JZCI6ImRlZXBfc3BhY2Vfc3BlIiwiZW52Ijp7fSwicGFyYW1zIjp7InJvc190b19hYmEiOjEsInJvc190b19hY2MiOjEsInJvc190b19kaXZpc2lvbl9hcnJlc3QiOjF9fSwiY29tcGFyZSI6bnVsbCwibW9kZSI6InJhZGlhdGlvbiIsImRlY29kZXJDbGFzcyI6Imxvd19veHlnZW4iLCJ0IjoxMjB9"
+ }
+]

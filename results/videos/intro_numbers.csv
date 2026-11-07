@@ -1,0 +1,17 @@
+scene,where,ref,value,display
+imbibe,caption 2,A.t@12,12,12
+imbibe,caption 2,A.water_gg@12,0.8122565830923655,0.81
+hormones,caption 2,A.t@12,12,12
+hormones,caption 2,A.aba_mean@0,10.96790283929194,10.97
+hormones,caption 2,A.aba_mean@12,3.29106286135979,3.29
+expansion,caption 2,A.testa_rupture_h,24.000000000000206,24.0
+expansion,caption 2,A.endosperm_rupture_h,32.00000000000032,32.0
+oxygen,caption 1,A.t@34,34,34
+oxygen,caption 1,A.o2_surface_kpa@34,13.764061508652784,13.8
+oxygen,caption 1,A.o2_core_min_kpa@34,0,0.00
+seedling,caption 1,A.anchored_h,38.049999999999976,38.0
+seedling,caption 2,A.cot_emerged_h,65.34999999999843,65.3
+seedling,caption 2,A.cot_open_h,72.999999999998,73.0
+seedling,caption 3,A.t@120,120,120
+seedling,caption 3,A.root_len_um@120/1000,3.368796933943283,3.4
+seedling,caption 3,A.hyp_len_um@120/1000,2.265812479643557,2.3

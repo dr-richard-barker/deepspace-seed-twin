@@ -120,7 +120,9 @@ for k, sc in enumerate(["ground_light", "ground_exploration", "ground_staged", "
 ax[1].set_xlabel("hours")
 ax[1].set_ylabel("hypoxic embryo cells (%)")
 ax[1].set_title("b  atmosphere", loc="left")
-ax[1].legend(frameon=False, fontsize=5)
+# headroom above the highest trace so the legend never sits on the data
+ax[1].set_ylim(0, max(l.get_ydata().max() for l in ax[1].get_lines()) * 1.8)
+ax[1].legend(frameon=False, fontsize=5, loc="upper right")
 for k, sc in enumerate(["ground_light", "deep_space_spe", "deep_space_spe_hyp"]):
     ts = read(f"timeseries_{sc}.csv")
     lab_c = {"ground_light": "ground, no radiation", "deep_space_spe": "cruise + SPE (default: no couplings)", "deep_space_spe_hyp": "cruise + SPE, couplings = 1 (hypothesis)"}[sc]
@@ -128,7 +130,8 @@ for k, sc in enumerate(["ground_light", "deep_space_spe", "deep_space_spe_hyp"])
 ax[2].set_xlabel("hours")
 ax[2].set_ylabel("root length (mm)")
 ax[2].set_title("c  radiation", loc="left")
-ax[2].legend(frameon=False, fontsize=5)
+ax[2].set_ylim(0, max(l.get_ydata().max() for l in ax[2].get_lines()) * 1.45)
+ax[2].legend(frameon=False, fontsize=5, loc="upper left")
 fig.tight_layout()
 fig.savefig(FIG / "fig4_gravity_atmosphere_radiation.png", dpi=300)
 fig.savefig(FIG / "fig4_gravity_atmosphere_radiation.pdf")

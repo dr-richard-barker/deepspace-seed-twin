@@ -1,0 +1,27 @@
+scene,where,ref,value,display
+light,label B,env.light_h_per_cycle,16,16
+light,label B,env.cycle_h,24,24
+light,label D,env.light_h_per_cycle,4,4
+light,label D,env.cycle_h,6,6
+light,caption 2,A.t@120,120,120
+light,caption 2,A.hyp_len_um@120/1000,7.512120838335061,7.5
+light,caption 2,B.hyp_len_um@120/1000,2.265812479643557,2.3
+light,caption 2,C.hyp_len_um@120/1000,2.2045403990784833,2.2
+atmosphere,label A,env.p_total_kpa,101.325,101.3
+atmosphere,label B,env.p_total_kpa,56.54,56.5
+atmosphere,caption 2,A.endosperm_rupture_h,32.00000000000032,32.0
+atmosphere,caption 2,B.endosperm_rupture_h,33.45000000000024,33.5
+atmosphere,caption 2,B.env.po2_kpa,19.2236,19.2
+atmosphere,caption 3,C.env.po2_kpa,11.8734,11.9
+atmosphere,caption 3,C.endosperm_rupture_h,49.8999999999993,49.9
+atmosphere,caption 3,D.env.po2_kpa,5.06625,5.1
+atmosphere,caption 3,D.endosperm_rupture_h,63.69999999999852,63.7
+airflow,label B,env.air_speed_m_s,0.01,0.01
+airflow,label C,env.air_speed_m_s,0.3,0.3
+airflow,caption 2,A.sherwood:max,2,2.0
+airflow,caption 2,C.sherwood:max,3.4061302025681024,3.4
+airflow,caption 2,A.t@30,30,30
+airflow,caption 2,A.o2_tip_kpa@30,6.049750512446339,6.0
+airflow,caption 2,C.o2_tip_kpa@30,6.050638078044833,6.1
+airflow,caption 2,A.o2_core_min_kpa@30,0,0.0
+airflow,caption 2,C.o2_core_min_kpa@30,0,0.0

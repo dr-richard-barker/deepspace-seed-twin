@@ -1,0 +1,18 @@
+scene,where,ref,value,display
+ladder,label A,env.gravity_g,0,0
+ladder,label B,env.gravity_g,0.166,0.166
+ladder,label C,env.gravity_g,0.38,0.38
+ladder,label D,env.gravity_g,1,1
+ladder,caption 1,A.endosperm_rupture_h,24.100000000000207,24.1
+ladder,caption 1,D.endosperm_rupture_h,26.750000000000245,26.8
+ladder,caption 3,A.t@48,48,48
+ladder,caption 3,B.root_angle_deg@48-180,59.35994179709439,59
+ladder,caption 3,C.root_angle_deg@48-180,75.31376763409233,75
+ladder,caption 3,D.root_angle_deg@48-180,85.96069135117119,86
+ladder,caption 4,B.root_angle_deg:end-180,89.71528513520809,90
+bric,label A,env.gravity_g,0,0
+bric,label B,env.gravity_g,1,1
+bric,caption 2,A.endosperm_rupture_h,29.050000000000278,29.1
+bric,caption 2,B.endosperm_rupture_h,32.3000000000003,32.3
+bric,caption 4,B.root_angle_deg:end-180,89.94069259150234,90
+bric,caption 4,A.root_angle_deg:end-180,0,0

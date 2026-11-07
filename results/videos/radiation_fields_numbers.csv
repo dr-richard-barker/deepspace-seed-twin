@@ -1,0 +1,17 @@
+scene,where,ref,value,display
+dose,label B,env.dose_mgy_d,0.2868,0.29
+dose,label C,env.dose_mgy_d,0.317,0.32
+dose,caption 1,D.env.spe_dose_mgy,150,150
+dose,caption 2,A.t@72,72,72
+dose,caption 2,B.dose_mgy@72,0.8604000000000063,0.86
+dose,caption 2,D.dose_mgy@72,151.75250000000344,152
+hypothesis,caption 2,A.t@120,120,120
+hypothesis,caption 2,A.root_len_um@120/1000,3.368796933943283,3.4
+hypothesis,caption 2,B.root_len_um@120/1000,2.8010889187702612,2.8
+fields,caption 1,fields.earth_surface.min_nT/1000,25,25
+fields,caption 1,fields.earth_surface.max_nT/1000,65,65
+fields,caption 1,fields.moon_30km.altitude_km,30,30
+fields,caption 1,fields.moon_30km.median_nT,0.7524,0.75
+fields,caption 2,fields.dhiman2023.year,2023,2023
+fields,caption 2,fields.dhiman2023.germination_field_uT,50,50
+fields,caption 2,fields.dhiman2023.germination_acceleration_h,20,20

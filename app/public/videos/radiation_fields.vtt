@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.000
+Radiation and magnetic fields
+
+00:00:07.000 --> 00:00:10.000
+Four radiation environments
+
+00:00:08.800 --> 00:00:16.800
+Dose rates measured on the ISS and on the lunar surface by Chang'e-4, a deep-space estimate, and a modelled solar particle event of 150 mGy. Colours show radiation damage in each cell.
+
+00:00:21.600 --> 00:00:28.100
+By 72 h: 0.86 mGy on the ISS, 152 mGy with the solar particle event.
+
+00:00:28.800 --> 00:00:38.800
+Yet all four seedlings are the same: no verified study gives a dose-to-hormone link for germinating seeds, so the model adds none. Published growth effects of chronic gamma rays need several times the ISS dose rate, sustained over a whole life cycle (Vandenhove and colleagues).
+
+00:00:39.800 --> 00:00:42.800
+A hypothesis, clearly marked
+
+00:00:41.800 --> 00:00:50.800
+Right: what if radiation damage did signal? Three links are switched on: damage raises ABA, raises the ethylene precursor ACC, and slows cell division in the root tip.
+
+00:01:03.800 --> 00:01:12.800
+Root at 120 h: 3.4 mm without the links, 2.8 mm with them. Their strengths are assumed, so this shows the shape of a possible effect, not its size.
+
+00:01:13.800 --> 00:01:16.800
+What the data show: which cells respond
+
+00:01:15.425 --> 00:01:24.425
+This is data, not simulation: how strongly each cell type's marker genes are enriched for the response of young seedlings to simulated galactic cosmic rays, from the Seed Stress Decoder (manuscript in preparation).
+
+00:01:24.800 --> 00:01:32.800
+Red: the radiation signature is enriched in that cell type. Blue: depleted. Grey: no matching cell type in the germination atlas.
+
+00:01:35.300 --> 00:01:38.300
+Magnetic fields: an open question
+
+00:01:35.800 --> 00:01:43.300
+Earth's surface field is roughly 25 to 65 µT. The Moon's crustal field, mapped from orbit at 30 km, has a median of 0.75 nT.
+
+00:01:43.800 --> 00:01:51.300
+In one laboratory study (Dhiman, Wu and Galland, Protoplasma, 2023), a 50 µT field sped up Arabidopsis germination by about 20 h compared with a near-null field.
+
+00:01:51.800 --> 00:01:59.300
+Mutants lacking both cryptochromes (cry1cry2) responded the same way. With no known mechanism and no verified field values for the ISS, Mars or flight hardware, the seed twin does not model magnetic fields.
