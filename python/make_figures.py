@@ -49,7 +49,9 @@ ax[0].axvspan(targets["peak_expansion_index"]["value"] - 0.5, targets["peak_expa
 ax[0].set_xlabel("cortical cell index from the QC")
 ax[0].set_ylabel("volume / volume at 3 h")
 ax[0].set_title("a  expansion by position", loc="left")
-ax[0].legend(frameon=False, fontsize=6)
+lo0, hi0 = ax[0].get_ylim()
+ax[0].set_ylim(lo0, hi0 + 0.3 * (hi0 - lo0))  # room above the curves for a one-row legend
+ax[0].legend(frameon=False, fontsize=5.5, ncol=4, loc="upper center", handlelength=1.2, columnspacing=0.8)
 
 summ = {r["scenario"]: r for r in read("scenario_summary.csv")}
 ref = summ["ground_light"]
@@ -68,9 +70,11 @@ hyd = read("hydrotime_check.csv")
 psi = [f(r["psi_mpa"]) for r in hyd]
 ax[2].plot(psi, [f(r["hydrotime_rate_per_h"]) * 100 for r in hyd], "-", color="#888888", label="hydrotime (Footitt 2019)")
 ax[2].plot(psi, [f(r["model_rate_per_h"]) * 100 for r in hyd], "o", color=OK[2], ms=4, label="twin (not fitted)")
-ax[2].set_xlabel("substrate water potential (MPa)")
+ax[2].set_xlabel("water potential (MPa)")
 ax[2].set_ylabel("germination rate (% per h)")
 ax[2].set_title("c  water stress", loc="left")
+lo2, hi2 = ax[2].get_ylim()
+ax[2].set_ylim(lo2, hi2 + 0.45 * (hi2 - lo2))  # room above the hydrotime line for the legend
 ax[2].legend(frameon=False, fontsize=6, loc="upper left")
 fig.tight_layout()
 fig.savefig(FIG / "fig2_calibration.png", dpi=300)
@@ -152,7 +156,7 @@ for k, sc in enumerate(["bric_pdfu", "ground_counterfactual"]):
         ax[k].annotate(r["cluster"], (xx, yy), fontsize=5, xytext=(2, 2), textcoords="offset points")
     ax[k].set_xlabel("simulated O₂ deficit at 24 h (kPa)")
     ax[k].set_ylabel("observed low-oxygen NES (decoder)")
-    ax[k].set_title(f"{'ab'[k]}  {sc}: Spearman ρ = {rho:.2f} (p = {pv:.2f}, n = {len(rows)})", loc="left", fontsize=7)
+    ax[k].set_title(f"{'ab'[k]}  {sc}\nSpearman ρ = {rho:.2f} (p = {pv:.2f}, n = {len(rows)})", loc="left", fontsize=7)
 fig.tight_layout()
 fig.savefig(FIG / "fig5_exposure_vs_decoder.png", dpi=300)
 fig.savefig(FIG / "fig5_exposure_vs_decoder.pdf")
