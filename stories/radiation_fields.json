@@ -2,7 +2,7 @@
  "id": "radiation_fields",
  "title": "Radiation and magnetic fields",
  "subtitle": "What is measured, what is assumed, and what is unknown",
- "description": "Dose rates beyond low Earth orbit are measured, but no verified link connects that dose to seed hormones or growth, so by default the model shows no effect. A clearly marked hypothesis shows what such a link could do, the decoder shows which cell types carry a radiation signature in real data, and magnetic fields are presented as the open question they are.",
+ "description": "Dose rates beyond low Earth orbit are measured, but no verified study quantifies how such doses change seed hormones, so by default the model shows no effect. A clearly marked hypothesis shows what such a link could do, the decoder shows which cell types carry a radiation signature in real data, and magnetic fields are presented as the open question they are.",
  "fps": 30,
  "reproduce": {
   "scene": "hypothesis",
@@ -109,14 +109,14 @@
      "text": "Dose rates measured on the ISS and on the lunar surface by Chang'e-4, a deep-space estimate, and a modelled solar particle event of {D.env.spe_dose_mgy|0} mGy. Colours show radiation damage in each cell."
     },
     {
-     "at_h": 40,
-     "dur_s": 8,
+     "at_h": 34,
+     "dur_s": 6.5,
      "text": "By {A.t@72|0} h: {B.dose_mgy@72|2} mGy on the ISS, {D.dose_mgy@72|0} mGy with the solar particle event."
     },
     {
-     "at_h": 58,
-     "dur_s": 8,
-     "text": "Yet all four seedlings are the same. No verified study links doses like these to seed hormones or growth, so the model adds no effect."
+     "at_h": 52,
+     "dur_s": 10,
+     "text": "Yet all four seedlings are the same: no verified study gives a dose-to-hormone link for germinating seeds, so the model adds none. Published growth effects of chronic gamma rays need several times the ISS dose rate, sustained over a whole life cycle (Vandenhove and colleagues)."
     }
    ],
    "caveats": [

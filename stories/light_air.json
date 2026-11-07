@@ -306,7 +306,7 @@
      "text": "The fan raises mass transfer through the air (Sherwood number {A.sherwood:max|1} to {C.sherwood:max|1}), yet at {A.t@30|0} h the radicle tip sits at {A.o2_tip_kpa@30|1} versus {C.o2_tip_kpa@30|1} kPa of oxygen, and the core of the axis at {A.o2_core_min_kpa@30|1} and {C.o2_core_min_kpa@30|1} kPa."
     },
     {
-     "at_h": 40,
+     "at_h": 41,
      "dur_s": 6,
      "text": "The seed coat and the respiring tissue limit the oxygen supply, not the air around the seed."
     }

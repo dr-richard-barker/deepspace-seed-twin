@@ -324,8 +324,10 @@ export function checkStory(story: Story, knownPresets: Set<string>, knownModes: 
     for (const c of s.captions ?? []) {
       if ((c.at_h === undefined) === (c.at_s === undefined)) e(`scene ${s.id}: caption needs exactly one of at_h / at_s`);
       if (!(c.dur_s > 0)) e(`scene ${s.id}: caption dur_s must be > 0`);
-      if (c.at_s !== undefined && c.at_s + c.dur_s > sceneDuration(s) + 1e-6) e(`scene ${s.id}: caption ends after the scene`);
+      if (captionStart(s, c) + c.dur_s > sceneDuration(s) + 1e-6) e(`scene ${s.id}: caption "${c.text.slice(0, 30)}…" ends after the scene`);
     }
+    const spans = (s.captions ?? []).map((c) => [captionStart(s, c), captionStart(s, c) + c.dur_s]).sort((a, b) => a[0] - b[0]);
+    for (let i = 1; i < spans.length; i++) if (spans[i][0] < spans[i - 1][1] - 1e-6) e(`scene ${s.id}: captions ${i} and ${i + 1} overlap`);
     if (s.kind === "sim") {
       if (!s.layout || !(s.layout in LAYOUTS)) e(`scene ${s.id}: bad layout`);
       const n = s.panels?.length ?? 0;
