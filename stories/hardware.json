@@ -191,8 +191,8 @@
      "text": "Germinating seeds release ethylene. Colours show where the embryo makes it; the chart shows how much collects in the air around the seeds."
     },
     {
-     "at_h": 70,
-     "dur_s": 9,
+     "at_h": 96,
+     "dur_s": 8.5,
      "text": "Peak headspace ethylene: {A.eth_hs_ppb:max|0} ppb in the sealed BRIC dish, {B.eth_hs_ppb:max|0} ppb when it is filled with exploration atmosphere, and {C.eth_hs_ppb:max|2} ppb in ventilated EMCS."
     }
    ],

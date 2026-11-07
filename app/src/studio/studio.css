@@ -156,6 +156,16 @@ body.render #controls {
 .s-ro b {
   font-variant-numeric: tabular-nums;
 }
+/* narrow panels (three or four across): readouts go under the label instead of beside it */
+.s-panel.narrow .s-readouts {
+  top: 108px;
+  left: 14px;
+  right: auto;
+  text-align: left;
+}
+.s-panel.narrow .s-chips {
+  max-width: 95%;
+}
 /* hypothesis panels: banner across the top, the panel's labels pushed below it */
 .s-panel.hyp .s-plabel,
 .s-panel.hyp .s-readouts {

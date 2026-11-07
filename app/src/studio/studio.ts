@@ -214,8 +214,8 @@ function prepareSim(scene: S.SceneSpec, frames: number, fps: number, aspect: num
       hi = Math.log10(hi);
     }
     if (!(hi > lo)) hi = lo + 1;
-    // a quantity that starts at (or near) zero gets a zero baseline instead of padding below it
-    const zeroBase = !scene.chart.log && lo >= 0 && lo < (hi - lo) * 0.25;
+    // non-negative quantities always get a zero baseline, so small changes are not exaggerated
+    const zeroBase = !scene.chart.log && lo >= 0;
     const pad = (hi - lo) * 0.08;
     chart = { min: zeroBase ? 0 : lo - pad, max: hi + pad };
   }
@@ -491,7 +491,7 @@ export class Studio {
     const bufs: Float32Array[] = [];
     scene.panels!.forEach((pp, k) => {
       const r = rects[k];
-      const root = el("div", "s-panel", this.panelsEl);
+      const root = el("div", r.w < 800 ? "s-panel narrow" : "s-panel", this.panelsEl);
       Object.assign(root.style, { left: `${r.x}px`, top: `${r.y - HEADER_H}px`, width: `${r.w}px`, height: `${r.h}px` });
       const host = el("div", "s-canvas", root);
       const v = createSeedViewer(host, sims[k].cells.capacity, () => undefined, { autoRender: false, size: [r.w, r.h], background: BG, interactive: false });
