@@ -44,6 +44,7 @@ export const ENV_KEYS = [
   "seeds",
   "vent_ach",
   "eth_scrub_per_h",
+  "eth_inlet_ppm",
   "substrate_psi_mpa",
   "wetted_frac_1g",
   "wetted_frac_0g",

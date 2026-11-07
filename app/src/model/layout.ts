@@ -25,6 +25,8 @@ export interface OrganPose {
   endospermRuptured: boolean;
   /** testa ruptured (shell split) */
   testaRuptured: boolean;
+  /** seed coat + endosperm shed after the cotyledons emerge */
+  shed?: boolean;
 }
 
 export interface Layout {
@@ -311,7 +313,7 @@ export function computeLayout(t: Template, pose: OrganPose, L: Layout): void {
     const zx = ay * gz - az * gy;
     const zy = az * gx - ax * gz;
     const zz = ax * gy - ay * gx;
-    L.visible[i] = pose.endospermRuptured && c.micropylar[i] && x < -ea * 0.82 ? 0 : 1;
+    L.visible[i] = pose.shed || (pose.endospermRuptured && c.micropylar[i] && x < -ea * 0.82) ? 0 : 1;
     put(i, x, y, z);
     quatFromBasis(L.quat, 4 * i, ax, ay, az, gx, gy, gz, zx, zy, zz);
     L.scale[3 * i] = c.len[i];

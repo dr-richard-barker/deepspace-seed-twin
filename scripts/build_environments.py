@@ -116,14 +116,14 @@ def still_air(note: str):
 
 
 AIR = 101.325
-O2_AIR = F(0.2095, "fraction", "standard_atmosphere", "standard", "dry-air O2 mole fraction")
+O2_AIR = F(0.2095, "fraction", "", "assumed", "conventional dry-air O2 mole fraction (~20.95 %); not verified against a primary source here")
 
 
 def common(**over) -> dict:
     """Defaults that every preset overrides where it has a source."""
     base = {
-        "gravity_g": F(1, "g", "", "standard"),
-        "p_total_kpa": F(AIR, "kPa", "standard_atmosphere", "standard", "sea-level standard pressure"),
+        "gravity_g": F(1, "g", "definition", "standard", "Earth surface, 1 g by definition"),
+        "p_total_kpa": F(AIR, "kPa", "definition", "standard", "1 standard atmosphere = 101.325 kPa (exact by definition)"),
         "o2_frac": O2_AIR,
         "co2_ppm": F(420, "ppm", "", "assumed", "present-day ambient CO2 (approximate)"),
         "temp_c": F(22, "degC", "", "assumed"),
@@ -134,6 +134,7 @@ def common(**over) -> dict:
         "seeds": F(30, "seeds", "", "assumed"),
         "vent_ach": F(0, "1/h", "", "assumed", "sealed"),
         "eth_scrub_per_h": F(0, "1/h", "", "assumed", "no scrubber"),
+        "eth_inlet_ppm": F(0, "ppm", "", "assumed", "no ethylene in the exchange air"),
         "substrate_psi_mpa": F(0, "MPa", "", "assumed", "water-saturated substrate (psi ~ 0)"),
         "wetted_frac_1g": F(0.35, "fraction", "", "assumed", "agar: seed lies on the gel surface"),
         "wetted_frac_0g": F(0.45, "fraction", "", "assumed", "agar: capillary film creeps further up the seed"),
@@ -180,7 +181,7 @@ def main() -> None:
         "id": "bric_pdfu", "label": "BRIC-PDFU (sealed, dark) on ISS", "hardware": "BRIC-PDFU",
         "description": "Sealed 60 mm dish in a Petri Dish Fixation Unit, dark, no ventilation, microgravity.",
         "fields": common(
-            gravity_g=F(0, "g", "", "standard", "orbital microgravity"),
+            gravity_g=F(0, "g", "", "assumed", "idealised orbital microgravity (residual micro-g neglected)"),
             temp_c=F(sum(temp_pdfu["value"]) / 2, "degC", src(HW, "hardware/bric_pdfu.yaml", "environment.temperature_C"), "measured",
                      f"midpoint of measured {temp_pdfu['value']} degC"),
             headspace_ml=F(bric_ml, "mL", src(LL, "validation/dishes.ts", "BRIC-mid"), "derived",
@@ -197,7 +198,7 @@ def main() -> None:
         "id": "bric_led", "label": "BRIC-LED (sealed, 4 h light / 2 h dark) on ISS", "hardware": "BRIC-LED",
         "description": "Sealed 60 mm dish with LED lighting (BRIC-LED-001), microgravity.",
         "fields": common(
-            gravity_g=F(0, "g", "", "standard", "orbital microgravity"),
+            gravity_g=F(0, "g", "", "assumed", "idealised orbital microgravity (residual micro-g neglected)"),
             light_umol=F(60, "umol m-2 s-1", src(HW, "hardware/bric_led.yaml", "environment.light"), "measured", led["value"]),
             light_h_per_cycle=F(4, "h", src(HW, "hardware/bric_led.yaml", "environment.light"), "measured"),
             cycle_h=F(6, "h", src(HW, "hardware/bric_led.yaml", "environment.light"), "measured"),
@@ -212,7 +213,7 @@ def main() -> None:
         "id": "cara", "label": "CARA (taped 120 mm square dish) on ISS", "hardware": "CARA dish",
         "description": "Taped 120 mm square dish (CARA), microgravity; tape leak uncalibrated.",
         "fields": common(
-            gravity_g=F(0, "g", "", "standard", "orbital microgravity"),
+            gravity_g=F(0, "g", "", "assumed", "idealised orbital microgravity (residual micro-g neglected)"),
             headspace_ml=F(cara_ml, "mL", src(LL, "validation/dishes.ts", "CARA-mid"), "derived", cara_note),
             vent_ach=F(0.5, "1/h", "", "assumed", "tape leak, uncalibrated (LunarLeaf membraneK 0.01 is also uncalibrated)"),
             light_umol=F(100, "umol m-2 s-1", "", "assumed"),
@@ -229,7 +230,7 @@ def main() -> None:
         "id": "aph", "label": "Advanced Plant Habitat (forced air, KMnO4 scrubber)", "hardware": "APH",
         "description": "APH growth chamber: 100 L, forced air at plant level, arcillite, ethylene scrubber. PH-04 set points.",
         "fields": common(
-            gravity_g=F(0, "g", "", "standard", "orbital microgravity"),
+            gravity_g=F(0, "g", "", "assumed", "idealised orbital microgravity (residual micro-g neglected)"),
             temp_c=F(aph_v["temperature_C"]["value"], "degC", src(HW, "hardware/aph.yaml", "run_setpoints.PH04"), "measured", "PH-04 set point"),
             co2_ppm=F(aph_v["co2_ppm"]["value"], "ppm", src(HW, "hardware/aph.yaml", "run_setpoints.PH04"), "measured", "PH-04 set point"),
             light_umol=F(aph_v["ppfd_umol_m2_s"]["value"], "umol m-2 s-1", src(HW, "hardware/aph.yaml", "run_setpoints.PH04"), "measured", "PH-04 set point"),
@@ -292,7 +293,7 @@ def main() -> None:
             light_umol=F(0, "umol m-2 s-1", "", "assumed", "germination phase"),
             temp_c=F(22, "degC", src(LEAF, "README.md"), "assumed", "assumed in LEAF_GBC2_pot_model"),
             substrate_psi_mpa=F(-0.01, "MPa", "", "assumed", "porous substrate blocks"),
-            dose_mgy_d=F(0, "mGy/d", "", "assumed", "PENDING: lunar surface dose from physics research"),
+            dose_mgy_d=F(0.317, "mGy/d", "zhang2020", "derived", "lunar surface charged-particle dose 13.2 uGy/h in water x 24 h (Chang'e-4 LND, Zhang et al. 2020); neutrals excluded; LEAF shielding not modelled"),
         ),
         "air_speed_by_g": air_speed_table("leaf_gbc1") or [
             {"g": 0.0, "u_m_s": 0.005, "source": "", "tier": "assumed", "note": "PENDING LBM run"},
@@ -300,5 +301,45 @@ def main() -> None:
     })
 
 
+def atmospheres() -> None:
+    """Atmosphere options: standard sea level + the NASA set points of Table S6A."""
+    rel = "tables/Table_S6A_NASA_Exploration_Atmosphere_Counterfactual_Predictions.csv"
+    out = [{"id": "sea_level", "label": "Sea level (101.3 kPa, 20.95 % O2)", "p_total_kpa": AIR, "o2_frac": 0.2095,
+            "source": "definition", "tier": "standard", "note": "1 atm by definition; 20.95 % O2 conventional"}]
+    seen = set()
+    for r in csv.DictReader((EXPLO / rel).open()):
+        name = r["Setpoint_Name"]
+        if name in seen:
+            continue
+        seen.add(name)
+        P, x = float(r["P_total_kPa"]), float(r["O2_frac"])
+        out.append({"id": name, "label": f"{name.replace('_', ' ')}", "p_total_kpa": P, "o2_frac": x,
+                    "po2_kpa": float(r["pO2_kPa"]), "source": src(EXPLO, rel, name), "tier": "derived",
+                    "note": "set point as used in arabidopsis-exploration-atmosphere-tabpfn Table S6A (cites Norcross et al. 2013, NASA/TM-2013-217377); no CO2 set point is defined"})
+    (OUT / "_atmospheres.json").write_text(json.dumps(out, indent=1) + "\n")
+    print("wrote _atmospheres:", [a["id"] for a in out])
+
+
+def radiation() -> None:
+    """Radiation scenarios: chronic dose rate + optional solar-particle-event pulse."""
+    iss = iss_dose()
+    out = [
+        {"id": "none", "label": "None (ground)", "dose_mgy_d": 0, "spe_dose_mgy": 0, "source": "", "tier": "assumed", "note": "terrestrial background neglected"},
+        {"id": "iss", "label": f"ISS interior ({iss['value']:.3f} mGy/d)", "dose_mgy_d": iss["value"], "spe_dose_mgy": 0,
+         "source": iss["source"], "tier": iss["tier"], "note": iss["note"] + "; cf. Straube et al. 2024 EAD 314 +/- 14 uGy/d (absorbed)"},
+        {"id": "lunar_surface", "label": "Lunar surface (0.317 mGy/d)", "dose_mgy_d": 0.317, "spe_dose_mgy": 0, "source": "zhang2020", "tier": "derived",
+         "note": "Chang'e-4 LND: charged-particle dose 13.2 uGy/h in water x 24 h (Zhang et al. 2020); the neutral component (3.1 uGy/h in Si) is not included"},
+        {"id": "deep_space", "label": "Interplanetary cruise (0.48 mGy/d)", "dose_mgy_d": 0.48, "spe_dose_mgy": 0, "source": "simonsen2020", "tier": "measured",
+         "note": "MSL RAD cruise dose rate as cited by Simonsen et al. 2020 (secondary source)"},
+        {"id": "deep_space_spe", "label": "Cruise + solar particle event (150 mGy in 24 h)", "dose_mgy_d": 0.48, "spe_dose_mgy": 150, "spe_start_h": 24, "spe_dur_h": 24,
+         "source": "simonsen2020 shavers2024", "tier": "derived",
+         "note": "SPE: midpoint of the 115-188 mGy design-event estimates behind 20 g/cm2 shielding (Shavers et al. 2024, model estimates, not a measurement); 24 h duration assumed"},
+    ]
+    (OUT / "_radiation.json").write_text(json.dumps(out, indent=1) + "\n")
+    print("wrote _radiation:", [r["id"] for r in out])
+
+
 if __name__ == "__main__":
     main()
+    atmospheres()
+    radiation()

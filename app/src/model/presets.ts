@@ -6,7 +6,33 @@ import cara from "../../../data/environments/cara.json";
 import emcs from "../../../data/environments/emcs.json";
 import ground from "../../../data/environments/ground_petri.json";
 import leaf from "../../../data/environments/leaf_gbc1.json";
+import atmos from "../../../data/environments/_atmospheres.json";
 import type { EnvPreset } from "./environment";
 
 export const PRESETS: EnvPreset[] = [ground, bricPdfu, bricLed, cara, aph, emcs, leaf] as unknown as EnvPreset[];
 export const PRESET_BY_ID = new Map(PRESETS.map((p) => [p.id, p]));
+
+export interface Atmosphere {
+  id: string;
+  label: string;
+  p_total_kpa: number;
+  o2_frac: number;
+  source: string;
+  tier: string;
+  note?: string;
+}
+export const ATMOSPHERES = atmos as Atmosphere[];
+
+import radiation from "../../../data/environments/_radiation.json";
+export interface RadiationScenario {
+  id: string;
+  label: string;
+  dose_mgy_d: number;
+  spe_dose_mgy: number;
+  spe_start_h?: number;
+  spe_dur_h?: number;
+  source: string;
+  tier: string;
+  note: string;
+}
+export const RADIATION = radiation as RadiationScenario[];

@@ -1,10 +1,10 @@
 id,value,unit,tier,group,description,source,note
-geo_seed_length_um,500,um,assumed,geometry,Mature dry seed length (ellipsoid long axis),,PENDING anatomy research
-geo_seed_width_um,300,um,assumed,geometry,Mature dry seed width,,PENDING anatomy research
+geo_seed_length_um,490,um,measured,geometry,Mature dry seed length (ellipsoid long axis),klasen2025,"Table 3 '3D length' 0.49 mm (SD 0.04, n=99), Col-0 control batch"
+geo_seed_width_um,290,um,derived,geometry,Mature dry seed width,klasen2025,mean of 3D width 0.31 mm and height 0.27 mm (Table 3); the template is an ellipsoid of revolution
 geo_testa_um,15,um,assumed,geometry,Testa (seed coat) thickness,,PENDING anatomy research
 geo_endosperm_um,12,um,assumed,geometry,Endosperm thickness (single cell layer),,PENDING anatomy research
 geo_mucilage_max_um,60,um,assumed,geometry,Hydrated mucilage capsule thickness,,PENDING anatomy research
-geo_axis_slices,22,cells,assumed,geometry,Cortical cells per file from the QC to the cotyledon node,,PENDING anatomy research
+geo_axis_slices,25,cells,derived,geometry,Cortical cells per file from the QC to the cotyledon node,boudaher2018 bassel2014,"7 radicle cells below the collet (collet = cortical cell 8, Bassel 2014) + 18 hypocotyl cells per file (Bou Daher 2018: 17-19 epidermal cells per file)"
 geo_collet_index,8,cell index,measured,geometry,Cortical cell index of the collet (transition zone) counted from the QC,bassel2014,"Results: relative expansion ""greatest around cell number 8, within the transition region, or collet"""
 geo_cap_tiers,3,tiers,assumed,geometry,Root-cap tiers below the QC,,schematic
 geo_cap_cells_per_tier,10,cells,assumed,geometry,Cells per root-cap tier,,schematic
@@ -14,11 +14,11 @@ geo_cell_len_lambda,5,cells,assumed,geometry,e-folding length (in cells) of the 
 geo_axis_r_tip_um,32,um,assumed,geometry,Axis radius near the radicle tip,,PENDING anatomy research
 geo_axis_r_base_um,48,um,assumed,geometry,Axis radius in the hypocotyl,,PENDING anatomy research
 geo_axis_r_lambda,4,cells,assumed,geometry,e-folding length of the radius profile,,schematic profile shape
-geo_n_epidermis,16,cells,assumed,geometry,Epidermal cells around the axis,,PENDING anatomy research
-geo_n_cortex,8,cells,assumed,geometry,Cortical cells around the axis per cortex layer,,PENDING anatomy research
-geo_n_endodermis,8,cells,assumed,geometry,Endodermal cells around the axis,,PENDING anatomy research
+geo_n_epidermis,33,cells,derived,geometry,Epidermal cells around the axis,montenegrojohnson2015,837 embryo-axis epidermal cells (Table 1) / 25 slices = 33.5
+geo_n_cortex,16,cells,derived,geometry,Cortical cells around the axis per cortex layer,montenegrojohnson2015,394 outer-cortex cells (Table 1) / 25 slices = 15.8
+geo_n_endodermis,10,cells,derived,geometry,Endodermal cells around the axis,montenegrojohnson2015,239 endodermal cells (Table 1) / 25 slices = 9.6
 geo_n_stele,6,cells,assumed,geometry,Provascular (stele) cells in a transverse slice,,PENDING anatomy research
-geo_cortex_layers_hypocotyl,2,layers,assumed,geometry,Cortex layers in the hypocotyl (radicle has one),,PENDING anatomy research
+geo_cortex_layers_hypocotyl,2,layers,measured,geometry,Cortex layers in the hypocotyl (radicle has one),jackson2017,hypocotyl radial order epidermis / outer cortex / inner cortex / endodermis (Fig. 2 legend)
 geo_r_frac_stele,0.32,1,assumed,geometry,Stele outer radius / axis radius,,schematic
 geo_r_frac_endodermis,0.48,1,assumed,geometry,Endodermis outer radius / axis radius,,schematic
 geo_r_frac_epidermis_inner,0.84,1,assumed,geometry,Epidermis inner radius / axis radius,,schematic
@@ -34,119 +34,130 @@ wall_t_exterior_um,1.0,um,standard,mechanics,Exterior (epidermal) wall thickness
 wall_t_interior_um,0.4,um,standard,mechanics,Interior wall thickness,bassel2014,"FEM model value; Methods give interior wall ""400 nm"""
 wall_e_mpa,120,MPa,standard,mechanics,Cell-wall Young's modulus,bassel2014,"FEM model value; Methods: Young's modulus ""set to 120 MPa"""
 turgor_ref_mpa,0.5,MPa,standard,mechanics,Reference turgor pressure of a fully imbibed embryo cell,bassel2014,"FEM model value; Methods: ""pressurized to 0.5 MPa"""
-d_o2_air_m2s,2.0e-5,m2/s,assumed,physics,"O2 diffusivity in air at T_ref and P_ref",,PROVISIONAL - replaced by sourced/fitted value
-d_co2_air_m2s,1.6e-5,m2/s,assumed,physics,"CO2 diffusivity in air at T_ref and P_ref",,PROVISIONAL - replaced by sourced/fitted value
-d_eth_air_m2s,1.5e-5,m2/s,assumed,physics,"Ethylene diffusivity in air at T_ref and P_ref",,PROVISIONAL - replaced by sourced/fitted value
-d_o2_water_m2s,2.1e-9,m2/s,assumed,physics,"O2 diffusivity in water",,PROVISIONAL - replaced by sourced/fitted value
-d_co2_water_m2s,1.9e-9,m2/s,assumed,physics,"CO2 diffusivity in water",,PROVISIONAL - replaced by sourced/fitted value
-d_eth_water_m2s,1.9e-9,m2/s,assumed,physics,"Ethylene diffusivity in water",,PROVISIONAL - replaced by sourced/fitted value
-h_o2_mol_m3pa,1.3e-5,mol m-3 Pa-1,assumed,physics,"Henry solubility of O2 in water",,PROVISIONAL - replaced by sourced/fitted value
-h_co2_mol_m3pa,3.3e-4,mol m-3 Pa-1,assumed,physics,"Henry solubility of CO2 in water",,PROVISIONAL - replaced by sourced/fitted value
-h_eth_mol_m3pa,5.9e-5,mol m-3 Pa-1,assumed,physics,"Henry solubility of ethylene in water",,PROVISIONAL - replaced by sourced/fitted value
-nu_air_m2s,1.55e-5,m2/s,assumed,physics,"Kinematic viscosity of air at T_ref and P_ref",,PROVISIONAL - replaced by sourced/fitted value
-t_ref_k,298.15,K,assumed,physics,"Reference temperature for transport properties",,PROVISIONAL - replaced by sourced/fitted value
-p_ref_kpa,101.325,kPa,assumed,physics,"Reference pressure for transport properties",,PROVISIONAL - replaced by sourced/fitted value
-d_air_t_exponent,1.75,1,assumed,physics,"Temperature exponent of gas diffusivity",,PROVISIONAL - replaced by sourced/fitted value
-sh_forced_coeff,0.6,1,assumed,physics,"Coefficient a in Sh = 2 + a Re^1/2 Sc^1/3",,PROVISIONAL - replaced by sourced/fitted value
-rho_water_kgm3,997,kg/m3,assumed,physics,"Density of water",,PROVISIONAL - replaced by sourced/fitted value
-gamma_water_nm,0.072,N/m,assumed,physics,"Surface tension of water",,PROVISIONAL - replaced by sourced/fitted value
-water_dry_gg,0.07,g/g,assumed,water,"Water content of the dry seed (g water per g dry mass)",,PROVISIONAL - replaced by sourced/fitted value
-water_phase2_gg,0.9,g/g,assumed,water,"Water content at the phase-II plateau",,PROVISIONAL - replaced by sourced/fitted value
-water_imbibition_rate,0.5,1/h,assumed,water,"First-order phase-I imbibition rate at full contact",,PROVISIONAL - replaced by sourced/fitted value
-water_min_contact,0.2,1,assumed,water,"Minimum effective wetted contact (vapour + film creep)",,PROVISIONAL - replaced by sourced/fitted value
-water_psi_scale_mpa,2.0,MPa,assumed,water,"Scale of the decline of plateau water content with substrate water potential",,PROVISIONAL - replaced by sourced/fitted value
-psi_base_mpa,-1.0,MPa,assumed,water,"Base water potential (turgor-driven growth stops below it)",,PROVISIONAL - replaced by sourced/fitted value
-turgor_hydration_exponent,2,1,assumed,water,"Shape exponent of turgor build-up with hydration",,PROVISIONAL - replaced by sourced/fitted value
-activation_tau_h,4,h,assumed,metabolism,"Time constant of metabolic activation after hydration",,PROVISIONAL - replaced by sourced/fitted value
-imbibition_swell,0.3,1,assumed,water,"Fractional embryo volume increase on full imbibition",,PROVISIONAL - replaced by sourced/fitted value
-resp_qmax_mol_m3s,0.03,mol m-3 s-1,assumed,metabolism,"Maximum O2 uptake per tissue volume",,PROVISIONAL - replaced by sourced/fitted value
-resp_km_o2_pa,100,Pa,assumed,metabolism,"Half-saturation partial pressure of tissue O2 uptake",,PROVISIONAL - replaced by sourced/fitted value
-aerobic_km_o2_pa,500,Pa,assumed,metabolism,"O2 partial pressure giving half-maximal aerobic energy yield",,PROVISIONAL - replaced by sourced/fitted value
-fermentation_yield,0.07,1,assumed,metabolism,"Relative energy yield of fermentation vs respiration",,PROVISIONAL - replaced by sourced/fitted value
-reserve_k,0.05,1,assumed,metabolism,"Reserve level at which supply is half-maximal",,PROVISIONAL - replaced by sourced/fitted value
-reserve_o2_capacity_mol,6.3e-7,mol,assumed,metabolism,"O2 needed to oxidise the seed's storage lipid",,PROVISIONAL - replaced by sourced/fitted value
-resp_quotient,0.7,1,assumed,metabolism,"Respiratory quotient (CO2/O2)",,PROVISIONAL - replaced by sourced/fitted value
-tissue_diffusivity_rel,0.3,1,assumed,physics,"Gas diffusivity in tissue relative to water",,PROVISIONAL - replaced by sourced/fitted value
-testa_perm_rel,0.1,1,assumed,physics,"Testa gas permeability relative to an equal water layer",,PROVISIONAL - replaced by sourced/fitted value
-testa_open_fraction,0.1,1,assumed,physics,"Seed-surface fraction opened by testa rupture",,PROVISIONAL - replaced by sourced/fitted value
-endosperm_open_fraction,0.05,1,assumed,physics,"Seed-surface fraction opened by endosperm rupture",,PROVISIONAL - replaced by sourced/fitted value
-q10,2,1,assumed,metabolism,"Q10 of growth and metabolic rates",,PROVISIONAL - replaced by sourced/fitted value
-t_ref_growth_c,22,degC,assumed,metabolism,"Reference temperature of rate constants",,PROVISIONAL - replaced by sourced/fitted value
-aba_init,1,norm,assumed,hormones,"Initial ABA in the dry seed (normalised)",,PROVISIONAL - replaced by sourced/fitted value
-della_init,1,norm,assumed,hormones,"Initial DELLA (normalised)",,PROVISIONAL - replaced by sourced/fitted value
-aba_synth,0.02,norm/h,assumed,hormones,"ABA synthesis rate",,PROVISIONAL - replaced by sourced/fitted value
-aba_decay,0.05,1/h,assumed,hormones,"Basal ABA catabolism",,PROVISIONAL - replaced by sourced/fitted value
-aba_cyp707a_induction,4,1,assumed,hormones,"Fold-induction of ABA catabolism by imbibition",,PROVISIONAL - replaced by sourced/fitted value
-k_ga_represses_aba,1,norm,assumed,hormones,"GA level halving ABA synthesis",,PROVISIONAL - replaced by sourced/fitted value
-ga_synth,0.3,norm/h,assumed,hormones,"GA synthesis at the radicle tip in light",,PROVISIONAL - replaced by sourced/fitted value
-ga_decay,0.2,1/h,assumed,hormones,"GA inactivation",,PROVISIONAL - replaced by sourced/fitted value
-k_aba_represses_ga,0.3,norm,assumed,hormones,"ABA level halving GA synthesis",,PROVISIONAL - replaced by sourced/fitted value
-ga_dark_fraction,0.3,1,assumed,hormones,"GA synthesis in darkness relative to light",,PROVISIONAL - replaced by sourced/fitted value
-della_synth,0.1,norm/h,assumed,hormones,"DELLA synthesis",,PROVISIONAL - replaced by sourced/fitted value
-della_degrad,0.5,1/h,assumed,hormones,"Maximum GA-GID1-dependent DELLA degradation",,PROVISIONAL - replaced by sourced/fitted value
-k_ga_della,0.3,norm,assumed,hormones,"GA for half-maximal DELLA degradation",,PROVISIONAL - replaced by sourced/fitted value
-acc_synth,0.05,norm/h,assumed,hormones,"ACC synthesis (ACS)",,PROVISIONAL - replaced by sourced/fitted value
-acc_decay,0.05,1/h,assumed,hormones,"ACC conjugation / turnover",,PROVISIONAL - replaced by sourced/fitted value
-aco_vmax,0.2,norm/h,assumed,hormones,"Maximum ACO flux",,PROVISIONAL - replaced by sourced/fitted value
-aco_km_acc,0.5,norm,assumed,hormones,"ACC for half-maximal ACO flux",,PROVISIONAL - replaced by sourced/fitted value
-aco_km_o2_pa,1000,Pa,assumed,hormones,"O2 partial pressure for half-maximal ACO activity",,PROVISIONAL - replaced by sourced/fitted value
-ros_to_aba,0,1,assumed,radiation,"Radiation ROS stimulation of ABA synthesis (hypothesis coupling)",,PROVISIONAL - replaced by sourced/fitted value
-ros_to_acc,0,1,assumed,radiation,"Radiation ROS stimulation of ACC synthesis (hypothesis coupling)",,PROVISIONAL - replaced by sourced/fitted value
-aba_transport,0.5,1/h,assumed,hormones,"Cell-to-cell ABA exchange rate",,PROVISIONAL - replaced by sourced/fitted value
-ga_transport,0.5,1/h,assumed,hormones,"Cell-to-cell GA exchange rate",,PROVISIONAL - replaced by sourced/fitted value
-k_della_repress,0.3,norm,assumed,hormones,"DELLA halving the growth response",,PROVISIONAL - replaced by sourced/fitted value
-k_aba_repress,0.3,norm,assumed,hormones,"ABA halving the growth response",,PROVISIONAL - replaced by sourced/fitted value
-eth_aba_relief,1,1,assumed,hormones,"Ethylene relief of ABA action",,PROVISIONAL - replaced by sourced/fitted value
-ga_source_lambda,4,cells,assumed,hormones,"Decay length (cells from the QC) of GA synthesis",,PROVISIONAL - replaced by sourced/fitted value
-gid1_lambda,6,cells,assumed,hormones,"Decay length (cells from the QC) of GID1 abundance",,PROVISIONAL - replaced by sourced/fitted value
-gid1_base,0.2,1,assumed,hormones,"GID1 far from the radicle tip",,PROVISIONAL - replaced by sourced/fitted value
-ga_source_cotyledon,0.05,1,assumed,hormones,"GA synthesis weight in cotyledons",,PROVISIONAL - replaced by sourced/fitted value
-eth_yield_mol_m3,1e-6,mol m-3,assumed,hormones,"Ethylene produced per normalised ACO unit per tissue volume",,PROVISIONAL - replaced by sourced/fitted value
-eth_response_k_pa,0.01,Pa,assumed,hormones,"Ethylene partial pressure for half-maximal response",,PROVISIONAL - replaced by sourced/fitted value
-eth_response_hill,1,1,assumed,hormones,"Hill coefficient of the ethylene response",,PROVISIONAL - replaced by sourced/fitted value
-wall_extensibility,0.02,1/(MPa h),assumed,mechanics,"Maximum wall extensibility (phi)",,PROVISIONAL - replaced by sourced/fitted value
-wall_yield_mpa,2.0,MPa,assumed,mechanics,"Wall-stress yield threshold",,PROVISIONAL - replaced by sourced/fitted value
-radial_growth,0.15,1,assumed,mechanics,"Radial/axial growth ratio",,PROVISIONAL - replaced by sourced/fitted value
-radial_growth_tip,0.5,1,assumed,mechanics,"Radial/axial growth ratio near the radicle tip",,PROVISIONAL - replaced by sourced/fitted value
-testa_stiffness_mpa,20,MPa,assumed,mechanics,"Restraint stress per unit axial strain from the testa",,PROVISIONAL - replaced by sourced/fitted value
-testa_slack,0.03,1,assumed,mechanics,"Axial strain accommodated before the testa resists",,PROVISIONAL - replaced by sourced/fitted value
-testa_strength_mpa,0.15,MPa,assumed,mechanics,"Testa rupture threshold",,PROVISIONAL - replaced by sourced/fitted value
-endosperm_stiffness_mpa,30,MPa,assumed,mechanics,"Restraint stress per unit axial strain from the endosperm cap",,PROVISIONAL - replaced by sourced/fitted value
-endosperm_slack,0.01,1,assumed,mechanics,"Strain accommodated by the endosperm before it resists",,PROVISIONAL - replaced by sourced/fitted value
-cap_strength0_mpa,0.4,MPa,assumed,mechanics,"Initial endosperm cap strength",,PROVISIONAL - replaced by sourced/fitted value
-cap_weakening_rate,0.15,1/h,assumed,mechanics,"Maximum cap weakening rate",,PROVISIONAL - replaced by sourced/fitted value
-cap_k_ga,0.3,norm,assumed,mechanics,"Embryo GA for half-maximal cap weakening",,PROVISIONAL - replaced by sourced/fitted value
-cap_k_aba,0.5,norm,assumed,mechanics,"ABA halving cap weakening",,PROVISIONAL - replaced by sourced/fitted value
-cap_eth_boost,1,1,assumed,mechanics,"Ethylene enhancement of cap weakening",,PROVISIONAL - replaced by sourced/fitted value
-rad_damage_per_mgy,0.01,1/mGy,assumed,radiation,"Damage/ROS state produced per mGy",,PROVISIONAL - replaced by sourced/fitted value
-rad_repair_rate,0.1,1/h,assumed,radiation,"Repair/decay rate of radiation damage",,PROVISIONAL - replaced by sourced/fitted value
-ros_to_division_arrest,0,1,assumed,radiation,"Radiation damage arrest of meristem division (hypothesis coupling)",,PROVISIONAL - replaced by sourced/fitted value
-root_meristem_delay_h,6,h,assumed,seedling,"Delay from protrusion to meristem activity",,PROVISIONAL - replaced by sourced/fitted value
-root_meristem_len_um,250,um,assumed,seedling,"Meristem length",,PROVISIONAL - replaced by sourced/fitted value
-root_ez_len_um,400,um,assumed,seedling,"Elongation-zone length",,PROVISIONAL - replaced by sourced/fitted value
-root_division_len_um,10,um,assumed,seedling,"Meristem cell length at division",,PROVISIONAL - replaced by sourced/fitted value
-root_mature_len_um,150,um,assumed,seedling,"Mature root cortical cell length",,PROVISIONAL - replaced by sourced/fitted value
-root_cell_cycle_h,17,h,assumed,seedling,"Meristem cell-cycle duration",,PROVISIONAL - replaced by sourced/fitted value
-root_ez_rate,0.3,1/h,assumed,seedling,"Relative elongation rate in the elongation zone",,PROVISIONAL - replaced by sourced/fitted value
-root_gravitropic_rate_deg_h,20,deg/h,assumed,seedling,"Root gravitropic bending rate at 1 g (90 degrees off vertical)",,PROVISIONAL - replaced by sourced/fitted value
-eth_root_inhibition,3,1,assumed,seedling,"Ethylene inhibition of root elongation",,PROVISIONAL - replaced by sourced/fitted value
-anchor_delay_h,6,h,assumed,seedling,"Time after protrusion when root hairs anchor the collet",,PROVISIONAL - replaced by sourced/fitted value
-hyp_rate_dark,0.05,1/h,assumed,seedling,"Hypocotyl cell relative elongation rate in darkness",,PROVISIONAL - replaced by sourced/fitted value
-hyp_rate_light,0.015,1/h,assumed,seedling,"Hypocotyl cell relative elongation rate in light",,PROVISIONAL - replaced by sourced/fitted value
-hyp_cell_max_dark_um,400,um,assumed,seedling,"Maximum hypocotyl cell length in darkness",,PROVISIONAL - replaced by sourced/fitted value
-hyp_cell_max_light_um,60,um,assumed,seedling,"Maximum hypocotyl cell length in light",,PROVISIONAL - replaced by sourced/fitted value
-eth_hyp_inhibition,3,1,assumed,seedling,"Ethylene inhibition of hypocotyl elongation in darkness",,PROVISIONAL - replaced by sourced/fitted value
-eth_hyp_thickening,0.02,1/h,assumed,seedling,"Ethylene-induced radial swelling rate in darkness",,PROVISIONAL - replaced by sourced/fitted value
-eth_hyp_thick_max,2,1,assumed,seedling,"Maximum ethylene-induced radial swelling factor",,PROVISIONAL - replaced by sourced/fitted value
-hyp_acropetal_delay_h,1,h,assumed,seedling,"Delay per cell of the acropetal elongation wave",,PROVISIONAL - replaced by sourced/fitted value
-hyp_elongation_delay_h,6,h,assumed,seedling,"Delay from protrusion to hypocotyl elongation",,PROVISIONAL - replaced by sourced/fitted value
-hyp_gravitropic_rate_deg_h,10,deg/h,assumed,seedling,"Hypocotyl negative gravitropic bending rate at 1 g",,PROVISIONAL - replaced by sourced/fitted value
-hook_slices,4,cells,assumed,seedling,"Hypocotyl cells forming the apical hook",,PROVISIONAL - replaced by sourced/fitted value
-hook_angle_dark_deg,180,deg,assumed,seedling,"Apical hook angle in darkness",,PROVISIONAL - replaced by sourced/fitted value
-eth_hook_exaggeration,0.5,1,assumed,seedling,"Ethylene exaggeration of the hook",,PROVISIONAL - replaced by sourced/fitted value
-hook_tau_h,6,h,assumed,seedling,"Time constant of hook formation/opening",,PROVISIONAL - replaced by sourced/fitted value
-cot_open_rate,0.05,1/h,assumed,seedling,"Cotyledon opening rate in light",,PROVISIONAL - replaced by sourced/fitted value
-cot_expansion_rate,0.02,1/h,assumed,seedling,"Cotyledon cell expansion rate in light",,PROVISIONAL - replaced by sourced/fitted value
-cot_expansion_max,3,1,assumed,seedling,"Maximum cotyledon cell expansion factor",,PROVISIONAL - replaced by sourced/fitted value
-cot_photosynthesis_rate,0.005,1/h,assumed,seedling,"Reserve gain from open cotyledons in light (normalised)",,PROVISIONAL - replaced by sourced/fitted value
-deetiolation_rate,0.1,1/h,assumed,seedling,"Rate at which light exposure de-etiolates the seedling (irreversible)",,PROVISIONAL - replaced by sourced/fitted value
+d_o2_air_m2s,2.1e-05,m2/s,standard,physics,O2 diffusivity in air at T_ref and P_ref,retta2023,O2 in air (compiled; Retta 2023 citing Denny 1993); Fuller estimate 2.02e-5 (Tang 2014)
+d_co2_air_m2s,1.6e-05,m2/s,standard,physics,CO2 diffusivity in air at T_ref and P_ref,ho2012,CO2 in air at 20 C (Ho 2012 citing CRC handbook)
+d_eth_air_m2s,1.63e-05,m2/s,derived,physics,Ethylene diffusivity in air at T_ref and P_ref,tang2015,124 +/- 5 Torr cm2 s-1 (Tang 2015 evaluated value) / 760 Torr = 0.163 cm2 s-1 at 1 atm
+d_o2_water_m2s,1.97e-09,m2/s,standard,physics,O2 diffusivity in water,retta2023,O2 in pure water (Retta 2023 citing Denny 1993)
+d_co2_water_m2s,1.79e-09,m2/s,standard,physics,CO2 diffusivity in water,berghuijs2017,CO2 in water at 25 C
+d_eth_water_m2s,1.79e-09,m2/s,assumed,physics,Ethylene diffusivity in water,,no source found for ethylene in water; set equal to CO2 (similar molecular size)
+h_o2_mol_m3pa,1.3e-05,mol m-3 Pa-1,standard,physics,Henry solubility of O2 in water,sander2015,Henry solubility Hcp at 298.15 K
+h_co2_mol_m3pa,0.00033,mol m-3 Pa-1,standard,physics,Henry solubility of CO2 in water,sander2015,Henry solubility Hcp at 298.15 K
+h_eth_mol_m3pa,5.9e-05,mol m-3 Pa-1,standard,physics,Henry solubility of ethylene in water,sander2015,Hcp at 298.15 K; other compiled entries ~25% lower (Wilhelm 1977: 4.7e-5)
+nu_air_m2s,1.55e-5,m2/s,assumed,physics,Kinematic viscosity of air at T_ref and P_ref,,PROVISIONAL - replaced by sourced/fitted value
+t_ref_k,298.15,K,standard,physics,Reference temperature for transport properties,sander2015,reference temperature of the Henry constants (Sander 2015)
+p_ref_kpa,101.325,kPa,assumed,physics,Reference pressure for transport properties,,PROVISIONAL - replaced by sourced/fitted value
+d_air_t_exponent,1.75,1,standard,physics,Temperature exponent of gas diffusivity,tang2014,T^1.75 dependence of the Fuller equation (Tang 2014); D proportional to 1/P from the same source
+sh_forced_coeff,0.6,1,standard,physics,Coefficient a in Sh = 2 + a Re^1/2 Sc^1/3,stiti2022,Sh = 2 + 0.6 Re^1/2 Sc^1/3 (Ranz & Marshall 1952 as stated by Stiti 2022); Dbouk & Drikakis 2020 give 0.55 for the same attribution
+rho_water_kgm3,997,kg/m3,assumed,physics,Density of water,,PROVISIONAL - replaced by sourced/fitted value
+gamma_water_nm,0.072,N/m,assumed,physics,Surface tension of water,,PROVISIONAL - replaced by sourced/fitted value
+water_dry_gg,0.07,g/g,assumed,water,Water content of the dry seed (g water per g dry mass),,PROVISIONAL - replaced by sourced/fitted value
+water_phase2_gg,0.9,g/g,assumed,water,Water content at the phase-II plateau,,PROVISIONAL - replaced by sourced/fitted value
+water_imbibition_rate,0.5,1/h,assumed,water,First-order phase-I imbibition rate at full contact,,PROVISIONAL - replaced by sourced/fitted value
+water_min_contact,0.2,1,assumed,water,Minimum effective wetted contact (vapour + film creep),,PROVISIONAL - replaced by sourced/fitted value
+water_psi_scale_mpa,2.0,MPa,assumed,water,Scale of the decline of plateau water content with substrate water potential,,PROVISIONAL - replaced by sourced/fitted value
+psi_base_mpa,-1.272,MPa,measured,water,Base water potential (turgor-driven growth stops below it),footitt2019,"hydrotime base water potential psi_b, Col-0, Table 1 (15 degC; temperature caveat)"
+turgor_hydration_exponent,2,1,assumed,water,Shape exponent of turgor build-up with hydration,,PROVISIONAL - replaced by sourced/fitted value
+activation_tau_h,4,h,assumed,metabolism,Time constant of metabolic activation after hydration,,PROVISIONAL - replaced by sourced/fitted value
+imbibition_swell,0.3,1,assumed,water,Fractional embryo volume increase on full imbibition,,PROVISIONAL - replaced by sourced/fitted value
+resp_km_o2_pa,100,Pa,assumed,metabolism,Half-saturation partial pressure of tissue O2 uptake,,PROVISIONAL - replaced by sourced/fitted value
+aerobic_km_o2_pa,500,Pa,assumed,metabolism,O2 partial pressure giving half-maximal aerobic energy yield,,PROVISIONAL - replaced by sourced/fitted value
+fermentation_yield,0.07,1,assumed,metabolism,Relative energy yield of fermentation vs respiration,,PROVISIONAL - replaced by sourced/fitted value
+reserve_k,0.05,1,assumed,metabolism,Reserve level at which supply is half-maximal,,PROVISIONAL - replaced by sourced/fitted value
+reserve_o2_capacity_mol,6.3e-7,mol,assumed,metabolism,O2 needed to oxidise the seed's storage lipid,,PROVISIONAL - replaced by sourced/fitted value
+resp_quotient,0.7,1,assumed,metabolism,Respiratory quotient (CO2/O2),,PROVISIONAL - replaced by sourced/fitted value
+tissue_diffusivity_rel,0.0934,1,derived,physics,Gas diffusivity in tissue relative to water,verboven2013 retta2023,PROXY: radial O2 diffusivity of B. napus developing hypocotyl 0.184e-9 m2/s (Verboven 2013 Table 1) / O2 in water 1.97e-9 = 0.093
+testa_perm_rel,1.0,1,assumed,physics,Testa gas permeability relative to an equal water layer,,"no Arabidopsis testa gas permeability found; B. napus seed coat O2 diffusivity 60.6e-9 m2/s (Verboven 2013, porous, highly variable) suggests a porous coat is not limiting, so set equal to a water layer of the same thickness"
+testa_open_fraction,0.1,1,assumed,physics,Seed-surface fraction opened by testa rupture,,PROVISIONAL - replaced by sourced/fitted value
+endosperm_open_fraction,0.05,1,assumed,physics,Seed-surface fraction opened by endosperm rupture,,PROVISIONAL - replaced by sourced/fitted value
+q10,2,1,assumed,metabolism,Q10 of growth and metabolic rates,,PROVISIONAL - replaced by sourced/fitted value
+t_ref_growth_c,22,degC,assumed,metabolism,Reference temperature of rate constants,,PROVISIONAL - replaced by sourced/fitted value
+ga_dark_fraction,1.0,1,derived,hormones,GA synthesis in darkness relative to light,oh2004,"Col-0 germinates ~98% in darkness without a far-red pulse (Oh et al. 2004 Fig. 3C, read from bar): pre-existing Pfr; the twin does not model a far-red pulse"
+acc_synth,0.05,norm/h,assumed,hormones,ACC synthesis (ACS),,PROVISIONAL - replaced by sourced/fitted value
+acc_decay,0.05,1/h,assumed,hormones,ACC conjugation / turnover,,PROVISIONAL - replaced by sourced/fitted value
+aco_vmax,0.2,norm/h,assumed,hormones,Maximum ACO flux,,PROVISIONAL - replaced by sourced/fitted value
+aco_km_acc,0.5,norm,assumed,hormones,ACC for half-maximal ACO flux,,PROVISIONAL - replaced by sourced/fitted value
+aco_km_o2_pa,3654,Pa,derived,hormones,O2 partial pressure for half-maximal ACO activity,dilley2013 thrower2001 sander2015,"ACO Km(O2) 28-67 uM (tomato; Dilley 2013 citing Thrower 2001), midpoint 47.5 uM / Henry 1.3e-5 mol m-3 Pa-1 (Sander 2015) = 3654 Pa. No Arabidopsis ACO kinetics found"
+ros_to_aba,0,1,assumed,radiation,Radiation ROS stimulation of ABA synthesis (hypothesis coupling),,PROVISIONAL - replaced by sourced/fitted value
+ros_to_acc,0,1,assumed,radiation,Radiation ROS stimulation of ACC synthesis (hypothesis coupling),,PROVISIONAL - replaced by sourced/fitted value
+ga_source_lambda,4.44968,cells,fitted,hormones,Decay length (cells from the QC) of GA synthesis,calibration:data/calibration/fit_result.json,"fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+gid1_lambda,6,cells,assumed,hormones,Decay length (cells from the QC) of GID1 abundance,,PROVISIONAL - replaced by sourced/fitted value
+gid1_base,0.2,1,assumed,hormones,GID1 far from the radicle tip,,PROVISIONAL - replaced by sourced/fitted value
+ga_source_cotyledon,0.05,1,assumed,hormones,GA synthesis weight in cotyledons,,PROVISIONAL - replaced by sourced/fitted value
+eth_yield_mol_m3,0.0112912,mol m-3,fitted,hormones,Ethylene produced per normalised ACO unit per tissue volume,calibration:data/calibration/fit_seedling.json,"fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+eth_response_k_pa,0.1267,Pa,derived,hormones,Ethylene partial pressure for half-maximal response,wang2018,"50% germination response at 1.25 ppm ethylene (dormant Col-0, 25 C, dark; Wang 2018) x 0.101325 Pa per ppm at 1 atm. Reused for seedling responses (assumption)"
+eth_response_hill,1,1,derived,hormones,Hill coefficient of the ethylene response,wang2018,"Hill n = 1 reproduces Wang 2018's threshold 0.125 ppm (~10%), 50% at 1.25 ppm and ~100% at 50-100 ppm"
+wall_extensibility,0.022307,1/(MPa h),fitted,mechanics,Maximum wall extensibility (phi),calibration:data/calibration/fit_result.json,"fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+wall_yield_mpa,3.31434,MPa,fitted,mechanics,Wall-stress yield threshold,calibration:data/calibration/fit_result.json,"fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+radial_growth,0.15,1,assumed,mechanics,Radial/axial growth ratio,,PROVISIONAL - replaced by sourced/fitted value
+radial_growth_tip,0.5,1,assumed,mechanics,Radial/axial growth ratio near the radicle tip,,PROVISIONAL - replaced by sourced/fitted value
+testa_stiffness_mpa,20,MPa,assumed,mechanics,Restraint stress per unit axial strain from the testa,,PROVISIONAL - replaced by sourced/fitted value
+testa_slack,0.03,1,assumed,mechanics,Axial strain accommodated before the testa resists,,PROVISIONAL - replaced by sourced/fitted value
+testa_strength_mpa,0.169748,MPa,fitted,mechanics,Testa rupture threshold,calibration:data/calibration/fit_result.json,"fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+endosperm_stiffness_mpa,30,MPa,assumed,mechanics,Restraint stress per unit axial strain from the endosperm cap,,PROVISIONAL - replaced by sourced/fitted value
+endosperm_slack,0.01,1,assumed,mechanics,Strain accommodated by the endosperm before it resists,,PROVISIONAL - replaced by sourced/fitted value
+cap_strength0_mpa,0.320486,MPa,fitted,mechanics,Initial endosperm cap strength,calibration:data/calibration/fit_result.json,"fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+cap_weakening_rate,0.117332,1/h,fitted,mechanics,Maximum cap weakening rate,calibration:data/calibration/fit_result.json,"fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+cap_k_ga,0.3,norm,assumed,mechanics,Embryo GA for half-maximal cap weakening,,PROVISIONAL - replaced by sourced/fitted value
+cap_k_aba,0.5,norm,assumed,mechanics,ABA halving cap weakening,,PROVISIONAL - replaced by sourced/fitted value
+cap_eth_boost,1,1,assumed,mechanics,Ethylene enhancement of cap weakening,,PROVISIONAL - replaced by sourced/fitted value
+rad_damage_per_mgy,0.01,1/mGy,assumed,radiation,Damage/ROS state produced per mGy,,PROVISIONAL - replaced by sourced/fitted value
+rad_repair_rate,0.1,1/h,assumed,radiation,Repair/decay rate of radiation damage,,PROVISIONAL - replaced by sourced/fitted value
+ros_to_division_arrest,0,1,assumed,radiation,Radiation damage arrest of meristem division (hypothesis coupling),,PROVISIONAL - replaced by sourced/fitted value
+root_meristem_delay_h,8.25986,h,fitted,seedling,Delay from protrusion to meristem activity,calibration:data/calibration/fit_seedling.json,"fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+root_meristem_len_um,440,um,measured,seedling,Meristem length,beemster1998,meristem length at day 6 (41 cells); younger roots likely shorter
+root_ez_len_um,791,um,derived,seedling,Elongation-zone length,beemster1998,growth zone 1231 um minus meristem 440 um at day 6
+root_division_len_um,14.9,um,derived,seedling,Meristem cell length at division,beemster1998,"mean meristem cell length 440/41 = 10.7 um; for exponential growth with division at 2x birth length, division length = 2 ln2 x mean = 14.9 um"
+root_mature_len_um,143,um,derived,seedling,Mature root cortical cell length,beemster1998,elongation rate 241 um/h / cell flux 1.68 cells/h at day 6
+root_cell_cycle_h,18.6,h,measured,seedling,Meristem cell-cycle duration,beemster1998,days 6-10 after germination (constant: 17.3-19.8 h); earlier days not measured
+root_ez_rate,0.34,1/h,derived,seedling,Relative elongation rate in the elongation zone,beemster1998,ln(143/14.9) over the EZ residence time (791 um / half the 241 um/h exit velocity = 6.6 h) = 0.34 per h
+root_gravitropic_rate_deg_h,30,deg/h,measured,seedling,Root gravitropic bending rate at 1 g (90 degrees off vertical),canaday2026,"peak gravitropic response ~30 deg/h (Canaday 2026 citing Wolverton 2011, secondary)"
+eth_root_inhibition,3,1,assumed,seedling,Ethylene inhibition of root elongation,,assumed strength; ethylene divides both the elongation-zone rate and the final cell length by (1 + k x response) - assumed form (triple response: short root)
+anchor_delay_h,6,h,assumed,seedling,Time after protrusion when root hairs anchor the collet,,PROVISIONAL - replaced by sourced/fitted value
+hyp_rate_dark,0.0493627,1/h,fitted,seedling,Hypocotyl cell relative elongation rate in darkness,calibration:data/calibration/fit_seedling.json,"fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+hyp_rate_light,0.0295021,1/h,fitted,seedling,Hypocotyl cell relative elongation rate in light,calibration:data/calibration/fit_seedling.json,"fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+hyp_cell_max_dark_um,950,um,derived,seedling,Maximum hypocotyl cell length in darkness,alimchandani2026 boudaher2018,final dark-grown hypocotyl 17.1 mm (meta-analysis) / ~18 cells per file (Bou Daher 2018) = 950 um; hypocotyl cells elongate without division
+hyp_cell_max_light_um,182,um,derived,seedling,Maximum hypocotyl cell length in light,alimchandani2026 boudaher2018,final light-grown hypocotyl 3.28 mm / 18 cells = 182 um
+eth_hyp_inhibition,3,1,assumed,seedling,Ethylene inhibition of hypocotyl elongation in darkness,,PROVISIONAL - replaced by sourced/fitted value
+eth_hyp_thickening,0.02,1/h,assumed,seedling,Ethylene-induced radial swelling rate in darkness,,PROVISIONAL - replaced by sourced/fitted value
+eth_hyp_thick_max,2,1,assumed,seedling,Maximum ethylene-induced radial swelling factor,,PROVISIONAL - replaced by sourced/fitted value
+hyp_acropetal_delay_h,1,h,assumed,seedling,Delay per cell of the acropetal elongation wave,,PROVISIONAL - replaced by sourced/fitted value
+hyp_elongation_delay_h,0.36201,h,fitted,seedling,Delay from protrusion to hypocotyl elongation,calibration:data/calibration/fit_seedling.json,"fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+hyp_gravitropic_rate_deg_h,10,deg/h,assumed,seedling,Hypocotyl negative gravitropic bending rate at 1 g,,PROVISIONAL - replaced by sourced/fitted value
+hook_slices,4,cells,assumed,seedling,Hypocotyl cells forming the apical hook,,PROVISIONAL - replaced by sourced/fitted value
+hook_angle_dark_deg,180,deg,assumed,seedling,Apical hook angle in darkness,,PROVISIONAL - replaced by sourced/fitted value
+eth_hook_exaggeration,0.5,1,assumed,seedling,Ethylene exaggeration of the hook,,PROVISIONAL - replaced by sourced/fitted value
+hook_tau_h,6,h,assumed,seedling,Time constant of hook formation/opening,,PROVISIONAL - replaced by sourced/fitted value
+cot_open_rate,0.476353,1/h,fitted,seedling,Cotyledon opening rate in light,calibration:data/calibration/fit_seedling.json,"fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
+cot_expansion_rate,0.02,1/h,assumed,seedling,Cotyledon cell expansion rate in light,,PROVISIONAL - replaced by sourced/fitted value
+cot_expansion_max,3,1,assumed,seedling,Maximum cotyledon cell expansion factor,,PROVISIONAL - replaced by sourced/fitted value
+cot_photosynthesis_rate,0.005,1/h,assumed,seedling,Reserve gain from open cotyledons in light (normalised),,PROVISIONAL - replaced by sourced/fitted value
+deetiolation_rate,0.1,1/h,assumed,seedling,Rate at which light exposure de-etiolates the seedling (irreversible),,PROVISIONAL - replaced by sourced/fitted value
+geo_n_cortex_inner,11,cells,derived,geometry,Inner-cortex cells around the hypocotyl axis,montenegrojohnson2015,203 inner-cortex cells (Table 1) / 18 hypocotyl slices = 11.3 (inner cortex is hypocotyl-only)
+psi_base_sd_mpa,0.222,MPa,measured,population,Between-seed SD of the base water potential (hydrotime sigma_psi_b),footitt2019,"Table 1, Col-0 (15 degC)"
+resp_seed_nmol_h,2.25,nmol/h,derived,metabolism,O2 uptake of one fully active seed,thiel2011 klasen2025,"1.7 pmol O2 per ug per min (Thiel 2011, DEVELOPING seeds - proxy; mass basis ambiguous) x 22.1 ug seed mass (Klasen 2025) = 37.6 pmol/min = 2.25 nmol/h"
+rad_decoder_weight,0,1,assumed,radiation,Weight of the decoder radiation-GCR NES on per-cell radiation sensitivity (hypothesis coupling),,"0 = uniform sensitivity. A positive weight makes cell types whose marker programmes are enriched in GCR signatures (decoder, observed) proportionally more sensitive - an untested hypothesis, off by default"
+abley_beta_aba,1,arbitrary,standard,hormones,Basal ABA synthesis,abley2021,Abley et al. 2021 Table 2 default beta_ABA (published model parameter)
+abley_beta_ga,0.3,arbitrary,standard,hormones,Basal GA synthesis,abley2021,Abley et al. 2021 Table 2 default beta_GA (published model parameter)
+abley_beta_ga_z,0.01,arbitrary,standard,hormones,GA synthesis per unit Z signal,abley2021,"Abley et al. 2021 Table 2 default beta_GA,Z (published model parameter)"
+abley_beta_z,39,arbitrary,standard,hormones,Sowing-induced GA-signal (Z) production,abley2021,Abley et al. 2021 Table 2 default beta_Z (published model parameter)
+abley_beta_i,0.3,arbitrary,standard,hormones,Basal Integrator (DELLA/ABI4/ABI5) production,abley2021,Abley et al. 2021 Table 2 default beta_I (published model parameter)
+abley_v_aba,1,arbitrary,standard,hormones,ABA degradation,abley2021,Abley et al. 2021 Table 2 default v_ABA (published model parameter)
+abley_v_ga,1,arbitrary,standard,hormones,GA degradation,abley2021,Abley et al. 2021 Table 2 default v_GA (published model parameter)
+abley_v_z,0.1,arbitrary,standard,hormones,Z decay,abley2021,Abley et al. 2021 Table 2 default v_Z (published model parameter)
+abley_v_i,0.4,arbitrary,standard,hormones,Integrator degradation,abley2021,Abley et al. 2021 Table 2 default v_I (published model parameter)
+abley_theta_aba_i,3.7,arbitrary,standard,hormones,Integrator level for half-maximal promotion of ABA synthesis,abley2021,"Abley et al. 2021 Table 2 default theta_ABA,I (published model parameter)"
+abley_theta_ga_i,1.2,arbitrary,standard,hormones,Integrator level for half-maximal repression of GA synthesis,abley2021,"Abley et al. 2021 Table 2 default theta_GA,I (published model parameter)"
+abley_theta_i_aba,10,arbitrary,standard,hormones,ABA level for half-maximal promotion of Integrator production,abley2021,"Abley et al. 2021 monostable scenario value (Fig. 5 supplement; default 6.5 is their bistable/dormant case). Monostable = non-dormant seeds that all germinate, as after-ripened Col-0 does (~100%, Dekkers 2013)"
+abley_theta_i_ga,6,arbitrary,standard,hormones,GA level for half-maximal promotion of Integrator degradation,abley2021,"Abley et al. 2021 Table 2 default theta_I,GA (published model parameter)"
+abley_c_aba_i,10,arbitrary,standard,hormones,Maximal Integrator-promoted ABA synthesis,abley2021,"Abley et al. 2021 Table 2 default C_ABA,I (published model parameter)"
+abley_c_ga_i,4,arbitrary,standard,hormones,Maximal GA synthesis (repressed by the Integrator),abley2021,"Abley et al. 2021 Table 2 default C_GA,I (published model parameter)"
+abley_c_i_aba,10,arbitrary,standard,hormones,Maximal ABA-promoted Integrator production,abley2021,"Abley et al. 2021 Table 2 default C_I,ABA (published model parameter)"
+abley_c_i_ga,6,arbitrary,standard,hormones,Maximal GA-promoted Integrator degradation,abley2021,"Abley et al. 2021 Table 2 default C_I,GA (published model parameter)"
+abley_h,4,arbitrary,standard,hormones,Hill coefficient of all regulatory functions,abley2021,Abley et al. 2021 Table 2 default h (published model parameter)
+hormone_time_unit_h,0.891249,h per model unit,fitted,hormones,Hours per Abley model time unit,calibration:data/calibration/fit_result.json,"fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+hormone_transport_omega,0.45,per model unit,standard,hormones,ABA/GA exchange rate between neighbouring cells,topham2017,"Topham 2017 region-coupling transport rate Omega = 0.45 ('low'; 0.75 'high'), a scenario value of their model; applied here per cell-cell edge"
+integrator_growth_k,1.78431,arbitrary,fitted,hormones,Integrator level halving the growth response,calibration:data/calibration/fit_result.json,"fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+integrator_growth_hill,4,1,derived,hormones,Hill coefficient of Integrator repression of growth,abley2021,set equal to Abley's h = 4
+eth_integrator_degradation,0.5,per model unit,assumed,hormones,Ethylene-promoted Integrator (DELLA/ABI5) loss at full ethylene response,,edge from Wang et al. 2018 (100 ppm ethylene lowers RGA/GAI/RGL2/ABI5 transcripts to 0.05-0.43 of control) - qualitative; strength not sourced
+aba_imbibition_catabolism,1.6394,1,fitted,hormones,Fold increase of ABA catabolism (CYP707A2) at full hydration,calibration:data/calibration/fit_result.json,"fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+psi_base_seed_offset_mpa,0,MPa,derived,population,This seed's deviation of base water potential from the population mean,footitt2019,"0 for the reference seed; population runs draw it from N(0, psi_base_sd_mpa)"

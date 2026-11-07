@@ -1,0 +1,18 @@
+template_tissue,template_region,condition,cluster,cluster_cell_type,rationale
+root cap / QC,cap,,4,columella/root cap (+QC),direct correspondence
+epidermis,radicle,,10,radicle epidermis,direct correspondence
+epidermis,hypocotyl,,6,epidermis (hypocotyl),direct correspondence (ATML1-confirmed epidermis cluster)
+cortex,radicle,QC index <= 3,14,radicle apical meristem,meristematic radicle tip; RNA in-situ validated cluster
+cortex,radicle,QC index > 3,2,cortex/endodermis,nearest annotated ground-tissue cluster (annotated as hypocotyl) - approximation
+cortex,hypocotyl,t < 18 h,5,hypocotyl cortex (early),atlas trajectory peaks at 12 h
+cortex,hypocotyl,18 <= t < 36 h,7,hypocotyl cortex (mid),atlas trajectory peaks at 24 h
+cortex,hypocotyl,t >= 36 h,1,hypocotyl cortex (late),atlas trajectory peaks at 48 h
+endodermis,radicle,QC index <= 3,14,radicle apical meristem,meristematic radicle tip
+endodermis,any,otherwise,2,cortex/endodermis,direct correspondence
+stele,radicle,QC index <= 3,14,radicle apical meristem,meristematic radicle tip
+stele,any,protoxylem poles (2 of n),9,provasculature: protoxylem,schematic diarch placement of poles
+stele,any,protophloem poles (2 of n),15,provasculature: protophloem,schematic diarch placement of poles
+stele,any,other stele cells,12,provasculature,direct correspondence
+cotyledon mesophyll,cotyledon,,3,cotyledon mesophyll,the atlas has two mesophyll clusters (3 and 13); 3 used
+cotyledon epidermis,cotyledon,,6,epidermis,epidermis cluster is not organ-specific in the annotation - approximation
+endosperm,endosperm,,none,,no germinating endosperm in the atlas (developing-seed Gehring panels only)

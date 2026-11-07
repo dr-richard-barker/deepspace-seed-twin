@@ -157,6 +157,7 @@ export function copyCell(c: Cells, src: number, dst: number): void {
 export function ringsFor(params: Params, region: Region): RingSpec[] {
   const epi = p(params, "geo_n_epidermis");
   const cor = p(params, "geo_n_cortex");
+  const corIn = p(params, "geo_n_cortex_inner");
   const endo = p(params, "geo_n_endodermis");
   const ste = p(params, "geo_n_stele");
   const rSte = p(params, "geo_r_frac_stele");
@@ -167,7 +168,7 @@ export function ringsFor(params: Params, region: Region): RingSpec[] {
     return [
       { tissue: Tissue.Stele, nAround: ste, r0: 0, r1: rSte },
       { tissue: Tissue.Endodermis, nAround: endo, r0: rSte, r1: rEnd },
-      { tissue: Tissue.Cortex, nAround: cor, r0: rEnd, r1: mid },
+      { tissue: Tissue.Cortex, nAround: corIn, r0: rEnd, r1: mid },
       { tissue: Tissue.Cortex, nAround: cor, r0: mid, r1: rEpi },
       { tissue: Tissue.Epidermis, nAround: epi, r0: rEpi, r1: 1 },
     ];

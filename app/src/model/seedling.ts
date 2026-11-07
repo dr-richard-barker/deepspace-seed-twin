@@ -108,7 +108,8 @@ function divideSlice(sim: SeedTwin, sid: number): void {
     c.len0[b] = c.len0[a];
     sim.h.aba[b] = sim.h.aba[a];
     sim.h.ga[b] = sim.h.ga[a];
-    sim.h.della[b] = sim.h.della[a];
+    sim.h.integ[b] = sim.h.integ[a];
+    sim.h.z[b] = sim.h.z[a];
     sim.h.acc[b] = sim.h.acc[a];
     sim.o2[b] = sim.o2[a];
     sim.energy[b] = sim.energy[a];
@@ -140,6 +141,8 @@ export function stepSeedling(sim: SeedTwin, dt: number, d: Drivers): void {
   const mu = (Math.LN2 / p(P, "root_cell_cycle_h")) * d.fT;
   const rEz = p(P, "root_ez_rate") * d.fT;
   const ethRoot = 1 / (1 + p(P, "eth_root_inhibition") * d.ethResp);
+  // ethylene inhibits root growth by shortening the final cell length, not only the rate
+  const lMatEth = lMat * ethRoot;
   const radDiv = 1 / (1 + p(P, "ros_to_division_arrest") * sim.mean(sim.ros, sim.tipCells));
   const kColl = t.order.indexOf(t.colletSliceId);
   let z = 0; // distance from the QC (µm)
@@ -158,7 +161,7 @@ export function stepSeedling(sim: SeedTwin, dt: number, d: Drivers): void {
     if (zc < zMer) {
       rate = mu * radDiv * eTip;
       if (L * Math.exp(rate * dt) >= 2 * lDiv) toDivide.push(sid);
-    } else if (zc < zMer + zEz && L < lMat) {
+    } else if (zc < zMer + zEz && L < lMatEth) {
       rate = rEz * ethRoot * eTip;
       ezSlices.push(sid);
       ezLen += L;
@@ -166,7 +169,7 @@ export function stepSeedling(sim: SeedTwin, dt: number, d: Drivers): void {
     if (rate > 0) {
       const f = Math.exp(rate * dt);
       for (const i of s.cells) {
-        c.len[i] = Math.min(c.len[i] * f, lMat);
+        c.len[i] = Math.min(c.len[i] * f, zc < zMer ? lMat : lMatEth);
         sim.growthRate[i] = rate;
       }
     } else for (const i of s.cells) sim.growthRate[i] = 0;
@@ -258,7 +261,10 @@ export function stepSeedling(sim: SeedTwin, dt: number, d: Drivers): void {
   const hypGrowth = st.lengths(sim).hypocotyl - st.hypLen0;
   if (sim.milestones.anchored !== null && sim.pose.cotOut < 1) {
     sim.pose.cotOut = Math.min(1, hypGrowth / Math.max(t.embryo.cotLen, 1));
-    if (sim.pose.cotOut >= 1 && sim.milestones.cotEmerged === null) sim.milestones.cotEmerged = sim.t;
+    if (sim.pose.cotOut >= 1 && sim.milestones.cotEmerged === null) {
+      sim.milestones.cotEmerged = sim.t;
+      sim.pose.shed = true;
+    }
   }
   if (sim.pose.cotOut >= 1 && d.light > 0 && st.deetiolation > 0.2) {
     sim.pose.cotOpen = Math.min(1, sim.pose.cotOpen + p(P, "cot_open_rate") * d.light * dt);

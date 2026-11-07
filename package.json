@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "ledger": "python3 scripts/build_ledger.py",
-    "gates": "esbuild validation/gates.ts --bundle --format=esm --platform=node --loader:.json=json --outfile=validation/gates.mjs && node validation/gates.mjs",
+    "gates": "esbuild validation/gates.ts --bundle --format=esm --platform=node --loader:.json=json --loader:.csv=text --outfile=validation/gates.mjs && node validation/gates.mjs",
     "export": "esbuild scripts/export_runs.ts --bundle --format=esm --platform=node --loader:.json=json --outfile=scripts/export_runs.mjs && node scripts/export_runs.mjs"
   },
   "dependencies": {

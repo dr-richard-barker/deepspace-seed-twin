@@ -1,0 +1,11 @@
+{
+ "description": "Observed seedling targets (scripts/calibrate_seedling.ts). Light runs use the ground_petri preset; dark runs the same with light off.",
+ "targets": [
+  {"id": "cot_emerged_h", "value": 60, "sd": 8, "unit": "h after transfer to growth conditions", "source": "boyes2001", "note": "stage 0.70 hypocotyl and cotyledon emergence 5.5 +/- 0.6 d after sowing incl. 3 d stratification = 2.5 d"},
+  {"id": "cot_open_h", "value": 72, "sd": 8, "unit": "h", "source": "boyes2001", "note": "stage 1.0 cotyledons fully opened 6.0 +/- 0.5 d after sowing = 3.0 d after transfer"},
+  {"id": "hyp_max_rate_dark_mm_d", "value": 5.96, "sd": 1.53, "unit": "mm/d", "source": "alimchandani2026", "note": "meta-analysis maximum absolute growth rate of dark-grown hypocotyls (the twin's maximum within 120 h)"},
+  {"id": "hyp_max_rate_light_mm_d", "value": 1.11, "sd": 0.754, "unit": "mm/d", "source": "alimchandani2026", "note": "meta-analysis maximum growth rate of light-grown hypocotyls"},
+  {"id": "root_rate_120h_um_h", "value": 207, "sd": 60, "unit": "um/h", "source": "beemster1998", "note": "241 um/h at day 6 back-extrapolated one day with the reported 16.6 %/d acceleration"},
+  {"id": "eth_prod_pl_h", "value": 0.4, "sd": 0.15, "unit": "pL per seedling per h (mean 72-120 h)", "source": "heslopharrison2024", "note": "young Col-0 seedlings ~0.26-0.53 pL/seedling/h (Fig. 7, read from bars)"}
+ ]
+}

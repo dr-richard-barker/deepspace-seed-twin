@@ -1,0 +1,11 @@
+{
+  "title": "Deep Space Seed Twin: a cellular digital twin of Arabidopsis germination under spaceflight hardware environments",
+  "upload_type": "software",
+  "description": "In-browser 3D cellular model of an Arabidopsis seed from imbibition to a 5-day seedling, with water uptake, O2/CO2/ethylene exchange, an ABA-GA-Integrator hormone network, Lockhart growth under seed-coat restraint and seedling kinematics, run under spaceflight hardware presets. Companion to deepspace-seed-stress-decoder. Every parameter is listed with its source and evidence tier in data/params/parameter_ledger.csv.",
+  "creators": [{ "name": "Barker, Richard", "orcid": "0000-0001-5681-9857" }],
+  "license": "MIT",
+  "keywords": ["Arabidopsis", "seed germination", "digital twin", "spaceflight", "plant hormones"],
+  "related_identifiers": [
+    { "identifier": "https://github.com/dr-richard-barker/deepspace-seed-stress-decoder", "relation": "isSupplementTo", "scheme": "url" }
+  ]
+}

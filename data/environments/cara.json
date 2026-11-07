@@ -8,22 +8,22 @@
    "value": 0.0,
    "unit": "g",
    "source": "",
-   "tier": "standard",
-   "note": "orbital microgravity"
+   "tier": "assumed",
+   "note": "idealised orbital microgravity (residual micro-g neglected)"
   },
   "p_total_kpa": {
    "value": 101.325,
    "unit": "kPa",
-   "source": "standard_atmosphere",
+   "source": "definition",
    "tier": "standard",
-   "note": "sea-level standard pressure"
+   "note": "1 standard atmosphere = 101.325 kPa (exact by definition)"
   },
   "o2_frac": {
    "value": 0.2095,
    "unit": "fraction",
-   "source": "standard_atmosphere",
-   "tier": "standard",
-   "note": "dry-air O2 mole fraction"
+   "source": "",
+   "tier": "assumed",
+   "note": "conventional dry-air O2 mole fraction (~20.95 %); not verified against a primary source here"
   },
   "co2_ppm": {
    "value": 3371.0,
@@ -87,6 +87,13 @@
    "source": "",
    "tier": "assumed",
    "note": "no scrubber"
+  },
+  "eth_inlet_ppm": {
+   "value": 0.0,
+   "unit": "ppm",
+   "source": "",
+   "tier": "assumed",
+   "note": "no ethylene in the exchange air"
   },
   "substrate_psi_mpa": {
    "value": 0.0,

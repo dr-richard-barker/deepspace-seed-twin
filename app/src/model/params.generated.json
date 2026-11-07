@@ -3,23 +3,23 @@
  "params": [
   {
    "id": "geo_seed_length_um",
-   "value": 500.0,
+   "value": 490.0,
    "unit": "um",
-   "tier": "assumed",
+   "tier": "measured",
    "group": "geometry",
    "description": "Mature dry seed length (ellipsoid long axis)",
-   "source": "",
-   "note": "PENDING anatomy research"
+   "source": "klasen2025",
+   "note": "Table 3 '3D length' 0.49 mm (SD 0.04, n=99), Col-0 control batch"
   },
   {
    "id": "geo_seed_width_um",
-   "value": 300.0,
+   "value": 290.0,
    "unit": "um",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "geometry",
    "description": "Mature dry seed width",
-   "source": "",
-   "note": "PENDING anatomy research"
+   "source": "klasen2025",
+   "note": "mean of 3D width 0.31 mm and height 0.27 mm (Table 3); the template is an ellipsoid of revolution"
   },
   {
    "id": "geo_testa_um",
@@ -53,13 +53,13 @@
   },
   {
    "id": "geo_axis_slices",
-   "value": 22.0,
+   "value": 25.0,
    "unit": "cells",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "geometry",
    "description": "Cortical cells per file from the QC to the cotyledon node",
-   "source": "",
-   "note": "PENDING anatomy research"
+   "source": "boudaher2018 bassel2014",
+   "note": "7 radicle cells below the collet (collet = cortical cell 8, Bassel 2014) + 18 hypocotyl cells per file (Bou Daher 2018: 17-19 epidermal cells per file)"
   },
   {
    "id": "geo_collet_index",
@@ -153,33 +153,33 @@
   },
   {
    "id": "geo_n_epidermis",
-   "value": 16.0,
+   "value": 33.0,
    "unit": "cells",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "geometry",
    "description": "Epidermal cells around the axis",
-   "source": "",
-   "note": "PENDING anatomy research"
+   "source": "montenegrojohnson2015",
+   "note": "837 embryo-axis epidermal cells (Table 1) / 25 slices = 33.5"
   },
   {
    "id": "geo_n_cortex",
-   "value": 8.0,
+   "value": 16.0,
    "unit": "cells",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "geometry",
    "description": "Cortical cells around the axis per cortex layer",
-   "source": "",
-   "note": "PENDING anatomy research"
+   "source": "montenegrojohnson2015",
+   "note": "394 outer-cortex cells (Table 1) / 25 slices = 15.8"
   },
   {
    "id": "geo_n_endodermis",
-   "value": 8.0,
+   "value": 10.0,
    "unit": "cells",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "geometry",
    "description": "Endodermal cells around the axis",
-   "source": "",
-   "note": "PENDING anatomy research"
+   "source": "montenegrojohnson2015",
+   "note": "239 endodermal cells (Table 1) / 25 slices = 9.6"
   },
   {
    "id": "geo_n_stele",
@@ -195,11 +195,11 @@
    "id": "geo_cortex_layers_hypocotyl",
    "value": 2.0,
    "unit": "layers",
-   "tier": "assumed",
+   "tier": "measured",
    "group": "geometry",
    "description": "Cortex layers in the hypocotyl (radicle has one)",
-   "source": "",
-   "note": "PENDING anatomy research"
+   "source": "jackson2017",
+   "note": "hypocotyl radial order epidermis / outer cortex / inner cortex / endodermis (Fig. 2 legend)"
   },
   {
    "id": "geo_r_frac_stele",
@@ -353,93 +353,93 @@
   },
   {
    "id": "d_o2_air_m2s",
-   "value": 2e-05,
+   "value": 2.1e-05,
    "unit": "m2/s",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "O2 diffusivity in air at T_ref and P_ref",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "retta2023",
+   "note": "O2 in air (compiled; Retta 2023 citing Denny 1993); Fuller estimate 2.02e-5 (Tang 2014)"
   },
   {
    "id": "d_co2_air_m2s",
    "value": 1.6e-05,
    "unit": "m2/s",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "CO2 diffusivity in air at T_ref and P_ref",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "ho2012",
+   "note": "CO2 in air at 20 C (Ho 2012 citing CRC handbook)"
   },
   {
    "id": "d_eth_air_m2s",
-   "value": 1.5e-05,
+   "value": 1.63e-05,
    "unit": "m2/s",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "physics",
    "description": "Ethylene diffusivity in air at T_ref and P_ref",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "tang2015",
+   "note": "124 +/- 5 Torr cm2 s-1 (Tang 2015 evaluated value) / 760 Torr = 0.163 cm2 s-1 at 1 atm"
   },
   {
    "id": "d_o2_water_m2s",
-   "value": 2.1e-09,
+   "value": 1.97e-09,
    "unit": "m2/s",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "O2 diffusivity in water",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "retta2023",
+   "note": "O2 in pure water (Retta 2023 citing Denny 1993)"
   },
   {
    "id": "d_co2_water_m2s",
-   "value": 1.9e-09,
+   "value": 1.79e-09,
    "unit": "m2/s",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "CO2 diffusivity in water",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "berghuijs2017",
+   "note": "CO2 in water at 25 C"
   },
   {
    "id": "d_eth_water_m2s",
-   "value": 1.9e-09,
+   "value": 1.79e-09,
    "unit": "m2/s",
    "tier": "assumed",
    "group": "physics",
    "description": "Ethylene diffusivity in water",
    "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "note": "no source found for ethylene in water; set equal to CO2 (similar molecular size)"
   },
   {
    "id": "h_o2_mol_m3pa",
    "value": 1.3e-05,
    "unit": "mol m-3 Pa-1",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "Henry solubility of O2 in water",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "sander2015",
+   "note": "Henry solubility Hcp at 298.15 K"
   },
   {
    "id": "h_co2_mol_m3pa",
    "value": 0.00033,
    "unit": "mol m-3 Pa-1",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "Henry solubility of CO2 in water",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "sander2015",
+   "note": "Henry solubility Hcp at 298.15 K"
   },
   {
    "id": "h_eth_mol_m3pa",
    "value": 5.9e-05,
    "unit": "mol m-3 Pa-1",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "Henry solubility of ethylene in water",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "sander2015",
+   "note": "Hcp at 298.15 K; other compiled entries ~25% lower (Wilhelm 1977: 4.7e-5)"
   },
   {
    "id": "nu_air_m2s",
@@ -455,11 +455,11 @@
    "id": "t_ref_k",
    "value": 298.15,
    "unit": "K",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "Reference temperature for transport properties",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "sander2015",
+   "note": "reference temperature of the Henry constants (Sander 2015)"
   },
   {
    "id": "p_ref_kpa",
@@ -475,21 +475,21 @@
    "id": "d_air_t_exponent",
    "value": 1.75,
    "unit": "1",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "Temperature exponent of gas diffusivity",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "tang2014",
+   "note": "T^1.75 dependence of the Fuller equation (Tang 2014); D proportional to 1/P from the same source"
   },
   {
    "id": "sh_forced_coeff",
    "value": 0.6,
    "unit": "1",
-   "tier": "assumed",
+   "tier": "standard",
    "group": "physics",
    "description": "Coefficient a in Sh = 2 + a Re^1/2 Sc^1/3",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "stiti2022",
+   "note": "Sh = 2 + 0.6 Re^1/2 Sc^1/3 (Ranz & Marshall 1952 as stated by Stiti 2022); Dbouk & Drikakis 2020 give 0.55 for the same attribution"
   },
   {
    "id": "rho_water_kgm3",
@@ -563,13 +563,13 @@
   },
   {
    "id": "psi_base_mpa",
-   "value": -1.0,
+   "value": -1.272,
    "unit": "MPa",
-   "tier": "assumed",
+   "tier": "measured",
    "group": "water",
    "description": "Base water potential (turgor-driven growth stops below it)",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "footitt2019",
+   "note": "hydrotime base water potential psi_b, Col-0, Table 1 (15 degC; temperature caveat)"
   },
   {
    "id": "turgor_hydration_exponent",
@@ -598,16 +598,6 @@
    "tier": "assumed",
    "group": "water",
    "description": "Fractional embryo volume increase on full imbibition",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "resp_qmax_mol_m3s",
-   "value": 0.03,
-   "unit": "mol m-3 s-1",
-   "tier": "assumed",
-   "group": "metabolism",
-   "description": "Maximum O2 uptake per tissue volume",
    "source": "",
    "note": "PROVISIONAL - replaced by sourced/fitted value"
   },
@@ -673,23 +663,23 @@
   },
   {
    "id": "tissue_diffusivity_rel",
-   "value": 0.3,
+   "value": 0.0934,
    "unit": "1",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "physics",
    "description": "Gas diffusivity in tissue relative to water",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "verboven2013 retta2023",
+   "note": "PROXY: radial O2 diffusivity of B. napus developing hypocotyl 0.184e-9 m2/s (Verboven 2013 Table 1) / O2 in water 1.97e-9 = 0.093"
   },
   {
    "id": "testa_perm_rel",
-   "value": 0.1,
+   "value": 1.0,
    "unit": "1",
    "tier": "assumed",
    "group": "physics",
    "description": "Testa gas permeability relative to an equal water layer",
    "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "note": "no Arabidopsis testa gas permeability found; B. napus seed coat O2 diffusivity 60.6e-9 m2/s (Verboven 2013, porous, highly variable) suggests a porous coat is not limiting, so set equal to a water layer of the same thickness"
   },
   {
    "id": "testa_open_fraction",
@@ -732,134 +722,14 @@
    "note": "PROVISIONAL - replaced by sourced/fitted value"
   },
   {
-   "id": "aba_init",
-   "value": 1.0,
-   "unit": "norm",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "Initial ABA in the dry seed (normalised)",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "della_init",
-   "value": 1.0,
-   "unit": "norm",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "Initial DELLA (normalised)",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "aba_synth",
-   "value": 0.02,
-   "unit": "norm/h",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "ABA synthesis rate",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "aba_decay",
-   "value": 0.05,
-   "unit": "1/h",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "Basal ABA catabolism",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "aba_cyp707a_induction",
-   "value": 4.0,
-   "unit": "1",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "Fold-induction of ABA catabolism by imbibition",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "k_ga_represses_aba",
-   "value": 1.0,
-   "unit": "norm",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "GA level halving ABA synthesis",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "ga_synth",
-   "value": 0.3,
-   "unit": "norm/h",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "GA synthesis at the radicle tip in light",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "ga_decay",
-   "value": 0.2,
-   "unit": "1/h",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "GA inactivation",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "k_aba_represses_ga",
-   "value": 0.3,
-   "unit": "norm",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "ABA level halving GA synthesis",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
    "id": "ga_dark_fraction",
-   "value": 0.3,
+   "value": 1.0,
    "unit": "1",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "hormones",
    "description": "GA synthesis in darkness relative to light",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "della_synth",
-   "value": 0.1,
-   "unit": "norm/h",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "DELLA synthesis",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "della_degrad",
-   "value": 0.5,
-   "unit": "1/h",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "Maximum GA-GID1-dependent DELLA degradation",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "k_ga_della",
-   "value": 0.3,
-   "unit": "norm",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "GA for half-maximal DELLA degradation",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "oh2004",
+   "note": "Col-0 germinates ~98% in darkness without a far-red pulse (Oh et al. 2004 Fig. 3C, read from bar): pre-existing Pfr; the twin does not model a far-red pulse"
   },
   {
    "id": "acc_synth",
@@ -903,13 +773,13 @@
   },
   {
    "id": "aco_km_o2_pa",
-   "value": 1000.0,
+   "value": 3654.0,
    "unit": "Pa",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "hormones",
    "description": "O2 partial pressure for half-maximal ACO activity",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "dilley2013 thrower2001 sander2015",
+   "note": "ACO Km(O2) 28-67 uM (tomato; Dilley 2013 citing Thrower 2001), midpoint 47.5 uM / Henry 1.3e-5 mol m-3 Pa-1 (Sander 2015) = 3654 Pa. No Arabidopsis ACO kinetics found"
   },
   {
    "id": "ros_to_aba",
@@ -932,64 +802,14 @@
    "note": "PROVISIONAL - replaced by sourced/fitted value"
   },
   {
-   "id": "aba_transport",
-   "value": 0.5,
-   "unit": "1/h",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "Cell-to-cell ABA exchange rate",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "ga_transport",
-   "value": 0.5,
-   "unit": "1/h",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "Cell-to-cell GA exchange rate",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "k_della_repress",
-   "value": 0.3,
-   "unit": "norm",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "DELLA halving the growth response",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "k_aba_repress",
-   "value": 0.3,
-   "unit": "norm",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "ABA halving the growth response",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
-   "id": "eth_aba_relief",
-   "value": 1.0,
-   "unit": "1",
-   "tier": "assumed",
-   "group": "hormones",
-   "description": "Ethylene relief of ABA action",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
-  },
-  {
    "id": "ga_source_lambda",
-   "value": 4.0,
+   "value": 4.44968,
    "unit": "cells",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "hormones",
    "description": "Decay length (cells from the QC) of GA synthesis",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_result.json",
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "gid1_lambda",
@@ -1023,53 +843,53 @@
   },
   {
    "id": "eth_yield_mol_m3",
-   "value": 1e-06,
+   "value": 0.0112912,
    "unit": "mol m-3",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "hormones",
    "description": "Ethylene produced per normalised ACO unit per tissue volume",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_seedling.json",
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "eth_response_k_pa",
-   "value": 0.01,
+   "value": 0.1267,
    "unit": "Pa",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "hormones",
    "description": "Ethylene partial pressure for half-maximal response",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "wang2018",
+   "note": "50% germination response at 1.25 ppm ethylene (dormant Col-0, 25 C, dark; Wang 2018) x 0.101325 Pa per ppm at 1 atm. Reused for seedling responses (assumption)"
   },
   {
    "id": "eth_response_hill",
    "value": 1.0,
    "unit": "1",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "hormones",
    "description": "Hill coefficient of the ethylene response",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "wang2018",
+   "note": "Hill n = 1 reproduces Wang 2018's threshold 0.125 ppm (~10%), 50% at 1.25 ppm and ~100% at 50-100 ppm"
   },
   {
    "id": "wall_extensibility",
-   "value": 0.02,
+   "value": 0.022307,
    "unit": "1/(MPa h)",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "mechanics",
    "description": "Maximum wall extensibility (phi)",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_result.json",
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "wall_yield_mpa",
-   "value": 2.0,
+   "value": 3.31434,
    "unit": "MPa",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "mechanics",
    "description": "Wall-stress yield threshold",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_result.json",
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "radial_growth",
@@ -1113,13 +933,13 @@
   },
   {
    "id": "testa_strength_mpa",
-   "value": 0.15,
+   "value": 0.169748,
    "unit": "MPa",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "mechanics",
    "description": "Testa rupture threshold",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_result.json",
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "endosperm_stiffness_mpa",
@@ -1143,23 +963,23 @@
   },
   {
    "id": "cap_strength0_mpa",
-   "value": 0.4,
+   "value": 0.320486,
    "unit": "MPa",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "mechanics",
    "description": "Initial endosperm cap strength",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_result.json",
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "cap_weakening_rate",
-   "value": 0.15,
+   "value": 0.117332,
    "unit": "1/h",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "mechanics",
    "description": "Maximum cap weakening rate",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_result.json",
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
   },
   {
    "id": "cap_k_ga",
@@ -1223,83 +1043,83 @@
   },
   {
    "id": "root_meristem_delay_h",
-   "value": 6.0,
+   "value": 8.25986,
    "unit": "h",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "seedling",
    "description": "Delay from protrusion to meristem activity",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_seedling.json",
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "root_meristem_len_um",
-   "value": 250.0,
+   "value": 440.0,
    "unit": "um",
-   "tier": "assumed",
+   "tier": "measured",
    "group": "seedling",
    "description": "Meristem length",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "beemster1998",
+   "note": "meristem length at day 6 (41 cells); younger roots likely shorter"
   },
   {
    "id": "root_ez_len_um",
-   "value": 400.0,
+   "value": 791.0,
    "unit": "um",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "seedling",
    "description": "Elongation-zone length",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "beemster1998",
+   "note": "growth zone 1231 um minus meristem 440 um at day 6"
   },
   {
    "id": "root_division_len_um",
-   "value": 10.0,
+   "value": 14.9,
    "unit": "um",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "seedling",
    "description": "Meristem cell length at division",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "beemster1998",
+   "note": "mean meristem cell length 440/41 = 10.7 um; for exponential growth with division at 2x birth length, division length = 2 ln2 x mean = 14.9 um"
   },
   {
    "id": "root_mature_len_um",
-   "value": 150.0,
+   "value": 143.0,
    "unit": "um",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "seedling",
    "description": "Mature root cortical cell length",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "beemster1998",
+   "note": "elongation rate 241 um/h / cell flux 1.68 cells/h at day 6"
   },
   {
    "id": "root_cell_cycle_h",
-   "value": 17.0,
+   "value": 18.6,
    "unit": "h",
-   "tier": "assumed",
+   "tier": "measured",
    "group": "seedling",
    "description": "Meristem cell-cycle duration",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "beemster1998",
+   "note": "days 6-10 after germination (constant: 17.3-19.8 h); earlier days not measured"
   },
   {
    "id": "root_ez_rate",
-   "value": 0.3,
+   "value": 0.34,
    "unit": "1/h",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "seedling",
    "description": "Relative elongation rate in the elongation zone",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "beemster1998",
+   "note": "ln(143/14.9) over the EZ residence time (791 um / half the 241 um/h exit velocity = 6.6 h) = 0.34 per h"
   },
   {
    "id": "root_gravitropic_rate_deg_h",
-   "value": 20.0,
+   "value": 30.0,
    "unit": "deg/h",
-   "tier": "assumed",
+   "tier": "measured",
    "group": "seedling",
    "description": "Root gravitropic bending rate at 1 g (90 degrees off vertical)",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "canaday2026",
+   "note": "peak gravitropic response ~30 deg/h (Canaday 2026 citing Wolverton 2011, secondary)"
   },
   {
    "id": "eth_root_inhibition",
@@ -1309,7 +1129,7 @@
    "group": "seedling",
    "description": "Ethylene inhibition of root elongation",
    "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "note": "assumed strength; ethylene divides both the elongation-zone rate and the final cell length by (1 + k x response) - assumed form (triple response: short root)"
   },
   {
    "id": "anchor_delay_h",
@@ -1323,43 +1143,43 @@
   },
   {
    "id": "hyp_rate_dark",
-   "value": 0.05,
+   "value": 0.0493627,
    "unit": "1/h",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "seedling",
    "description": "Hypocotyl cell relative elongation rate in darkness",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_seedling.json",
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "hyp_rate_light",
-   "value": 0.015,
+   "value": 0.0295021,
    "unit": "1/h",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "seedling",
    "description": "Hypocotyl cell relative elongation rate in light",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_seedling.json",
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "hyp_cell_max_dark_um",
-   "value": 400.0,
+   "value": 950.0,
    "unit": "um",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "seedling",
    "description": "Maximum hypocotyl cell length in darkness",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "alimchandani2026 boudaher2018",
+   "note": "final dark-grown hypocotyl 17.1 mm (meta-analysis) / ~18 cells per file (Bou Daher 2018) = 950 um; hypocotyl cells elongate without division"
   },
   {
    "id": "hyp_cell_max_light_um",
-   "value": 60.0,
+   "value": 182.0,
    "unit": "um",
-   "tier": "assumed",
+   "tier": "derived",
    "group": "seedling",
    "description": "Maximum hypocotyl cell length in light",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "alimchandani2026 boudaher2018",
+   "note": "final light-grown hypocotyl 3.28 mm / 18 cells = 182 um"
   },
   {
    "id": "eth_hyp_inhibition",
@@ -1403,13 +1223,13 @@
   },
   {
    "id": "hyp_elongation_delay_h",
-   "value": 6.0,
+   "value": 0.36201,
    "unit": "h",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "seedling",
    "description": "Delay from protrusion to hypocotyl elongation",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_seedling.json",
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "hyp_gravitropic_rate_deg_h",
@@ -1463,13 +1283,13 @@
   },
   {
    "id": "cot_open_rate",
-   "value": 0.05,
+   "value": 0.476353,
    "unit": "1/h",
-   "tier": "assumed",
+   "tier": "fitted",
    "group": "seedling",
    "description": "Cotyledon opening rate in light",
-   "source": "",
-   "note": "PROVISIONAL - replaced by sourced/fitted value"
+   "source": "calibration:data/calibration/fit_seedling.json",
+   "note": "fitted (Nelder-Mead on log-parameters, seedling targets (data/calibration/targets_seedling.json); loss 2.6) against: cot_emerged_h, cot_open_h, hyp_max_rate_dark_mm_d, hyp_max_rate_light_mm_d, root_rate_120h_um_h, eth_prod_pl_h"
   },
   {
    "id": "cot_expansion_rate",
@@ -1510,9 +1330,325 @@
    "description": "Rate at which light exposure de-etiolates the seedling (irreversible)",
    "source": "",
    "note": "PROVISIONAL - replaced by sourced/fitted value"
+  },
+  {
+   "id": "geo_n_cortex_inner",
+   "value": 11.0,
+   "unit": "cells",
+   "tier": "derived",
+   "group": "geometry",
+   "description": "Inner-cortex cells around the hypocotyl axis",
+   "source": "montenegrojohnson2015",
+   "note": "203 inner-cortex cells (Table 1) / 18 hypocotyl slices = 11.3 (inner cortex is hypocotyl-only)"
+  },
+  {
+   "id": "psi_base_sd_mpa",
+   "value": 0.222,
+   "unit": "MPa",
+   "tier": "measured",
+   "group": "population",
+   "description": "Between-seed SD of the base water potential (hydrotime sigma_psi_b)",
+   "source": "footitt2019",
+   "note": "Table 1, Col-0 (15 degC)"
+  },
+  {
+   "id": "resp_seed_nmol_h",
+   "value": 2.25,
+   "unit": "nmol/h",
+   "tier": "derived",
+   "group": "metabolism",
+   "description": "O2 uptake of one fully active seed",
+   "source": "thiel2011 klasen2025",
+   "note": "1.7 pmol O2 per ug per min (Thiel 2011, DEVELOPING seeds - proxy; mass basis ambiguous) x 22.1 ug seed mass (Klasen 2025) = 37.6 pmol/min = 2.25 nmol/h"
+  },
+  {
+   "id": "rad_decoder_weight",
+   "value": 0.0,
+   "unit": "1",
+   "tier": "assumed",
+   "group": "radiation",
+   "description": "Weight of the decoder radiation-GCR NES on per-cell radiation sensitivity (hypothesis coupling)",
+   "source": "",
+   "note": "0 = uniform sensitivity. A positive weight makes cell types whose marker programmes are enriched in GCR signatures (decoder, observed) proportionally more sensitive - an untested hypothesis, off by default"
+  },
+  {
+   "id": "abley_beta_aba",
+   "value": 1.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Basal ABA synthesis",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default beta_ABA (published model parameter)"
+  },
+  {
+   "id": "abley_beta_ga",
+   "value": 0.3,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Basal GA synthesis",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default beta_GA (published model parameter)"
+  },
+  {
+   "id": "abley_beta_ga_z",
+   "value": 0.01,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "GA synthesis per unit Z signal",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default beta_GA,Z (published model parameter)"
+  },
+  {
+   "id": "abley_beta_z",
+   "value": 39.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Sowing-induced GA-signal (Z) production",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default beta_Z (published model parameter)"
+  },
+  {
+   "id": "abley_beta_i",
+   "value": 0.3,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Basal Integrator (DELLA/ABI4/ABI5) production",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default beta_I (published model parameter)"
+  },
+  {
+   "id": "abley_v_aba",
+   "value": 1.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "ABA degradation",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default v_ABA (published model parameter)"
+  },
+  {
+   "id": "abley_v_ga",
+   "value": 1.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "GA degradation",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default v_GA (published model parameter)"
+  },
+  {
+   "id": "abley_v_z",
+   "value": 0.1,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Z decay",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default v_Z (published model parameter)"
+  },
+  {
+   "id": "abley_v_i",
+   "value": 0.4,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Integrator degradation",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default v_I (published model parameter)"
+  },
+  {
+   "id": "abley_theta_aba_i",
+   "value": 3.7,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Integrator level for half-maximal promotion of ABA synthesis",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default theta_ABA,I (published model parameter)"
+  },
+  {
+   "id": "abley_theta_ga_i",
+   "value": 1.2,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Integrator level for half-maximal repression of GA synthesis",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default theta_GA,I (published model parameter)"
+  },
+  {
+   "id": "abley_theta_i_aba",
+   "value": 10.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "ABA level for half-maximal promotion of Integrator production",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 monostable scenario value (Fig. 5 supplement; default 6.5 is their bistable/dormant case). Monostable = non-dormant seeds that all germinate, as after-ripened Col-0 does (~100%, Dekkers 2013)"
+  },
+  {
+   "id": "abley_theta_i_ga",
+   "value": 6.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "GA level for half-maximal promotion of Integrator degradation",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default theta_I,GA (published model parameter)"
+  },
+  {
+   "id": "abley_c_aba_i",
+   "value": 10.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Maximal Integrator-promoted ABA synthesis",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default C_ABA,I (published model parameter)"
+  },
+  {
+   "id": "abley_c_ga_i",
+   "value": 4.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Maximal GA synthesis (repressed by the Integrator)",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default C_GA,I (published model parameter)"
+  },
+  {
+   "id": "abley_c_i_aba",
+   "value": 10.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Maximal ABA-promoted Integrator production",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default C_I,ABA (published model parameter)"
+  },
+  {
+   "id": "abley_c_i_ga",
+   "value": 6.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Maximal GA-promoted Integrator degradation",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default C_I,GA (published model parameter)"
+  },
+  {
+   "id": "abley_h",
+   "value": 4.0,
+   "unit": "arbitrary",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "Hill coefficient of all regulatory functions",
+   "source": "abley2021",
+   "note": "Abley et al. 2021 Table 2 default h (published model parameter)"
+  },
+  {
+   "id": "hormone_time_unit_h",
+   "value": 0.891249,
+   "unit": "h per model unit",
+   "tier": "fitted",
+   "group": "hormones",
+   "description": "Hours per Abley model time unit",
+   "source": "calibration:data/calibration/fit_result.json",
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+  },
+  {
+   "id": "hormone_transport_omega",
+   "value": 0.45,
+   "unit": "per model unit",
+   "tier": "standard",
+   "group": "hormones",
+   "description": "ABA/GA exchange rate between neighbouring cells",
+   "source": "topham2017",
+   "note": "Topham 2017 region-coupling transport rate Omega = 0.45 ('low'; 0.75 'high'), a scenario value of their model; applied here per cell-cell edge"
+  },
+  {
+   "id": "integrator_growth_k",
+   "value": 1.78431,
+   "unit": "arbitrary",
+   "tier": "fitted",
+   "group": "hormones",
+   "description": "Integrator level halving the growth response",
+   "source": "calibration:data/calibration/fit_result.json",
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+  },
+  {
+   "id": "integrator_growth_hill",
+   "value": 4.0,
+   "unit": "1",
+   "tier": "derived",
+   "group": "hormones",
+   "description": "Hill coefficient of Integrator repression of growth",
+   "source": "abley2021",
+   "note": "set equal to Abley's h = 4"
+  },
+  {
+   "id": "eth_integrator_degradation",
+   "value": 0.5,
+   "unit": "per model unit",
+   "tier": "assumed",
+   "group": "hormones",
+   "description": "Ethylene-promoted Integrator (DELLA/ABI5) loss at full ethylene response",
+   "source": "",
+   "note": "edge from Wang et al. 2018 (100 ppm ethylene lowers RGA/GAI/RGL2/ABI5 transcripts to 0.05-0.43 of control) - qualitative; strength not sourced"
+  },
+  {
+   "id": "aba_imbibition_catabolism",
+   "value": 1.6394,
+   "unit": "1",
+   "tier": "fitted",
+   "group": "hormones",
+   "description": "Fold increase of ABA catabolism (CYP707A2) at full hydration",
+   "source": "calibration:data/calibration/fit_result.json",
+   "note": "fitted (Nelder-Mead on log-parameters, sum of squared standardised residuals (data/calibration/targets.json); loss 0.556) against: aba_12h_ratio, testa_rupture_h, endosperm_rupture_h, expansion_onset_h, peak_expansion_index, cap_strength_ratio_at_rupture"
+  },
+  {
+   "id": "psi_base_seed_offset_mpa",
+   "value": 0.0,
+   "unit": "MPa",
+   "tier": "derived",
+   "group": "population",
+   "description": "This seed's deviation of base water potential from the population mean",
+   "source": "footitt2019",
+   "note": "0 for the reference seed; population runs draw it from N(0, psi_base_sd_mpa)"
   }
  ],
  "references": [
+  {
+   "key": "abley2021",
+   "authors": "Abley K, Formosa-Jordan P, Tavares H, Chan EY, Afsharinafar M, Leyser O, Locke JC",
+   "year": "2021",
+   "title": "An ABA-GA bistable switch can account for natural variation in the variability of Arabidopsis seed germination time",
+   "journal": "eLife",
+   "volume": "10",
+   "issue": "",
+   "pages": "e59485",
+   "doi": "10.7554/elife.59485",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "alimchandani2026",
+   "authors": "Alimchandani V, Branchini E, Routier‐Kierzkowska A",
+   "year": "2026",
+   "title": "A multiscale growth atlas of Arabidopsis: linking cell dynamics to organ development",
+   "journal": "New Phytologist",
+   "volume": "249",
+   "issue": "1",
+   "pages": "299-324",
+   "doi": "10.1111/nph.70576",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
   {
    "key": "bassel2014",
    "authors": "Bassel GW, Stamm P, Mosca G, Barbier de Reuille P, Gibbs DJ, Winter R, Janka A, Holdsworth MJ, Smith RS",
@@ -1524,7 +1660,280 @@
    "pages": "8685-8690",
    "doi": "10.1073/pnas.1404616111",
    "verified_on": "2026-11-06",
-   "verified_via": "Crossref + PMC4060677 full text"
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "beemster1998",
+   "authors": "Beemster GTS, Baskin TI",
+   "year": "1998",
+   "title": "Analysis of Cell Division and Elongation Underlying the Developmental Acceleration of Root Growth inArabidopsis thaliana1",
+   "journal": "Plant Physiology",
+   "volume": "116",
+   "issue": "4",
+   "pages": "1515-1526",
+   "doi": "10.1104/pp.116.4.1515",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "berghuijs2017",
+   "authors": "Berghuijs HNC, Yin X, Ho QT, Retta MA, Verboven P, Nicolaï BM, Struik PC",
+   "year": "2017",
+   "title": "Localization of (photo)respiration and CO2 re-assimilation in tomato leaves investigated with a reaction-diffusion model",
+   "journal": "PLOS ONE",
+   "volume": "12",
+   "issue": "9",
+   "pages": "e0183746",
+   "doi": "10.1371/journal.pone.0183746",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "boudaher2018",
+   "authors": "Bou Daher F, Chen Y, Bozorg B, Clough J, Jönsson H, Braybrook SA",
+   "year": "2018",
+   "title": "Anisotropic growth is achieved through the additive mechanical effect of material anisotropy and elastic asymmetry",
+   "journal": "eLife",
+   "volume": "7",
+   "issue": "",
+   "pages": "e38161",
+   "doi": "10.7554/eLife.38161",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "canaday2026",
+   "authors": "Canaday ELJ, Meyers A, Scinto-Madonich NJ, Wyatt SE, Wolverton C",
+   "year": "2026",
+   "title": "Physiological and transcriptomic assessment of Arabidopsis identifies two distinct gravity signaling systems",
+   "journal": "Plant Physiology",
+   "volume": "200",
+   "issue": "3",
+   "pages": "kiag095",
+   "doi": "10.1093/plphys/kiag095",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "dilley2013",
+   "authors": "Dilley DR, Wang Z, Kadirjan-Kalbach DK, Ververidis F, Beaudry R, Padmanabhan K",
+   "year": "2013",
+   "title": "1-Aminocyclopropane-1-carboxylic acid oxidase reaction mechanism and putative post-translational activities of the ACCO protein",
+   "journal": "AoB PLANTS",
+   "volume": "5",
+   "issue": "",
+   "pages": "",
+   "doi": "10.1093/aobpla/plt031",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "footitt2019",
+   "authors": "Footitt S, Clewes R, Feeney M, Finch‐Savage WE, Frigerio L",
+   "year": "2019",
+   "title": "Aquaporins influence seed dormancy and germination in response to stress",
+   "journal": "Plant, Cell &amp; Environment",
+   "volume": "42",
+   "issue": "8",
+   "pages": "2325-2339",
+   "doi": "10.1111/pce.13561",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "ho2012",
+   "authors": "Ho QT, Verboven P, Yin X, Struik PC, Nicolaï BM",
+   "year": "2012",
+   "title": "A Microscale Model for Combined CO2 Diffusion and Photosynthesis in Leaves",
+   "journal": "PLoS ONE",
+   "volume": "7",
+   "issue": "11",
+   "pages": "e48376",
+   "doi": "10.1371/journal.pone.0048376",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "jackson2017",
+   "authors": "Jackson MD, Xu H, Duran-Nebreda S, Stamm P, Bassel GW",
+   "year": "2017",
+   "title": "Topological analysis of multicellular complexity in the plant hypocotyl",
+   "journal": "eLife",
+   "volume": "6",
+   "issue": "",
+   "pages": "e26023",
+   "doi": "10.7554/eLife.26023",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "klasen2025",
+   "authors": "Klasen D, Fischbach A, Sydoruk V, Kochs J, Bühler J, Koller R, Huber G",
+   "year": "2025",
+   "title": "Seed-to-plant-tracking: automated phenotyping of seeds and corresponding plants of Arabidopsis",
+   "journal": "Frontiers in Plant Science",
+   "volume": "16",
+   "issue": "",
+   "pages": "1539424",
+   "doi": "10.3389/fpls.2025.1539424",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "montenegrojohnson2015",
+   "authors": "Montenegro-Johnson TD, Stamm P, Strauss S, Topham AT, Tsagris M, Wood ATA, Smith RS, Bassel GW",
+   "year": "2015",
+   "title": "Digital Single-Cell Analysis of Plant Organ Development Using 3DCellAtlas",
+   "journal": "The Plant Cell",
+   "volume": "27",
+   "issue": "4",
+   "pages": "1018-1033",
+   "doi": "10.1105/tpc.15.00175",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "oh2004",
+   "authors": "Oh E, Kim J, Park E, Kim JI, Kang C, Choi G",
+   "year": "2004",
+   "title": "PIL5, a Phytochrome-Interacting Basic Helix-Loop-Helix Protein, Is a Key Negative Regulator of Seed Germination inArabidopsis thaliana [W]",
+   "journal": "The Plant Cell",
+   "volume": "16",
+   "issue": "11",
+   "pages": "3045-3058",
+   "doi": "10.1105/tpc.104.025163",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "retta2023",
+   "authors": "Retta MA, Yin X, Ho QT, Watté R, Berghuijs HNC, Verboven P, Saeys W, Cano FJ, Ghannoum O, Struik PC, Nicolaï BM",
+   "year": "2023",
+   "title": "The role of chloroplast movement in C4 photosynthesis: a theoretical analysis using a three-dimensional reaction–diffusion model for maize",
+   "journal": "Journal of Experimental Botany",
+   "volume": "74",
+   "issue": "14",
+   "pages": "4125-4142",
+   "doi": "10.1093/jxb/erad138",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "sander2015",
+   "authors": "Sander R",
+   "year": "2015",
+   "title": "Compilation of Henry's law constants (version 4.0) for water as solvent",
+   "journal": "Atmospheric Chemistry and Physics",
+   "volume": "15",
+   "issue": "8",
+   "pages": "4399-4981",
+   "doi": "10.5194/acp-15-4399-2015",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "stiti2022",
+   "authors": "Stiti M, Castanet G, Corber A, Alden M, Berrocal E",
+   "year": "2022",
+   "title": "Transition from saliva droplets to solid aerosols in the context of COVID-19 spreading",
+   "journal": "Environmental Research",
+   "volume": "204",
+   "issue": "",
+   "pages": "112072",
+   "doi": "10.1016/j.envres.2021.112072",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "tang2014",
+   "authors": "Tang MJ, Cox RA, Kalberer M",
+   "year": "2014",
+   "title": "Compilation and evaluation of gas phase diffusion coefficients of reactive trace gases in the atmosphere: volume 1. Inorganic compounds",
+   "journal": "Atmospheric Chemistry and Physics",
+   "volume": "14",
+   "issue": "17",
+   "pages": "9233-9247",
+   "doi": "10.5194/acp-14-9233-2014",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "tang2015",
+   "authors": "Tang MJ, Shiraiwa M, Pöschl U, Cox RA, Kalberer M",
+   "year": "2015",
+   "title": "Compilation and evaluation of gas phase diffusion coefficients of reactive trace gases in the atmosphere: Volume 2. Diffusivities of organic compounds, pressure-normalised mean free paths, and average Knudsen numbers for gas uptake calculations",
+   "journal": "Atmospheric Chemistry and Physics",
+   "volume": "15",
+   "issue": "10",
+   "pages": "5585-5598",
+   "doi": "10.5194/acp-15-5585-2015",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "thiel2011",
+   "authors": "Thiel J, Rolletschek H, Friedel S, Lunn JE, Nguyen TH, Feil R, Tschiersch H, Müller M, Borisjuk L",
+   "year": "2011",
+   "title": "Seed-specific elevation of non-symbiotic hemoglobin AtHb1: beneficial effects and underlying molecular networks in Arabidopsis thaliana",
+   "journal": "BMC Plant Biology",
+   "volume": "11",
+   "issue": "1",
+   "pages": "48",
+   "doi": "10.1186/1471-2229-11-48",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "thrower2001",
+   "authors": "Thrower JS, Blalock R, Klinman JP",
+   "year": "2001",
+   "title": "Steady-State Kinetics of Substrate Binding and Iron Release in Tomato ACC Oxidase",
+   "journal": "Biochemistry",
+   "volume": "40",
+   "issue": "32",
+   "pages": "9717-9724",
+   "doi": "10.1021/bi010329c",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "topham2017",
+   "authors": "Topham AT, Taylor RE, Yan D, Nambara E, Johnston IG, Bassel GW",
+   "year": "2017",
+   "title": "Temperature variability is integrated by a spatially embedded decision-making center to break dormancy in Arabidopsis seeds",
+   "journal": "Proceedings of the National Academy of Sciences",
+   "volume": "114",
+   "issue": "25",
+   "pages": "6629-6634",
+   "doi": "10.1073/pnas.1704745114",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "verboven2013",
+   "authors": "Verboven P, Herremans E, Borisjuk L, Helfen L, Ho QT, Tschiersch H, Fuchs J, Nicolaï BM, Rolletschek H",
+   "year": "2013",
+   "title": "Void space inside the developing seed of B rassica napus and the modelling of its function",
+   "journal": "New Phytologist",
+   "volume": "199",
+   "issue": "4",
+   "pages": "936-947",
+   "doi": "10.1111/nph.12342",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
+  },
+  {
+   "key": "wang2018",
+   "authors": "Wang X, Yesbergenova-Cuny Z, Biniek C, Bailly C, El-Maarouf-Bouteau H, Corbineau F",
+   "year": "2018",
+   "title": "Revisiting the Role of Ethylene and N-End Rule Pathway on Chilling-Induced Dormancy Release in Arabidopsis Seeds",
+   "journal": "International Journal of Molecular Sciences",
+   "volume": "19",
+   "issue": "11",
+   "pages": "3577",
+   "doi": "10.3390/ijms19113577",
+   "verified_on": "2026-11-06",
+   "verified_via": "Crossref API"
   }
  ]
 }

@@ -1,6 +1,6 @@
 // Seeded PRNG (mulberry32). The ONLY source of randomness in the model: it is used for
 // between-seed parameter variability in population runs, never to generate "data".
-// Math.random is banned in app/src/model by a validation gate.
+// The platform's unseeded generator is banned in app/src/model by a validation gate.
 export function mulberry32(seed: number): () => number {
   let a = seed >>> 0;
   return () => {

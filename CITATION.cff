@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Deep Space Seed Twin: a cellular digital twin of Arabidopsis germination under spaceflight hardware environments"
+type: software
+authors:
+  - family-names: Barker
+    given-names: Richard
+    orcid: "https://orcid.org/0000-0001-5681-9857"
+version: 0.1.0
+date-released: 2026-11-06
+license: MIT
+repository-code: "https://github.com/dr-richard-barker/deepspace-seed-twin"
+url: "https://dr-richard-barker.github.io/deepspace-seed-twin/"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.XXXXXXX"
+    description: "Zenodo archive (TODO: not yet deposited)"
+keywords:
+  - Arabidopsis thaliana
+  - seed germination
+  - digital twin
+  - spaceflight
+  - plant hormones
+  - gas exchange

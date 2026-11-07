@@ -1,0 +1,11 @@
+{
+ "description": "Observed targets the germination model is calibrated against (scripts/calibrate.ts). Reference conditions: ground_petri preset (1 g, 22 C, sea-level air, water agar).",
+ "targets": [
+  {"id": "aba_12h_ratio", "value": 0.30, "sd": 0.06, "unit": "ABA(12 h)/ABA(0 h), whole-embryo mean", "source": "okamoto2006", "note": "Col-0 seed ABA decreases by 70% within 12 h of imbibition (Results text); Kushiro 2004: half-time about 6 h, basal after 12 h"},
+  {"id": "testa_rupture_h", "value": 24, "sd": 3, "unit": "h", "source": "dekkers2013 bassel2014", "note": "Col-0 testa rupture 20-31 h after sowing at 22 C (Dekkers 2013); first embryo expansion concurrent with visible testa rupture at 16-22 HAI (Bassel 2014)"},
+  {"id": "endosperm_rupture_h", "value": 32, "sd": 3, "unit": "h", "source": "bassel2014 dekkers2013", "note": "expansion phase driving endosperm rupture 28-32 HAI (Bassel 2014); population endosperm rupture 31-45 h (Dekkers 2013)"},
+  {"id": "expansion_onset_h", "value": 19, "sd": 3, "unit": "h", "source": "bassel2014", "note": "first cell expansion in the lower hypocotyl between 16 and 22 HAI; onset = first hour any cortical cell at index 5-12 exceeds 1.05x its 3 h volume"},
+  {"id": "peak_expansion_index", "value": 8, "sd": 1.5, "unit": "cortical cell index from the QC", "source": "bassel2014", "note": "relative expansion greatest around cell number 8 (collet); evaluated at endosperm rupture, relative to 3 h"},
+  {"id": "cap_strength_ratio_at_rupture", "value": 0.6, "sd": 0.1, "unit": "cap strength at rupture / initial", "source": "linkies2010", "note": "Lepidium endosperm cap puncture force ~38 mN early, 50% endosperm rupture at ~23 mN (Linkies et al. 2009, Fig. 1): ratio ~0.6 (proxy species)"}
+ ]
+}

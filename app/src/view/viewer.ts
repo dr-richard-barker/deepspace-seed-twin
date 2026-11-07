@@ -18,10 +18,17 @@ export interface ShellState {
   mucilage: number; // µm of hydrated mucilage
 }
 
+export interface SeedView {
+  layout: Layout;
+  colors: Float32Array;
+  shell: ShellState;
+  offsetX: number;
+}
+
 export interface SeedViewer {
-  update(layout: Layout, colors: Float32Array, shell: ShellState): void;
+  update(seeds: SeedView[]): void;
   setCut(on: boolean): void;
-  frame(layout: Layout, immediate?: boolean): void;
+  frame(seeds: SeedView[], immediate?: boolean): void;
   setGravityArrow(g: number): void;
   snapshot(): string;
   dispose(): void;
@@ -39,7 +46,7 @@ function themeIsDark(): boolean {
 export function createSeedViewer(
   container: HTMLElement,
   capacity: number,
-  onPick: (cell: number | null) => void,
+  onPick: (seed: number, cell: number | null) => void,
 ): SeedViewer {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(35, 1, 1, 200000);
@@ -72,9 +79,9 @@ export function createSeedViewer(
   // --- cells
   const geo = new RoundedBoxGeometry(1, 1, 1, 1, 0.18);
   const mat = new THREE.MeshStandardMaterial({ roughness: 0.55, metalness: 0.0, side: THREE.DoubleSide, clippingPlanes: [cutPlane] });
-  const mesh = new THREE.InstancedMesh(geo, mat, capacity);
+  const mesh = new THREE.InstancedMesh(geo, mat, capacity * 2);
   mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-  mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(capacity * 3), 3);
+  mesh.instanceColor = new THREE.InstancedBufferAttribute(new Float32Array(capacity * 2 * 3), 3);
   mesh.instanceColor.setUsage(THREE.DynamicDrawUsage);
   mesh.count = 0;
   mesh.frustumCulled = false;
@@ -91,13 +98,7 @@ export function createSeedViewer(
     clippingPlanes: [cutPlane],
   });
   const half = new THREE.SphereGeometry(1, 48, 24, 0, Math.PI * 2, 0, Math.PI / 2);
-  const testaA = new THREE.Mesh(half, testaMat);
-  const testaB = new THREE.Mesh(half, testaMat);
-  testaA.rotation.z = Math.PI / 2; // dome opens toward −x (micropylar end)
-  testaB.rotation.z = -Math.PI / 2;
-  const testa = new THREE.Group();
-  testa.add(testaA, testaB);
-  scene.add(testa);
+  const mucGeo = new THREE.SphereGeometry(1, 48, 24);
   const mucMat = new THREE.MeshStandardMaterial({
     color: 0x9fd3ff,
     transparent: true,
@@ -106,8 +107,15 @@ export function createSeedViewer(
     depthWrite: false,
     clippingPlanes: [cutPlane],
   });
-  const mucilage = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 24), mucMat);
-  scene.add(mucilage);
+  const shells = [0, 1].map(() => {
+    const testaA = new THREE.Mesh(half, testaMat);
+    const testaB = new THREE.Mesh(half, testaMat);
+    const testa = new THREE.Group();
+    testa.add(testaA, testaB);
+    const mucilage = new THREE.Mesh(mucGeo, mucMat);
+    scene.add(testa, mucilage);
+    return { testa, testaA, testaB, mucilage };
+  });
 
   // gravity arrow
   const arrow = new THREE.ArrowHelper(new THREE.Vector3(0, -1, 0), new THREE.Vector3(-700, 300, 0), 220, 0x6b8a6b, 50, 26);
@@ -121,7 +129,6 @@ export function createSeedViewer(
   const q = new THREE.Quaternion();
   const v = new THREE.Vector3();
   const s = new THREE.Vector3();
-  let lastCount = 0;
 
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
@@ -134,7 +141,10 @@ export function createSeedViewer(
     pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
     raycaster.setFromCamera(pointer, camera);
     const hits = raycaster.intersectObject(mesh, false).filter((h) => !cutOn || h.point.z <= cutPlane.constant + 1e-3);
-    onPick(hits.length && hits[0].instanceId !== undefined ? hits[0].instanceId : null);
+    if (!hits.length || hits[0].instanceId === undefined) return onPick(0, null);
+    const id = hits[0].instanceId;
+    const seed = id >= capacity ? 1 : 0;
+    onPick(seed, id - seed * capacity);
   };
   renderer.domElement.addEventListener("pointerdown", onDown);
   renderer.domElement.addEventListener("pointerup", onUp);
@@ -162,37 +172,52 @@ export function createSeedViewer(
   let frameDist = 1100;
 
   return {
-    update(layout, colors, shell) {
-      const n = layout.n;
-      for (let i = 0; i < n; i++) {
-        if (!layout.visible[i]) {
-          m4.makeScale(0, 0, 0);
-        } else {
-          v.set(layout.pos[3 * i], layout.pos[3 * i + 1], layout.pos[3 * i + 2]);
-          q.set(layout.quat[4 * i], layout.quat[4 * i + 1], layout.quat[4 * i + 2], layout.quat[4 * i + 3]);
-          s.set(layout.scale[3 * i] * GAP, layout.scale[3 * i + 1] * GAP, layout.scale[3 * i + 2] * GAP);
-          m4.compose(v, q, s);
+    update(seeds) {
+      const colorArr = mesh.instanceColor!.array as Float32Array;
+      let maxIndex = 0;
+      seeds.forEach((sv, k) => {
+        const { layout, colors, shell, offsetX } = sv;
+        const base = k * capacity;
+        const n = layout.n;
+        for (let i = 0; i < n; i++) {
+          if (!layout.visible[i]) {
+            m4.makeScale(0, 0, 0);
+          } else {
+            v.set(layout.pos[3 * i] + offsetX, layout.pos[3 * i + 1], layout.pos[3 * i + 2]);
+            q.set(layout.quat[4 * i], layout.quat[4 * i + 1], layout.quat[4 * i + 2], layout.quat[4 * i + 3]);
+            s.set(layout.scale[3 * i] * GAP, layout.scale[3 * i + 1] * GAP, layout.scale[3 * i + 2] * GAP);
+            m4.compose(v, q, s);
+          }
+          mesh.setMatrixAt(base + i, m4);
         }
-        mesh.setMatrixAt(i, m4);
+        colorArr.set(colors.subarray(0, n * 3), base * 3);
+        // hide unused slots between this seed's cells and the next seed's block
+        if (k === 0 && seeds.length > 1) {
+          m4.makeScale(0, 0, 0);
+          for (let i = n; i < capacity; i++) mesh.setMatrixAt(i, m4);
+        }
+        maxIndex = base + n;
+        const sh = shells[k];
+        sh.testa.visible = shell.testaVisible;
+        sh.testa.position.set(offsetX, 0, 0);
+        sh.testaA.scale.set(shell.b, shell.a, shell.b);
+        sh.testaB.scale.set(shell.b, shell.a, shell.b);
+        sh.testaA.position.set(-shell.testaSplit * shell.a * 0.35, shell.testaSplit * shell.b * 0.25, 0);
+        sh.testaA.rotation.set(0, 0, Math.PI / 2 + shell.testaSplit * 0.6);
+        sh.testaB.rotation.set(0, 0, -Math.PI / 2);
+        const m = Math.max(shell.mucilage, 0);
+        sh.mucilage.visible = m > 1;
+        sh.mucilage.position.set(offsetX, 0, 0);
+        sh.mucilage.scale.set(shell.a + m, shell.b + m, shell.b + m);
+      });
+      for (let k = seeds.length; k < 2; k++) {
+        shells[k].testa.visible = false;
+        shells[k].mucilage.visible = false;
       }
-      (mesh.instanceColor!.array as Float32Array).set(colors.subarray(0, n * 3));
-      mesh.count = n;
-      if (n !== lastCount) lastCount = n;
+      mesh.count = maxIndex;
       mesh.instanceMatrix.needsUpdate = true;
       mesh.instanceColor!.needsUpdate = true;
       mesh.computeBoundingSphere();
-
-      testa.visible = shell.testaVisible;
-      testa.scale.set(1, 1, 1);
-      testaA.scale.set(shell.b, shell.a, shell.b);
-      testaB.scale.set(shell.b, shell.a, shell.b);
-      // split: the micropylar half swings away
-      testaA.position.set(-shell.testaSplit * shell.a * 0.35, shell.testaSplit * shell.b * 0.25, 0);
-      testaA.rotation.set(0, 0, Math.PI / 2 + shell.testaSplit * 0.6);
-      testaB.position.set(0, 0, 0);
-      const m = Math.max(shell.mucilage, 0);
-      mucilage.visible = m > 1;
-      mucilage.scale.set(shell.a + m, shell.b + m, shell.b + m);
     },
     setCut(on) {
       cutOn = on;
@@ -202,20 +227,27 @@ export function createSeedViewer(
       mucMat.clippingPlanes = planes;
       mat.needsUpdate = testaMat.needsUpdate = mucMat.needsUpdate = true;
     },
-    frame(layout, immediate = false) {
-      const [x0, y0, , x1, y1] = layout.bbox;
+    frame(seeds, immediate = false) {
+      let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+      for (const sv of seeds) {
+        const b = sv.layout.bbox;
+        if (!Number.isFinite(b[0])) continue;
+        x0 = Math.min(x0, b[0] + sv.offsetX, -sv.shell.a + sv.offsetX);
+        x1 = Math.max(x1, b[3] + sv.offsetX, sv.shell.a + sv.offsetX);
+        y0 = Math.min(y0, b[1], -sv.shell.b);
+        y1 = Math.max(y1, b[4], sv.shell.b);
+      }
       if (!Number.isFinite(x0)) return;
       tmpTarget.set((x0 + x1) / 2, (y0 + y1) / 2, 0);
-      const span = Math.max(x1 - x0, y1 - y0, 450) * 1.35;
-      const dist = span / (2 * Math.tan((camera.fov * Math.PI) / 360));
-      // only move the camera when the scene has grown or shrunk meaningfully
+      const span = Math.max(x1 - x0, (y1 - y0) * camera.aspect, 450) * 1.25;
+      const dist = span / (2 * Math.tan((camera.fov * Math.PI) / 360)) / Math.max(camera.aspect, 0.6);
       if (immediate || Math.abs(dist - frameDist) / frameDist > 0.18) {
         const dir = camera.position.clone().sub(controls.target).normalize();
         controls.target.copy(tmpTarget);
         camera.position.copy(tmpTarget).addScaledVector(dir, dist);
         frameDist = dist;
-        arrow.position.set(x0 - span * 0.15, (y0 + y1) / 2 + span * 0.1, 0);
-        arrow.setLength(span * 0.16, span * 0.04, span * 0.02);
+        arrow.position.set(x0 - span * 0.08, (y0 + y1) / 2 + span * 0.1, 0);
+        arrow.setLength(span * 0.12, span * 0.03, span * 0.015);
       }
     },
     setGravityArrow(g) {
@@ -235,6 +267,8 @@ export function createSeedViewer(
       mat.dispose();
       testaMat.dispose();
       mucMat.dispose();
+      half.dispose();
+      mucGeo.dispose();
       controls.dispose();
       renderer.dispose();
       renderer.domElement.remove();

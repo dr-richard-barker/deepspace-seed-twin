@@ -1,0 +1,11 @@
+Documentation, data tables, figures and manuscript text in this repository
+(README.md, data/, results/, figures/, tables/, supplementary/, manuscript/)
+are licensed under the Creative Commons Attribution 4.0 International License
+(CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
+
+Source code (app/, scripts/, python/, validation/) is licensed under the MIT
+License in LICENSE.
+
+Third-party data reproduced here keep their original terms and citations: the
+decoder NES values (data/decoder/) come from deepspace-seed-stress-decoder (MIT),
+and parameter values are cited individually in data/params/parameter_ledger.csv.

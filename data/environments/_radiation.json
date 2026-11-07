@@ -1,0 +1,49 @@
+[
+ {
+  "id": "none",
+  "label": "None (ground)",
+  "dose_mgy_d": 0,
+  "spe_dose_mgy": 0,
+  "source": "",
+  "tier": "assumed",
+  "note": "terrestrial background neglected"
+ },
+ {
+  "id": "iss",
+  "label": "ISS interior (0.287 mGy/d)",
+  "dose_mgy_d": 0.2868,
+  "spe_dose_mgy": 0,
+  "source": "repo:Hardware_OSDR_review/results/tables/T11_flight_ground.csv@2966064#mean_daily_dose_mGy",
+  "tier": "derived",
+  "note": "median of the mean daily dose of 7 Rodent Research missions with EDA dose data (RR-1, RR-12, RR-19, RR-23, RR-3, RR-6, RR-7); cf. Straube et al. 2024 EAD 314 +/- 14 uGy/d (absorbed)"
+ },
+ {
+  "id": "lunar_surface",
+  "label": "Lunar surface (0.317 mGy/d)",
+  "dose_mgy_d": 0.317,
+  "spe_dose_mgy": 0,
+  "source": "zhang2020",
+  "tier": "derived",
+  "note": "Chang'e-4 LND: charged-particle dose 13.2 uGy/h in water x 24 h (Zhang et al. 2020); the neutral component (3.1 uGy/h in Si) is not included"
+ },
+ {
+  "id": "deep_space",
+  "label": "Interplanetary cruise (0.48 mGy/d)",
+  "dose_mgy_d": 0.48,
+  "spe_dose_mgy": 0,
+  "source": "simonsen2020",
+  "tier": "measured",
+  "note": "MSL RAD cruise dose rate as cited by Simonsen et al. 2020 (secondary source)"
+ },
+ {
+  "id": "deep_space_spe",
+  "label": "Cruise + solar particle event (150 mGy in 24 h)",
+  "dose_mgy_d": 0.48,
+  "spe_dose_mgy": 150,
+  "spe_start_h": 24,
+  "spe_dur_h": 24,
+  "source": "simonsen2020 shavers2024",
+  "tier": "derived",
+  "note": "SPE: midpoint of the 115-188 mGy design-event estimates behind 20 g/cm2 shielding (Shavers et al. 2024, model estimates, not a measurement); 24 h duration assumed"
+ }
+]

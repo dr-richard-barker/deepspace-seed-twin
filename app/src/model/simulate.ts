@@ -16,7 +16,7 @@ import { allocLayout, computeLayout, initialPose, type Layout, type OrganPose } 
 import { p, type Params } from "./params";
 import { doseRate, lightOn, type Env } from "./environment";
 import { R_GAS, seedShape, transport, waterFilm, cylinderDrop, slabDrop, type SeedShape, type Transport } from "./gas";
-import { allocHormones, growthResponse, initHormones, stepHormones, type HormoneState } from "./hormones";
+import { allocHormones, growthResponse, initHormones, maxStableDu, stepHormones, type HormoneState } from "./hormones";
 import { initSeedling, stepSeedling, type SeedlingState } from "./seedling";
 
 export interface Milestones {
@@ -42,12 +42,14 @@ export interface Sample {
   co2_int_kpa: number;
   eth_hs_ppb: number;
   eth_int_ppb: number;
+  eth_prod_pl_h: number;
   aba_tip: number;
   aba_collet: number;
   ga_tip: number;
   ga_collet: number;
-  della_tip: number;
-  della_collet: number;
+  integ_tip: number;
+  integ_collet: number;
+  aba_mean: number;
   axis_len_um: number;
   root_len_um: number;
   hyp_len_um: number;
@@ -70,6 +72,8 @@ export interface SimOptions {
 }
 
 const PA_PER_KPA = 1000;
+/** hours after imbibition at which Bassel et al. 2014 report embryo cell expansion */
+export const PROFILE_TIMES = [3, 6, 16, 22, 28, 32];
 
 export class SeedTwin {
   readonly params: Params;
@@ -86,6 +90,8 @@ export class SeedTwin {
   readonly sampleEvery: number;
   readonly germinationOnly: boolean;
   samples: Sample[] = [];
+  /** cortical cell volume by QC index captured at the Bassel 2014 timepoints */
+  profiles = new Map<number, { index: number; volume: number }[]>();
   milestones: Milestones = { testaRupture: null, endospermRupture: null, anchored: null, cotEmerged: null, cotOpen: null };
 
   // seed-level state
@@ -104,10 +110,13 @@ export class SeedTwin {
   o2Surface = 0;
   o2SurfaceExposed = 0;
   ethExposed = 0; // Pa, at the surface of protruded tissue
+  ethProduction = 0; // mol/s per seed
   exposedArea = 0; // m², lateral area of tissue outside the seed
   exposedStamp = -1;
   lastTransport: Transport | null = null;
   axisLen0: number;
+  /** O2 uptake capacity per m³ of tissue (mol m⁻³ s⁻¹), from the per-seed rate in the ledger */
+  qMaxPerVolume: number;
 
   // per-cell fields
   readonly o2: Float64Array;
@@ -151,6 +160,13 @@ export class SeedTwin {
     this.water = p(params, "water_dry_gg");
     this.capStrength = p(params, "cap_strength0_mpa");
     this.axisLen0 = axisLength(this.template);
+    {
+      const c0 = this.template.cells;
+      const swellFull = 1 + p(params, "imbibition_swell");
+      let v = 0;
+      for (let i = 0; i < c0.n; i++) if (c0.region[i] !== Region.Endosperm) v += c0.vol0[i] * swellFull * 1e-18;
+      this.qMaxPerVolume = (p(params, "resp_seed_nmol_h") * 1e-9) / 3600 / v;
+    }
     const P = env.p_total_kpa * PA_PER_KPA;
     this.hs = { o2: env.o2_frac * P, co2: env.co2_ppm * 1e-6 * P, eth: 0 };
     this.refreshCellFields();
@@ -228,8 +244,11 @@ export class SeedTwin {
     const kImb = p(params, "water_imbibition_rate");
     if (this.water < wEq) this.water += dt * kImb * contact * (wEq - this.water);
     this.hydration = Math.max(0, Math.min(1, (this.water - wDry) / (wII - wDry)));
-    const psiB = p(params, "psi_base_mpa"); // negative
-    const turgorFactor = Math.max(0, Math.min(1, (psi - psiB) / (0 - psiB)));
+    // hydrotime: the growth drive scales with ψ − ψb in absolute terms (Bradford's hydrotime
+    // model); normalised by the population-mean ψb so a mean seed on water has P = P_ref
+    const psiB = p(params, "psi_base_mpa"); // population mean (negative)
+    const psiBSeed = psiB + p(params, "psi_base_seed_offset_mpa");
+    const turgorFactor = Math.max(0, (psi - psiBSeed) / (0 - psiB));
     this.turgor = Math.pow(this.hydration, p(params, "turgor_hydration_exponent")) * p(params, "turgor_ref_mpa") * turgorFactor;
     const tauAct = p(params, "activation_tau_h");
     this.activation += (dt / tauAct) * fT * (this.hydration - this.activation);
@@ -241,7 +260,8 @@ export class SeedTwin {
       testaRuptured: this.milestones.testaRupture !== null,
     });
     this.lastTransport = tr;
-    const qMax = p(params, "resp_qmax_mol_m3s") * this.activation * fT;
+    // max uptake per tissue volume, set so a fully active, fully imbibed seed takes up resp_seed_nmol_h
+    const qMax = this.qMaxPerVolume * this.activation * fT;
     const KmO2 = p(params, "resp_km_o2_pa");
     const Dt = p(params, "d_o2_water_m2s") * p(params, "tissue_diffusivity_rel");
     const Hc = p(params, "h_o2_mol_m3pa");
@@ -321,9 +341,9 @@ export class SeedTwin {
     const ethN = p(params, "eth_response_hill");
     const ethLevel = this.milestones.endospermRupture === null ? this.ethInt : this.ethExposed;
     const ethResp = Math.pow(ethLevel, ethN) / (Math.pow(ethK, ethN) + Math.pow(ethLevel, ethN));
-    const maxDeg = 12;
-    const trMax = Math.max(p(params, "aba_transport"), p(params, "ga_transport"));
-    const sub = Math.max(1, Math.ceil((trMax * maxDeg * dt) / 0.45));
+    // substeps keep the explicit scheme inside its stability bound
+    const du = (dt / p(params, "hormone_time_unit_h")) * this.activation * fT;
+    const sub = Math.max(1, Math.ceil(du / (0.8 * maxStableDu(params, 12))));
     for (let s = 0; s < sub; s++) {
       stepHormones(params, this.graph, this.h, {
         n,
@@ -366,7 +386,8 @@ export class SeedTwin {
     const rq = p(params, "resp_quotient");
     this.hs.o2 = Math.max(0, relax(this.hs.o2, -coef * N * Q, env.o2_frac * P, 0));
     this.hs.co2 = Math.max(0, relax(this.hs.co2, coef * N * rq * Q, env.co2_ppm * 1e-6 * P, 0));
-    this.hs.eth = Math.max(0, relax(this.hs.eth, coef * N * ethProd, 0, env.eth_scrub_per_h / 3600));
+    this.ethProduction = ethProd;
+    this.hs.eth = Math.max(0, relax(this.hs.eth, coef * N * ethProd, env.eth_inlet_ppm * 1e-6 * P, env.eth_scrub_per_h / 3600));
 
     // ---------------- growth
     if (this.milestones.endospermRupture === null) this.growEnclosed(dt, ethResp, fT);
@@ -375,11 +396,15 @@ export class SeedTwin {
     }
 
     this.t += dt;
+    for (const tp of PROFILE_TIMES) {
+      if (this.t - dt < tp - 1e-9 && this.t >= tp - 1e-9 && !this.profiles.has(tp)) this.profiles.set(tp, this.cortexVolumeByIndex());
+    }
     if (Math.floor((this.t + 1e-9) / this.sampleEvery) > Math.floor((this.t - dt + 1e-9) / this.sampleEvery)) this.record();
   }
 
   /** Lockhart growth of the enclosed embryo + two-stage seed-coat restraint. */
   private growEnclosed(dt: number, ethResp: number, fT: number): void {
+    void ethResp;
     const params = this.params;
     const t = this.template;
     const c = t.cells;
@@ -398,7 +423,7 @@ export class SeedTwin {
         const V = c.len[i] * c.wid[i] * c.dep[i] * swell;
         const rho = Math.cbrt((3 * V) / (4 * Math.PI));
         const sigma = (pEff * rho) / (2 * c.wallT[i]);
-        const drive = phi * growthResponse(params, this.h, i, ethResp) * this.energy[i] * Math.max(0, sigma - sigY);
+        const drive = phi * growthResponse(params, this.h, i) * this.energy[i] * Math.max(0, sigma - sigY);
         const w = c.wallT[i] * c.wid[i];
         wsum += w;
         gsum += w * drive;
@@ -470,6 +495,18 @@ export class SeedTwin {
     this.exposedArea = area;
   }
 
+  /** mean over all embryo (non-endosperm) cells — a whole-seed proxy for hormone contents */
+  meanActive(arr: Float64Array): number {
+    let s = 0;
+    let k = 0;
+    for (let i = 0; i < this.template.cells.n; i++)
+      if (this.active[i]) {
+        s += arr[i];
+        k++;
+      }
+    return k ? s / k : 0;
+  }
+
   mean(arr: Float64Array, idx: number[]): number {
     if (idx.length === 0) return 0;
     let s = 0;
@@ -501,12 +538,14 @@ export class SeedTwin {
       co2_int_kpa: (this.hs.co2 + (tr ? (p(this.params, "resp_quotient") * this.respiration) / tr.gOut.co2 : 0)) / 1000,
       eth_hs_ppb: ppb(this.hs.eth),
       eth_int_ppb: ppb(this.ethInt),
+      eth_prod_pl_h: this.ethProduction * 3600 * 22.414e12,
       aba_tip: this.mean(this.h.aba, this.tipCells),
       aba_collet: this.mean(this.h.aba, this.colletCells),
       ga_tip: this.mean(this.h.ga, this.tipCells),
       ga_collet: this.mean(this.h.ga, this.colletCells),
-      della_tip: this.mean(this.h.della, this.tipCells),
-      della_collet: this.mean(this.h.della, this.colletCells),
+      integ_tip: this.mean(this.h.integ, this.tipCells),
+      integ_collet: this.mean(this.h.integ, this.colletCells),
+      aba_mean: this.meanActive(this.h.aba),
       axis_len_um: axisLength(t),
       root_len_um: lengths.root,
       hyp_len_um: lengths.hypocotyl,

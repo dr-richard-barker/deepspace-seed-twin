@@ -1,0 +1,91 @@
+[
+ {
+  "id": "sea_level",
+  "label": "Sea level (101.3 kPa, 20.95 % O2)",
+  "p_total_kpa": 101.325,
+  "o2_frac": 0.2095,
+  "source": "definition",
+  "tier": "standard",
+  "note": "1 atm by definition; 20.95 % O2 conventional"
+ },
+ {
+  "id": "Control_ISS_97kPa_21pctO2",
+  "label": "Control ISS 97kPa 21pctO2",
+  "p_total_kpa": 97.0,
+  "o2_frac": 0.21,
+  "po2_kpa": 20.37,
+  "source": "repo:arabidopsis_exploration_atmosphere/tables/Table_S6A_NASA_Exploration_Atmosphere_Counterfactual_Predictions.csv@ffc760c#Control_ISS_97kPa_21pctO2",
+  "tier": "derived",
+  "note": "set point as used in arabidopsis-exploration-atmosphere-tabpfn Table S6A (cites Norcross et al. 2013, NASA/TM-2013-217377); no CO2 set point is defined"
+ },
+ {
+  "id": "NASA_Staged_PreEVA_70.3kPa_26.5pctO2",
+  "label": "NASA Staged PreEVA 70.3kPa 26.5pctO2",
+  "p_total_kpa": 70.33,
+  "o2_frac": 0.265,
+  "po2_kpa": 18.64,
+  "source": "repo:arabidopsis_exploration_atmosphere/tables/Table_S6A_NASA_Exploration_Atmosphere_Counterfactual_Predictions.csv@ffc760c#NASA_Staged_PreEVA_70.3kPa_26.5pctO2",
+  "tier": "derived",
+  "note": "set point as used in arabidopsis-exploration-atmosphere-tabpfn Table S6A (cites Norcross et al. 2013, NASA/TM-2013-217377); no CO2 set point is defined"
+ },
+ {
+  "id": "NASA_Exploration_56.5kPa_34pctO2",
+  "label": "NASA Exploration 56.5kPa 34pctO2",
+  "p_total_kpa": 56.54,
+  "o2_frac": 0.34,
+  "po2_kpa": 19.22,
+  "source": "repo:arabidopsis_exploration_atmosphere/tables/Table_S6A_NASA_Exploration_Atmosphere_Counterfactual_Predictions.csv@ffc760c#NASA_Exploration_56.5kPa_34pctO2",
+  "tier": "derived",
+  "note": "set point as used in arabidopsis-exploration-atmosphere-tabpfn Table S6A (cites Norcross et al. 2013, NASA/TM-2013-217377); no CO2 set point is defined"
+ },
+ {
+  "id": "Observed_50kPa_NormoxicO2_42pctO2",
+  "label": "Observed 50kPa NormoxicO2 42pctO2",
+  "p_total_kpa": 50.0,
+  "o2_frac": 0.42,
+  "po2_kpa": 21.0,
+  "source": "repo:arabidopsis_exploration_atmosphere/tables/Table_S6A_NASA_Exploration_Atmosphere_Counterfactual_Predictions.csv@ffc760c#Observed_50kPa_NormoxicO2_42pctO2",
+  "tier": "derived",
+  "note": "set point as used in arabidopsis-exploration-atmosphere-tabpfn Table S6A (cites Norcross et al. 2013, NASA/TM-2013-217377); no CO2 set point is defined"
+ },
+ {
+  "id": "Counterfactual_56.5kPa_UncompensatedAir_21pctO2",
+  "label": "Counterfactual 56.5kPa UncompensatedAir 21pctO2",
+  "p_total_kpa": 56.54,
+  "o2_frac": 0.21,
+  "po2_kpa": 11.87,
+  "source": "repo:arabidopsis_exploration_atmosphere/tables/Table_S6A_NASA_Exploration_Atmosphere_Counterfactual_Predictions.csv@ffc760c#Counterfactual_56.5kPa_UncompensatedAir_21pctO2",
+  "tier": "derived",
+  "note": "set point as used in arabidopsis-exploration-atmosphere-tabpfn Table S6A (cites Norcross et al. 2013, NASA/TM-2013-217377); no CO2 set point is defined"
+ },
+ {
+  "id": "Observed_50kPa_Air_21pctO2",
+  "label": "Observed 50kPa Air 21pctO2",
+  "p_total_kpa": 50.0,
+  "o2_frac": 0.21,
+  "po2_kpa": 10.5,
+  "source": "repo:arabidopsis_exploration_atmosphere/tables/Table_S6A_NASA_Exploration_Atmosphere_Counterfactual_Predictions.csv@ffc760c#Observed_50kPa_Air_21pctO2",
+  "tier": "derived",
+  "note": "set point as used in arabidopsis-exploration-atmosphere-tabpfn Table S6A (cites Norcross et al. 2013, NASA/TM-2013-217377); no CO2 set point is defined"
+ },
+ {
+  "id": "Observed_25kPa_NormoxicO2_84pctO2",
+  "label": "Observed 25kPa NormoxicO2 84pctO2",
+  "p_total_kpa": 25.0,
+  "o2_frac": 0.84,
+  "po2_kpa": 21.0,
+  "source": "repo:arabidopsis_exploration_atmosphere/tables/Table_S6A_NASA_Exploration_Atmosphere_Counterfactual_Predictions.csv@ffc760c#Observed_25kPa_NormoxicO2_84pctO2",
+  "tier": "derived",
+  "note": "set point as used in arabidopsis-exploration-atmosphere-tabpfn Table S6A (cites Norcross et al. 2013, NASA/TM-2013-217377); no CO2 set point is defined"
+ },
+ {
+  "id": "Observed_25kPa_Air_21pctO2",
+  "label": "Observed 25kPa Air 21pctO2",
+  "p_total_kpa": 25.0,
+  "o2_frac": 0.21,
+  "po2_kpa": 5.25,
+  "source": "repo:arabidopsis_exploration_atmosphere/tables/Table_S6A_NASA_Exploration_Atmosphere_Counterfactual_Predictions.csv@ffc760c#Observed_25kPa_Air_21pctO2",
+  "tier": "derived",
+  "note": "set point as used in arabidopsis-exploration-atmosphere-tabpfn Table S6A (cites Norcross et al. 2013, NASA/TM-2013-217377); no CO2 set point is defined"
+ }
+]
